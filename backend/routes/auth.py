@@ -1,4 +1,4 @@
-from extensions import db
+from backend.extensions import db
 import jwt
 from jwt import ExpiredSignatureError, InvalidTokenError
 from sqlalchemy import or_

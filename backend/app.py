@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from extensions import db
+from backend.extensions import db
 from flask_cors import CORS
 
 def create_app():
