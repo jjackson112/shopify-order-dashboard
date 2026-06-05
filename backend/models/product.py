@@ -18,4 +18,4 @@ class Product(db.Model):
     # cascade tells SQLALchemy what happens to the child (variants) when something happens to the parent (product)
     # "all" - apply all operations on product to variants 
     # "delete-orphan" - when you delete something, it says deleted, not a useless, floating row (orphan)
-    variants = db.relationship("Variant", back_populates="product", cascade="all, delete")
+    variants = db.relationship("Variant", back_populates="product", cascade="all, delete-orphan")
