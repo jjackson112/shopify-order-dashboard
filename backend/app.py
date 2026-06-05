@@ -19,7 +19,7 @@ def create_app():
    from models.product import Product
    from models.variant import Variant
 
-   with app.app_context():
-      db.create_all()
-      
+   # with app.app_context():
+   #   db.create_all()
+
    return app
