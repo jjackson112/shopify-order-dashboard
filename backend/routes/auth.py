@@ -12,11 +12,11 @@ def register():
     data = request.get_json()
 
     username = data.get("username", "").strip()
-    password = data.get("password", "").strip()
     email = data.get("email", "").strip()
+    password = data.get("password", "").strip()
 
     if not username.strip() or not password.strip() or not email.strip():
-        return jsonify({'error': "Username and password are required."}), 400
+        return jsonify({'error': "Username, password, and email are required."}), 400
     
     # existing user
     existing_user = User.query.filter((User.username == username) | (User.email == email)).first() 
