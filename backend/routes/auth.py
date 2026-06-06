@@ -3,13 +3,14 @@ from jwt import ExpiredSignatureError, InvalidTokenError
 from extensions import db
 from flask import Blueprint, request, jsonify
 import datetime
+from sqlalchemy import or_
 from models.user import User
 
 auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 
 @auth_bp.route("/register", methods=["POST"])
 def register():
-    data = request.get_json()
+    data = request.get_json() or {}
 
     username = data.get("username", "").strip()
     email = data.get("email", "").strip()
@@ -34,13 +35,15 @@ def register():
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
-    data = request.get_json()
+    data = request.get_json() or {}
 
-    username = data.get("username", "").strip()
+    identifier = data.get("identifier", "").strip().lower()
     password = data.get("password", "").strip()
 
-    user = User.query.filter_by(username=username).first()
+    if not identifier or not password:
+        return jsonify({"Username/email and password are required"}), 401
 
-    if not user:
-        return jsonify({"Username not found"})
+    user = User.query.filter_by(identifier=identifier).first()
 
+    
+    return jsonify({'message': "Login successful"}), 200
