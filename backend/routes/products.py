@@ -1,22 +1,33 @@
-import flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify
 from extensions import db
 from models.product import Product
 from services.token import token_required
 
 products_bp = Blueprint("/products", __name__, url_prefix='api/products')
+
 # get list of products
-@product_bp.route("/", methods=["GET"])
+@products_bp.route("", methods=["GET"])
 @token_required
+def get_products():
+    return jsonify({})
+
+@products_bp.route("", methods=["POST"])
+@token_required
+def create_product():
+    pass 
 
 # get a single product
-@product_bp.route("/product/<int:id>", methods=["GET"])
+@products_bp.route("/<int:id>", methods=["GET"])
 @token_required
+def get_product():
+    pass
 
-@product_bp.route("/", methods=["POST"])
+@products_bp.route("/<int:id>", methods=["PATCH"])
 @token_required
+def update_product(id):
+    pass
 
-@product_bp.route("/product/<int:id>", methods=["PATCH"])
+@products_bp.route("/<int:id>", methods=["DELETE"])
 @token_required
-
-@product_bp.route("/product/<int:id>", methods=["DELETE"])
-@token_required
+def delete_product(id):
+    pass
