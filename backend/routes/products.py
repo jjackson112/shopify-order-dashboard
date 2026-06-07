@@ -7,7 +7,7 @@ products_bp = Blueprint("products", __name__, url_prefix='api/products')
 
 @products_bp.route("", methods=["POST"])
 @token_required
-def create_product():
+def create_product(current_user):
     data = request.get_json()
 
     if not data:
