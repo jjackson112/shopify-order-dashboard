@@ -8,9 +8,14 @@ from services.token import token_required
 
 variants_bp = Blueprint("variants", __name__, url_prefix='/api/variants')
 
-@variants_bp.route("/int:<variant_id>", methods=["POST"])
+@variants_bp.route("/products/<int:product_id>/variants", methods=["POST"])
 @token_required
-def create_variant():
+def create_variant(current_user, product_id):
+    product = Product.query.filter_by(
+        id=product_id,
+        user_id=current_user.id
+    ).first_or_404()
+
     data = request.get_json()
 
     if not data:
@@ -21,10 +26,11 @@ def create_variant():
     price = data.get("price", "")
     quantity = data.get("quantity", "")
 
-    if not title or not sku or not price or not quantity:
-        return jsonify({"error": "Title and description are required."}), 400
+    if not title or not sku or price is None or quantity is None:
+        return jsonify({"error": "Title, SKU, price, and quantity are required."}), 400
 
     variant = Variant(
+        product_id=product.id,
         title=title,
         sku=sku,
         price=price,
@@ -37,7 +43,7 @@ def create_variant():
     return jsonify({"variant": variant.to_dict()}), 200
 
 # single resource endpoint
-@variants_bp.route("/int:<variant_id>", methods=["GET"])
+@variants_bp.route("/products/<int:product_id>/variants/int:<variant_id>", methods=["GET"])
 @token_required
 def get_single_variant(current_user, variant_id):
    variant = Variant.query.join(Product).filter(
@@ -47,7 +53,7 @@ def get_single_variant(current_user, variant_id):
    
    return jsonify({"variant": variant.to_dict()}), 200
 
-@variants_bp.route("/int:<variant_id>", methods=["PATCH"])
+@variants_bp.route("products/<int:product_id>/variants/int:<variant_id>", methods=["PATCH"])
 @token_required
 def update_variants(current_user, variant_id):
     variant = Variant.query.join(Product).filter(
