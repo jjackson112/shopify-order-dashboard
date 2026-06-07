@@ -67,11 +67,11 @@ def update_product(current_user, product_id):
     title = data.get("title")
     description = data.get("description")
 
-    if not title:
+    if title is not None:
         product.title = title.strip()
 
-    if not description:
-        product.description = title.strip()
+    if description is not None:
+        product.description = description.strip()
 
     db.session.commit()
 
