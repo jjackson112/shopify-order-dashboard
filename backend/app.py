@@ -12,6 +12,9 @@ def create_app():
    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+   # SECRET_KEY - instead of os.getenv("SECRET_KEY") in every route
+   app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+
    # Init DB - connect
    db.init_app(app)
 
@@ -27,3 +30,5 @@ def create_app():
       db.create_all()
 
    return app
+
+app = create_app()

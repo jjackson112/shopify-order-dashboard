@@ -49,7 +49,7 @@ def login():
     if not user or not user.check_password(password):
         return jsonify({"error": "Invalid username/email or password."}), 401
     
-    secret = os.getenv("SECRET_KEY")
+    secret = os.getenv("SECRET_KEY") # current_app.config["SECRET_KEY"] later
     if not secret:
         return jsonify({"error": "Server misconfiguration"}), 500
     
