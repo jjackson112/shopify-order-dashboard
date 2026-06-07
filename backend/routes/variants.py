@@ -3,7 +3,7 @@ from extensions import db
 from models.variant import Variant
 from services.token import token_required
 
-variants_bp = Blueprint("/variants", __name__, url_prefix='api/variants')
+variants_bp = Blueprint("variants", __name__, url_prefix='api/variants')
 
 @variants_bp.route("/int:<variant_id>", methods=["GET"])
 @token_required
@@ -14,16 +14,22 @@ def get_variant(variant_id):
    return jsonify({"variant": variant.to_dict()}), 200
 
 # single resource endpoint
-@variants_bp.route("/int:<variant_id>", methods=["GET"])
+@variants_bp.route("/<int:<variant_id>", methods=["GET"])
 @token_required
 def get_single_variant(current_user, variant_id):
    variant = Variant.query.filter_by(id=variant_id, user_id=current_user.id).first_or_404()
    return jsonify(variant.to_dict()), 200
 
-@variants_bp.route("/int:<variant_id>", methods=["PATCH"])
+@variants_bp.route("/<int:<variant_id>", methods=["PATCH"])
 @token_required
 def update_variants():
 
-@variants_bp.route("/int:<variant_id>", methods=["DELETE"])
+@variants_bp.route("/<int:<variant_id>", methods=["DELETE"])
 @token_required
-def delete_variants():
+def delete_variants(current_user, variant_id):
+   variant = Variant.query.filter_by(id=variant_id, user_id=current_user.id).first_or_404()
+
+   db.session.delete(variant)
+   db.session.commit()
+
+   return "", 204
