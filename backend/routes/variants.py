@@ -32,14 +32,9 @@ def create_variant():
     )
 
     db.session.add(variant)
-    db.sessiom.commit()
+    db.session.commit()
 
-    return jsonify({
-        "title": title.to_dict(),
-        "sku": sku.to_dict(),
-        "price": price.to_dict(),
-        "quantity": quantity.to_dict()
-    }), 200
+    return jsonify({"variant": variant.to_dict()}), 200
 
 # single resource endpoint
 @variants_bp.route("/int:<variant_id>", methods=["GET"])
