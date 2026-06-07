@@ -14,11 +14,18 @@ def token_required(f):
     def decorated(*args, **kwargs): # args - extra positional arguments, kwargs - extra named arguments
         token = None
 
-        print(request.headers)
-        
         # Authorization header check tells system it's a JWT
         if 'Authorization' in request.headers:
             auth_header = request.headers['Authorization']
+
+            print("AUTH", auth_header)
+
+            if not auth_header:
+                return jsonify({"error": "Token is missing"}), 401
+            
+            if not auth_header.startswith("Bearer "):
+                return jsonify({"error": "Authorization header must start with Bearer"}), 401
+            
             # handles bearer and just token
             token = auth_header.split(" ")[1] if " " in auth_header else auth_header
 
