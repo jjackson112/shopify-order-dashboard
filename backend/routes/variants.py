@@ -18,7 +18,7 @@ def create_variant(current_user, product_id):
         user_id=current_user.id
     ).first_or_404()
 
-    data = request.get_json()
+    data = request.get_json() or {}
 
     if not data:
         return jsonify({"error": "Invalid JSON"}), 400
@@ -63,7 +63,7 @@ def update_variants(current_user, variant_id):
       Product.user_id == current_user.id
     ).first_or_404()
 
-    data = request.get_json()
+    data = request.get_json() or {}
    
     title = data.get("title")
     sku = data.get("sku")

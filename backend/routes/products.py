@@ -8,7 +8,7 @@ products_bp = Blueprint("products", __name__, url_prefix='/api/products')
 @products_bp.route("", methods=["POST"])
 @token_required
 def create_product(current_user):
-    data = request.get_json()
+    data = request.get_json() or {}
 
     if not data:
         return jsonify({"error": "Invalid JSON"}), 400
@@ -63,7 +63,7 @@ def update_product(current_user, product_id):
     # fetch the note, but verify owner
     product = Product.query.filter_by(id=product_id, user_id=current_user.id).first_or_404()
 
-    data = request.get_json()
+    data = request.get_json() or {}
     title = data.get("title")
     description = data.get("description")
 
