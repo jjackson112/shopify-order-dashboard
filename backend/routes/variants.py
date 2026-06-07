@@ -4,6 +4,8 @@ from models.product import Product
 from models.variant import Variant
 from services.token import token_required
 
+# variants belong to products - there is no user_id column in DB model
+
 variants_bp = Blueprint("variants", __name__, url_prefix='/api/variants')
 
 @variants_bp.route("/int:<variant_id>", methods=["POST"])
@@ -16,8 +18,8 @@ def create_variant():
     
     title = data.get("title", "").strip()
     sku = data.get("sku", "").strip()
-    price = data.get("price", "").strip()
-    quantity = data.get("quantity", "").strip()
+    price = data.get("price", "")
+    quantity = data.get("quantity", "")
 
     if not title or not sku or not price or not quantity:
         return jsonify({"error": "Title and description are required."}), 400
