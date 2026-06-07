@@ -13,8 +13,8 @@ auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 def register():
     data = request.get_json() or {}
 
-    username = data.get("username", "").strip()
-    email = data.get("email", "").strip()
+    username = data.get("username", "").strip().lower()
+    email = data.get("email", "").strip().lower()
     password = data.get("password", "").strip()
 
     if not username.strip() or not password.strip() or not email.strip():
@@ -23,7 +23,7 @@ def register():
     # existing user
     existing_user = User.query.filter((User.username == username) | (User.email == email)).first() 
     if existing_user:
-        return jsonify({"Username has already been taken"}), 400
+        return jsonify({"error": "Username has already been taken"}), 400
     
     # new user
     new_user = User(username=username, email=email)
@@ -42,7 +42,7 @@ def login():
     password = data.get("password", "").strip()
 
     if not identifier or not password:
-        return jsonify({"Username/email and password are required"}), 401
+        return jsonify({"error": "Username/email and password are required"}), 401
 
     user = User.query.filter((User.username == identifier) | (User.email == identifier)).first()
 
