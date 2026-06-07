@@ -5,8 +5,10 @@ from models.variant import Variant
 from services.token import token_required
 
 # variants belong to products - there is no user_id column in DB model
+# POST   /api/products/1/variants
+# GET    /api/products/1/variants/2
 
-variants_bp = Blueprint("variants", __name__, url_prefix='/api/variants')
+variants_bp = Blueprint("variants", __name__, url_prefix='/api')
 
 @variants_bp.route("/products/<int:product_id>/variants", methods=["POST"])
 @token_required
