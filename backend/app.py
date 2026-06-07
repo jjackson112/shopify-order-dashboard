@@ -3,6 +3,7 @@ from flask import Flask
 from extensions import db
 from flask_cors import CORS
 from routes.auth import auth_bp
+from routes.protected_auth import protected_auth_bp
 
 def create_app():
    app = Flask(__name__)
@@ -25,6 +26,7 @@ def create_app():
 
    # Blueprints
    app.register_blueprint(auth_bp)
+   app.register_blueprint(protected_auth_bp)
 
    with app.app_context():
       db.create_all()
