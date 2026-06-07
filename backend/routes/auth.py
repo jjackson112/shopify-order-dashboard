@@ -1,5 +1,6 @@
 import jwt
 from jwt import ExpiredSignatureError, InvalidTokenError
+import os
 from extensions import db
 from flask import Blueprint, request, jsonify
 import datetime
@@ -43,7 +44,28 @@ def login():
     if not identifier or not password:
         return jsonify({"Username/email and password are required"}), 401
 
-    user = User.query.filter_by(identifier=identifier).first()
+    user = User.query.filter((User.username == identifier) | (User.email == identifier)).first()
 
+    if not user or not user.check_password(password):
+        return jsonify({"error": "Invalid username/email or password."}), 401
     
-    return jsonify({'message': "Login successful"}), 200
+    secret = os.getenv("SECRET_KEY")
+    if not secret:
+        return jsonify({"error": "Server misconfiguration"}), 500
+    
+    # Generate JWT token - payload (data)
+    token = jwt.encode(
+        {
+            'user_id': user.id,
+            'role': "merchant", # Shopify dashboard
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
+        }, 
+        secret, 
+        algorithm='HS256'
+    ) # HS256 to decode and catch expired/invalid tokens
+    
+    return jsonify({
+        'message': "Login successful",
+        "token": token,
+        "username": user.username
+    }), 200
