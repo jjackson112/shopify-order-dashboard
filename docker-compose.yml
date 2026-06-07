@@ -6,6 +6,7 @@ services:
     environment:
       FLASK_ENV: development
       DATABASE_URL: postgresql://postgres:postgres@db:5432/order_dashboard
+      SECRET_KEY: secret-dev-key
     depends_on:
       - db
     volumes:
