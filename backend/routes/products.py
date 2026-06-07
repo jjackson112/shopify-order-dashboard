@@ -12,6 +12,26 @@ def create_product(current_user):
 
     if not data:
         return jsonify({"error": "Invalid JSON"}), 400
+    
+    title = data.get("title", "").strip()
+    description = data.get("description", "").strip()
+
+    if not title or not description:
+        return jsonify({"error": "Title and description are required."}), 400
+
+    product = Product(
+        title=title,
+        description=description,
+        user_id=current_user.id
+    )
+
+    db.session.add(product)
+    db.session.commit()
+
+    return jsonify({
+        "message": "Product created.",
+        "product": product.to_dict()
+    }), 201
 
 # get list of products
 @products_bp.route("", methods=["GET"])
@@ -48,8 +68,10 @@ def update_product(current_user, product_id):
     description = data.get("description")
 
     if not title:
-    
+        product.title = title.strip()
+
     if not description:
+        product.description = title.strip()
 
     db.session.commit()
 
