@@ -6,6 +6,39 @@ from services.token import token_required
 
 variants_bp = Blueprint("variants", __name__, url_prefix='/api/variants')
 
+@variants_bp.route("/int:<variant_id>", methods=["POST"])
+@token_required
+def create_variant():
+    data = request.get_json()
+
+    if not data:
+        return jsonify({"error": "Invalid JSON"}), 400
+    
+    title = data.get("title", "").strip()
+    sku = data.get("sku", "").strip()
+    price = data.get("price", "").strip()
+    quantity = data.get("quantity", "").strip()
+
+    if not title or not sku or not price or not quantity:
+        return jsonify({"error": "Title and description are required."}), 400
+
+    variant = Variant(
+        title=title,
+        sku=sku,
+        price=price,
+        quantity=quantity
+    )
+
+    db.session.add(variant)
+    db.sessiom.commit()
+
+    return jsonify({
+        "title": title.to_dict(),
+        "sku": sku.to_dict(),
+        "price": price.to_dict(),
+        "quantity": quantity.to_dict()
+    }), 200
+
 # single resource endpoint
 @variants_bp.route("/int:<variant_id>", methods=["GET"])
 @token_required
