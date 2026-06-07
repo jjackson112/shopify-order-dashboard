@@ -1,10 +1,8 @@
 import jwt
-from jwt import ExpiredSignatureError, InvalidTokenError
 import os
 from extensions import db
 from flask import Blueprint, request, jsonify
 import datetime
-from sqlalchemy import or_
 from models.user import User
 
 auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
