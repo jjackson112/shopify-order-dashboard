@@ -3,7 +3,7 @@ from extensions import db
 from models.product import Product
 from services.token import token_required
 
-products_bp = Blueprint("products", __name__, url_prefix='api/products')
+products_bp = Blueprint("products", __name__, url_prefix='/api/products')
 
 @products_bp.route("", methods=["POST"])
 @token_required
@@ -46,7 +46,7 @@ def get_products_list(current_user):
         }), 200
 
 # get a single product
-@products_bp.route("/<int:id>", methods=["GET"])
+@products_bp.route("/<int:product_id>", methods=["GET"])
 @token_required
 def get_single_product(current_user, product_id):
 
@@ -57,7 +57,7 @@ def get_single_product(current_user, product_id):
         "product": product.to_dict()
     }), 200
 
-@products_bp.route("/<int:id>", methods=["PATCH"])
+@products_bp.route("/<int:product_id>", methods=["PATCH"])
 @token_required
 def update_product(current_user, product_id):
     # fetch the note, but verify owner
@@ -80,7 +80,7 @@ def update_product(current_user, product_id):
         "product": product.to_dict()
     }), 200
 
-@products_bp.route("/<int:id>", methods=["DELETE"])
+@products_bp.route("/<int:product_id>", methods=["DELETE"])
 @token_required
 def delete_product(current_user, product_id):
     # if the note exists but belongs to another person, a 404 error appears
