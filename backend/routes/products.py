@@ -43,7 +43,7 @@ def get_products_list(current_user):
     return jsonify({
         "message": "Products list is here.",
         "products": [product.to_dict() for product in products]
-        }), 200
+        }), 201
 
 # get a single product
 @products_bp.route("/<int:product_id>", methods=["GET"])
@@ -55,7 +55,7 @@ def get_single_product(current_user, product_id):
     return jsonify({
         "message": "Single product is here.",
         "product": product.to_dict()
-    }), 200
+    }), 201
 
 @products_bp.route("/<int:product_id>", methods=["PATCH"])
 @token_required
@@ -78,7 +78,7 @@ def update_product(current_user, product_id):
     return jsonify({
         "message": "Product updated.",
         "product": product.to_dict()
-    }), 200
+    }), 201
 
 @products_bp.route("/<int:product_id>", methods=["DELETE"])
 @token_required

@@ -25,8 +25,8 @@ def create_variant(current_user, product_id):
     
     title = data.get("title", "").strip()
     sku = data.get("sku", "").strip()
-    price = data.get("price", "")
-    quantity = data.get("quantity", "")
+    price = data.get("price")
+    quantity = data.get("quantity")
 
     if not title or not sku or price is None or quantity is None:
         return jsonify({"error": "Title, SKU, price, and quantity are required."}), 400
@@ -42,7 +42,7 @@ def create_variant(current_user, product_id):
     db.session.add(variant)
     db.session.commit()
 
-    return jsonify({"variant": variant.to_dict()}), 200
+    return jsonify({"variant": variant.to_dict()}), 201 # when creating
 
 # single resource endpoint
 @variants_bp.route("/products/<int:product_id>/variants/int:<variant_id>", methods=["GET"])
@@ -53,9 +53,9 @@ def get_single_variant(current_user, variant_id):
       Product.user_id == current_user.id
    ).first_or_404()
    
-   return jsonify({"variant": variant.to_dict()}), 200
+   return jsonify({"variant": variant.to_dict()}), 201 
 
-@variants_bp.route("products/<int:product_id>/variants/int:<variant_id>", methods=["PATCH"])
+@variants_bp.route("/products/<int:product_id>/variants/int:<variant_id>", methods=["PATCH"])
 @token_required
 def update_variants(current_user, variant_id):
     variant = Variant.query.join(Product).filter(
@@ -87,10 +87,10 @@ def update_variants(current_user, variant_id):
     return jsonify({
         "message": "Variant updated.",
         "variant": variant.to_dict()
-    }), 200
+    }), 201
 
 
-@variants_bp.route("/<int:variant_id>", methods=["DELETE"])
+@variants_bp.route("/products/<int:product_id>/variants/<int:variant_id>", methods=["DELETE"])
 @token_required
 def delete_variants(current_user, variant_id):
    variant = Variant.query.join(Product).filter(
