@@ -23,7 +23,6 @@ function LoginForm() {
                 }),
             })
 
-            const data = await res.json()
             console.data(data)
         } catch (err) {
             console.error(err)
