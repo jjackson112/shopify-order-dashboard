@@ -6,6 +6,8 @@ import ProductDetail from "../components/ProductDetail";
 function ProductList() {
     const [products, setProducts] = useState([])
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -14,12 +16,43 @@ function ProductList() {
 
                 setProducts(data.products || [])
             } catch (err) {
-                console.log(error)
+                console.log(err)
             }
         }
         fetchProducts()
     }, [])
 
+    return (
+        <Page title="Products">
+          <BlockStack gap="400">
+            {products.length === 0 ? (
+              <Card>
+                <Text as="p">No products found.</Text>
+              </Card>
+            ) : (
+              products.map((product) => (
+                <Card key={product.id}>
+                  <BlockStack gap="200">
+                    <Text as="h2" variant="headingMd">
+                      {product.title}
+                    </Text>
+
+                    <Text as="p">
+                      {product.description}
+                    </Text>
+
+                    <Button
+                      onClick={() => navigate(`/products/${product.id}`)}
+                    >
+                      View Product
+                    </Button>
+                  </BlockStack>
+                </Card>
+              ))
+            )}
+          </BlockStack>
+        </Page>
+    )
 }
 
 export default ProductList;
