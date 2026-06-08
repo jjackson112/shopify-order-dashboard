@@ -4,23 +4,12 @@ import { Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import AuthLayout from "./components/AuthLayout";
+import ProtectedRoute from './components/ProtectedRoute';
 import LoginForm from './pages/Login';
 import RegisterForm from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ProductList from './pages/ProductList';
 import ProductDetail from './components/ProductDetail';
-
-function ProtectedRoute({ children }) {
-  const { userLoggedIn } = useContext(AuthContext);
-
-  if (!userLoggedIn) {
-    return <Navigate to="/" replace />;
-  }
-
-  return children;
-}
-
-export default ProtectedRoute;
 
 function App() {
   return (
