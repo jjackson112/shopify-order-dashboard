@@ -11,10 +11,10 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route element={<AuthLayout />}>
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
         </Route>
-        
+
         {/* Protected Routes */}
 
       </Routes>

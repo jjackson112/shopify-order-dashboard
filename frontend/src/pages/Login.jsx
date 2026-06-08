@@ -1,4 +1,4 @@
-import { useState } from "react;"
+import { useState } from "react";
 import { FormLayout, TextField } from "@shopify/polaris";
 
 // autocomplete (boolean) gives the browser the ability to autocomplete input elements

@@ -7,3 +7,5 @@ function AuthLayout({ children }) {
         </div>
     )
 }
+
+export default AuthLayout;
