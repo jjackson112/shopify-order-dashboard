@@ -1,8 +1,5 @@
 import { AppProvider } from '@shopify/polaris'
 import { Route, Routes } from "react-router-dom";
-import { Navigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
 import AuthLayout from "./components/AuthLayout";
 import ProtectedRoute from './components/ProtectedRoute';
 import LoginForm from './pages/Login';
