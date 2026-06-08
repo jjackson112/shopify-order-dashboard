@@ -1,6 +1,6 @@
 // React state (AuthContext) knows the user is logged in
 
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 // create context
 export const AuthContext = createContext()
@@ -28,6 +28,16 @@ export function AuthProvider({ children }) {
         localStorage.removeItem("token")
         setToken(null)
     } 
+
+    useEffect(() => {
+        const handleExpiredAuth = () => logout();
+
+        window.addEventListener("auth:expired", handleExpiredAuth);
+
+        return () => {
+          window.removeEventListener("auth:expired", handleExpiredAuth);
+        };
+      }, []);
 
     const userLoggedIn = Boolean(token)
 
