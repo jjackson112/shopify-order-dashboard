@@ -5,6 +5,7 @@ import LoginForm from './pages/Login';
 import RegisterForm from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ProductList from './pages/ProductList';
+import ProductDetail from './components/ProductDetail';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/products" element={<ProductList />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
         </Route>
       </Routes>
       </AppProvider>

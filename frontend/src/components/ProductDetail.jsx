@@ -22,6 +22,8 @@ function ProductDetail() {
         fetchProductDetail()
     }, [id])
 
+    // map over variants - title, sku, price, quantity
+
     return (
         <Page
           title={product.title}
