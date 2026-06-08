@@ -4,7 +4,7 @@ import Dashboard from "./pages/Test"
 function App() {
   return (
     <AppProvider>
-      <Dashboard />
+      <Test />
       </AppProvider>
   )
 }

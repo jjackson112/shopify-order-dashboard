@@ -1,6 +1,6 @@
 import { Page, Card, Button, Text } from '@shopify/polaris';
 
-function Dashboard() {
+function Test() {
     return (
         <Page title="Shopify Order Dashboard">
             <Card>
@@ -16,4 +16,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard;
+export default Test;
