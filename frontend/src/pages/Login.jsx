@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { Form, FormLayout, TextField, Button } from "@shopify/polaris";
 
 // autocomplete (boolean) gives the browser the ability to autocomplete input elements
