@@ -11,6 +11,7 @@ function LoginForm() {
     const [identifier, setIdentifier] = useState("")
     const [password, setPassword] = useState("")
 
+    const { login } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
