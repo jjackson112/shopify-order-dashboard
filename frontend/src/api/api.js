@@ -27,6 +27,7 @@ const handleResponse = async (res) => {
 
 // avoid repitition - turn headers into a helper method 
 const getHeaders = () => {
+    const token = localStorage.getItem("token");
 
     return {
         "Content-Type": "application/json",
