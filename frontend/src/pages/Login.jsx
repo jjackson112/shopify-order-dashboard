@@ -24,6 +24,7 @@ function LoginForm() {
             localStorage.setItem("token", data.token)
             console.log(data)
 
+            login(data.token, data.username)
             navigate("/dashboard")
 
         } catch (err) {
