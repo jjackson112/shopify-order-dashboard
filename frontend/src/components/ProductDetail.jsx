@@ -22,7 +22,13 @@ function ProductDetail() {
         fetchProductDetail()
     }, [id])
 
-    // map over variants - title, sku, price, quantity
+    // map over product.variants - title, sku, price, quantity
+    const mapOverVariants = product.variants.map((variant) => [
+        variant.title,
+        variant.sku,
+        variant.quantity,
+        `$${variant.price}`
+    ])
 
     return (
         <Page
