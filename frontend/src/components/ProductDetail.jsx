@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Page, Card, Text, BlockStack, Button, DataTable,} from "@shopify/polaris";
 
 function ProductDetail() {
-    const [product, setProduct] = useState(null)
+    const [product, setProduct] = useState(null) // null means modal is closed
     const { id } = useParams()
 
     useEffect(() => {
