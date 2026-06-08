@@ -4,6 +4,7 @@ import { Page, Card, Text, BlockStack, Button, DataTable,} from "@shopify/polari
 
 function ProductDetail() {
     const [product, setProduct] = useState(null)
+    const { id } = useParams()
 
     useEffect(() => {
         const fetchProductDetail = async () => {
@@ -18,7 +19,7 @@ function ProductDetail() {
             }
         }
         fetchProductDetail()
-    }, [])
+    }, [id])
 }
 
 export default ProductDetail;
