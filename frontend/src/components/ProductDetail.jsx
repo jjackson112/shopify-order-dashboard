@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
+import { useParams } from "react-router-dom";
 import { Page, Card, Text, BlockStack, Button, DataTable,} from "@shopify/polaris";
 
 function ProductDetail() {
@@ -9,7 +10,7 @@ function ProductDetail() {
     useEffect(() => {
         const fetchProductDetail = async () => {
             try {
-                const res = await api.get(`/product/${id}`)
+                const res = await api.get(`/products/${id}`)
                 console.log(res)
 
                 // data into state
