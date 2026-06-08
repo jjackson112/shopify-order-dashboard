@@ -1,7 +1,6 @@
 import { AppProvider } from '@shopify/polaris'
 import { Route, Routes } from "react-router-dom";
 import AuthLayout from "./components/AuthLayout";
-import Dashboard from "./pages/Test";
 import LoginForm from './pages/Login';
 import RegisterForm from './pages/Register';
 
@@ -18,7 +17,6 @@ function App() {
         {/* Protected Routes */}
 
       </Routes>
-      <Test />
       </AppProvider>
   )
 }
