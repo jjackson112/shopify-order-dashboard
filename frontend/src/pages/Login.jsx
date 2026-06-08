@@ -12,7 +12,7 @@ function LoginForm() {
         console.log("Logging in")
 
         try {
-            const data = await fetch("/auth/login", {
+            const data = await api.post("/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -23,6 +23,7 @@ function LoginForm() {
                 }),
             })
 
+            localStorage.setItem("token", data.token)
             console.data(data)
         } catch (err) {
             console.error(err)
