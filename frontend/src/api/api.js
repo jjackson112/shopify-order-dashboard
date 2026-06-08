@@ -46,7 +46,8 @@ export const api = {
   post: async (endpoint, body) => {
     const res = await fetch(`${BASE_URL}${endpoint}`, {
       method: "POST",
-      headers: getHeaders()
+      headers: getHeaders(),
+      body: JSON.stringify(body)
     });
 
     return handleResponse(res);
@@ -55,7 +56,8 @@ export const api = {
   patch: async (endpoint, body) => {
     const res = await fetch(`${BASE_URL}${endpoint}`, {
       method: "PATCH",
-      headers: getHeaders()
+      headers: getHeaders(),
+      body: JSON.stringify(body)
     })
 
     return handleResponse(res)
