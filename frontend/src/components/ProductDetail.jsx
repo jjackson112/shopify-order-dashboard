@@ -22,6 +22,10 @@ function ProductDetail() {
         fetchProductDetail()
     }, [id])
 
+    if (!product) {
+        return <Page title="Loading product..." />
+    }
+
     // map over product.variants - title, sku, price, quantity
     const mapOverVariants = product.variants.map((variant) => [
         variant.title,
