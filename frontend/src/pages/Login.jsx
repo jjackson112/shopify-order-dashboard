@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { api } from "../api/api";
+import { useNavigate } from "react-router-dom";
 import { Form, FormLayout, TextField, Button } from "@shopify/polaris";
 
 // autocomplete (boolean) gives the browser the ability to autocomplete input elements
@@ -7,6 +8,8 @@ import { Form, FormLayout, TextField, Button } from "@shopify/polaris";
 function LoginForm() {
     const [identifier, setIdentifier] = useState("")
     const [password, setPassword] = useState("")
+
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -20,6 +23,8 @@ function LoginForm() {
 
             localStorage.setItem("token", data.token)
             console.log(data)
+
+            navigate("/dashboard")
 
         } catch (err) {
             console.error(err)

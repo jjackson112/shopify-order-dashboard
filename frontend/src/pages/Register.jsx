@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { api } from "../api/api";
+import { useNavigate } from "react-router-dom";
 import { Form, FormLayout, TextField, Button } from "@shopify/polaris";
 
 // autocomplete (boolean) gives the browser the ability to autocomplete input elements
@@ -10,9 +11,12 @@ function RegisterForm() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    const navigate = useNavigate()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        // no const data = response.data - already parsed data
         try {
             const data = await api.post("/auth/register", {
                 username,
@@ -27,6 +31,8 @@ function RegisterForm() {
             setEmail("");
             setPassword("")
 
+            navigate("/dashboard")
+
         } catch (err) {
             console.log(error)
         }
@@ -40,7 +46,7 @@ function RegisterForm() {
            onChange={setUsername}
            autoComplete="username"
        />
-    
+
         <TextField 
            label="email" 
            type="email" 
@@ -48,7 +54,7 @@ function RegisterForm() {
            onChange={setEmail}
            autoComplete="email"
        />
-    
+
        <TextField 
            label="Password" 
            type="password" 
@@ -56,7 +62,7 @@ function RegisterForm() {
            onChange={setPassword}
            autoComplete="password"
        />
-    
+
        <Button submit variant="primary">Register</Button>
       </Form>
     );
