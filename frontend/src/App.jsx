@@ -15,7 +15,9 @@ function App() {
         </Route>
 
         {/* Protected Routes */}
-
+        <Route>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
       </Routes>
       </AppProvider>
   )

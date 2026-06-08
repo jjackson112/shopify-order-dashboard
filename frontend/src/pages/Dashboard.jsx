@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api } from "../api";
+import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { Page, Card, Text, BlockStack, InlineGrid, Button } from "@shopify/polaris";
 
@@ -17,7 +17,7 @@ function Dashboard() {
                 console.log(res)
 
                 // data into state
-                setProducts(res.products)
+                setProducts(res.products || [])
             } catch (err) {
                 console.log(err)
             }
@@ -58,7 +58,7 @@ function Dashboard() {
                       ))
                     )}
     
-                    <Button variant="primary">View Products</Button>
+                    <Button variant="primary" onClick={() => navigate("/products")}>View Products</Button>
                     </BlockStack>
                 </Card>
             </BlockStack>
