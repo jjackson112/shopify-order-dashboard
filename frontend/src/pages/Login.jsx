@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { api } from "../api/api";
 import { Form, FormLayout, TextField, Button } from "@shopify/polaris";
 
 // autocomplete (boolean) gives the browser the ability to autocomplete input elements
@@ -13,25 +14,20 @@ function LoginForm() {
 
         try {
             const data = await api.post("/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                }, 
-                body: JSON.stringify({
-                    identifier,
-                    password,
-                }),
+                identifier,
+                password,
             })
 
             localStorage.setItem("token", data.token)
-            console.data(data)
+            console.log(data)
+
         } catch (err) {
             console.error(err)
         }
     }
 
     return (
-      <Form>
+      <Form onSubmit={handleSubmit}>
        <h1>Login Page</h1>
 
         <TextField 
