@@ -7,28 +7,51 @@ function LoginForm() {
     const [identifier, setIdentifier] = useState("")
     const [password, setPassword] = useState("")
 
- return (
-   <Form>
-    <h1>Login Page</h1>
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log("Logging in")
 
-     <TextField 
-        label="Username/Email" 
-        value={identifier}
-        onChange={setIdentifier}
-        autoComplete="username"
-    />
+        try {
+            const data = await fetch("/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                }, 
+                body: JSON.stringify({
+                    identifier,
+                    password,
+                }),
+            })
 
-     <TextField 
-        label="Password" 
-        type="password" 
-        value={password}
-        onChange={setPassword}
-        autoComplete="password"
-    />
+            const data = await res.json()
+            console.data(data)
+        } catch (err) {
+            console.error(err)
+        }
+    }
 
-    <Button submit variant="primary">Login</Button>
-   </Form>
- );
+    return (
+      <Form>
+       <h1>Login Page</h1>
+
+        <TextField 
+           label="Username/Email" 
+           value={identifier}
+           onChange={setIdentifier}
+           autoComplete="username"
+       />
+
+        <TextField 
+           label="Password" 
+           type="password" 
+           value={password}
+           onChange={setPassword}
+           autoComplete="password"
+       />
+
+       <Button submit variant="primary">Login</Button>
+      </Form>
+    );
 }
 
 export default LoginForm;
