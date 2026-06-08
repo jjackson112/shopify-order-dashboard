@@ -10,34 +10,56 @@ function RegisterForm() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
- return (
-   <Form>
-     <TextField 
-        label="Username" 
-        value={username}
-        onChange={setUsername}
-        autoComplete="username"
-    />
+    const handleSubmit = async (e) => {
+        e.preventDefault()
 
-     <TextField 
-        label="email" 
-        type="email" 
-        value={email}
-        onChange={setEmail}
-        autoComplete="email"
-    />
+        try {
+            const data = await api.post("/auth/register", {
+                username,
+                email,
+                password,
+            })
+            
+            console.log("Registered successfully", data)
 
-    <TextField 
-        label="Password" 
-        type="password" 
-        value={password}
-        onChange={setPassword}
-        autoComplete="password"
-    />
+            // clear form
+            setUsername("");
+            setEmail("");
+            setPassword("")
 
-    <Button submit variant="primary">Register</Button>
-   </Form>
- );
+        } catch (err) {
+            console.log(error)
+        }
+    }
+
+    return (
+      <Form onSubmit={handleSubmit}>
+        <TextField 
+           label="Username" 
+           value={username}
+           onChange={setUsername}
+           autoComplete="username"
+       />
+    
+        <TextField 
+           label="email" 
+           type="email" 
+           value={email}
+           onChange={setEmail}
+           autoComplete="email"
+       />
+    
+       <TextField 
+           label="Password" 
+           type="password" 
+           value={password}
+           onChange={setPassword}
+           autoComplete="password"
+       />
+    
+       <Button submit variant="primary">Register</Button>
+      </Form>
+    );
 }
 
 export default RegisterForm;
