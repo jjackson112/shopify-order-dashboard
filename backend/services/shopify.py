@@ -1,4 +1,5 @@
 import os
+import requests
 
 def shopify_config():
     return {
@@ -7,8 +8,8 @@ def shopify_config():
         "api_version" : os.getenv("SHOPIFY_API_VERSION")
     }
 
-def shopify_graphql():
-    config = shopify_config
+def shopify_graphql(query):
+    config = shopify_config()
 
     shop_domain = config["shop_domain"]
     access_token = config["access_token"]
@@ -23,8 +24,13 @@ def shopify_graphql():
         "X-Shopify-Access-Token": access_token,
     }
 
-# query
+    # query - only one endpoint
+    payload = {
+        "query": query
+    }
 
-# request
+    # request
 
-# return to JSON
+
+    # return to JSON
+    return response.json
