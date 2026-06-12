@@ -5,7 +5,7 @@ shopify_bp = Blueprint("shopify", __name__, url_prefix='/api/shopify')
 
 @shopify_bp.route("/products", methods=["GET"])
 def get_products():
-    query = """
+    query = """ 
     {
         products(first: 10) {
             edges {
@@ -17,3 +17,5 @@ def get_products():
         }
     }
     """
+
+    data = shopify_graphql(query)
