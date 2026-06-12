@@ -30,7 +30,11 @@ def shopify_graphql(query):
     }
 
     # request
-
+    response = requests.post(
+        url,
+        headers,
+        body
+    )
 
     # return to JSON
-    return response.json
+    return response.json()
