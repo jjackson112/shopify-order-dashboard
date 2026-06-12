@@ -33,7 +33,7 @@ def shopify_graphql(query):
     response = requests.post(
         url,
         headers,
-        body
+        json=payload
     )
 
     # return to JSON
