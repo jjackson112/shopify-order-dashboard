@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Page, Card, Text, BlockStack, Button } from "@shopify/polaris";
 
 function ProductList() {
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState(["mock_product"])
 
     const navigate = useNavigate()
 
@@ -13,19 +13,19 @@ function ProductList() {
       { id: 1, title: "Sample Product", description: "Sample description"},
     ]
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const data = await api.get("/products")
-                console.log(data)
+    //useEffect(() => {
+        //const fetchProducts = async () => {
+            //try {
+                //const data = await api.get("/products")
+                //console.log(data)
 
-                setProducts(data.products || [])
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchProducts()
-    }, [])
+                //setProducts(data.products || [])
+            //} catch (err) {
+               // console.log(err)
+           // }
+        //}
+        //fetchProducts()
+    //}, [])
 
     return (
         <Page title="Products">
