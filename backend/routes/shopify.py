@@ -9,7 +9,7 @@ def get_products():
     {
         products(first: 10) {
             edges {
-                nodes {
+                node {
                     title
                     description
                 }
@@ -19,3 +19,5 @@ def get_products():
     """
 
     data = shopify_graphql(query)
+
+    return jsonify(data)
