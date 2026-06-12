@@ -7,6 +7,9 @@ services:
       FLASK_ENV: development
       DATABASE_URL: postgresql://postgres:postgres@db:5432/order_dashboard
       SECRET_KEY: secret-dev-key
+      SHOPIFY_STORE_DOMAIN: ${SHOPIFY_STORE_DOMAIN}
+      SHOPIFY_ADMIN_ACCESS_TOKEN: ${SHOPIFY_ADMIN_ACCESS_TOKEN}
+      SHOPIFY_API_VERSION: ${SHOPIFY_API_VERSION}
     depends_on:
       - db
     volumes:
