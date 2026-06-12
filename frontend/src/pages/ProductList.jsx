@@ -8,6 +8,11 @@ function ProductList() {
 
     const navigate = useNavigate()
 
+    // mock data for testing
+    const mock_product = [
+      { id: 1, title: "Sample Product", description: "Sample description"},
+    ]
+
     useEffect(() => {
         const fetchProducts = async () => {
             try {
