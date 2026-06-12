@@ -7,23 +7,23 @@ def shopify_config():
         "api_version" : os.getenv("SHOPIFY_API_VERSION")
     }
 
-# Admin GraphQL URL
-url = "https://"{SHOP_DOMAIN}"/admin/api/"{API_VERSION}/graphql.json"
+def shopify_graphql():
+    config = shopify_config
 
-# headers
+    shop_domain = config["shop_domain"]
+    access_token = config["access_token"]
+    api_version = config["api_version"]
 
+    # Admin GraphQL URL
+    url = f"https://{shop_domain}/admin/api/{api_version}/graphql.json"
+    
+    # headers
+    headers = {
+        "Content-Type": "application/json",
+        "X-Shopify-Access-Token": access_token,
+    }
 
 # query
-{
-    product(first:10) {
-        edges {
-            node {
-                id
-                title
-            }
-        }
-    }
-}
 
 # request
 
