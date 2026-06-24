@@ -53,7 +53,7 @@ def get_single_variant(current_user, variant_id):
       Product.user_id == current_user.id
    ).first_or_404()
    
-   return jsonify({"variant": variant.to_dict()}), 201 
+   return jsonify({"variant": variant.to_dict()}), 200
 
 @variants_bp.route("/products/<int:product_id>/variants/int:<variant_id>", methods=["PATCH"])
 @token_required

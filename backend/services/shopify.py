@@ -1,6 +1,7 @@
 import os
 import requests
 
+# configuration - get Shopify settings from .env
 def shopify_config():
     return {
         "shop_domain": os.getenv("SHOPIFY_STORE_DOMAIN"),
@@ -8,6 +9,7 @@ def shopify_config():
         "api_version" : os.getenv("SHOPIFY_API_VERSION")
     }
 
+# generic Shopify GraphQL Client - any query, send to Shopify + return JSON response
 def shopify_graphql(query):
     config = shopify_config()
 

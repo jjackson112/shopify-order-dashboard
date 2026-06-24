@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify
 from services.shopify import shopify_graphql
 
+# only exists to fetch Shopify products, orders, and variants
+
 shopify_bp = Blueprint("shopify", __name__, url_prefix='/api/shopify')
 
 @shopify_bp.route("/products", methods=["GET"])
