@@ -103,4 +103,40 @@ def fetch_orders():
     """
 
     data = shopify_graphql(query)
-    return [edge["node"] for edge in data["data"]["orders"]["edges"]]
+    return [
+        edge["node"] 
+        for edge in data["data"]["orders"]["edges"]
+    ]
+
+# fetch variants
+def fetch_variants():
+    query = """
+    query {
+        products(first: 20) {
+            edges {
+                node {
+                    id
+                    title
+                    description
+                    variants(first: 10) {
+                        edges {
+                            node {
+                                id
+                                title
+                                sku
+                                price
+                                quantity
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    """
+
+    data = shopify_graphql(query)
+    return [
+        edge["node"]
+        for edge in data["data"]["orders"]["edges"]
+    ]
