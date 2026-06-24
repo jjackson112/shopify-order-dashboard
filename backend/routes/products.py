@@ -52,7 +52,7 @@ def get_products_list(current_user):
 @token_required
 def get_single_product(current_user, product_id):
 
-    product = fetch_single_product()
+    product = fetch_single_product(product_id)
 
     return jsonify({
         "message": "Single product is here.",
