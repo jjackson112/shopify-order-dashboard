@@ -45,3 +45,26 @@ def shopify_graphql(query):
 
     # return to JSON
     return response.json()
+
+def fetch_products():
+    query = """
+    query {
+      products(first: 20) {
+        edges {
+          node {
+            id
+            title
+            status
+            totalInventory
+          }
+        }
+      }
+    }
+    """
+
+    data = shopify_graphql(query)
+
+    return [
+        edge["node"]
+        for edge in data["data"]["products"]["edges"]
+    ]
