@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from extensions import db
 from models.product import Product
 from services.token import token_required
+from services.shopify import fetch_products
 
 products_bp = Blueprint("products", __name__, url_prefix='/api/products')
 
@@ -38,7 +39,7 @@ def create_product(current_user):
 @token_required
 def get_products_list(current_user):
     
-    products = Product.query.filter_by(user_id=current_user.id).all()
+    products = fetch_products()
 
     return jsonify({
         "message": "Products list is here.",
