@@ -7,6 +7,7 @@ from routes.protected_auth import protected_auth_bp
 from routes.products import products_bp
 from routes.variants import variants_bp
 from routes.shopify import shopify_bp
+from routes.orders import orders_bp
 
 def create_app():
    app = Flask(__name__)
@@ -33,6 +34,7 @@ def create_app():
    app.register_blueprint(products_bp)
    app.register_blueprint(variants_bp)
    app.register_blueprint(shopify_bp)
+   app.register_blueprint(orders_bp)
 
    with app.app_context():
       db.create_all()
