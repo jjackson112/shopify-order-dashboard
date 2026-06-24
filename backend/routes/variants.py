@@ -3,6 +3,7 @@ from extensions import db
 from models.product import Product
 from models.variant import Variant
 from services.token import token_required
+from services.shopify import fetch_variants
 
 # variants belong to products - there is no user_id column in DB model
 # POST   /api/products/1/variants
@@ -44,8 +45,19 @@ def create_variant(current_user, product_id):
 
     return jsonify({"variant": variant.to_dict()}), 201 # when creating
 
+# get a list of variants
+@variants_bp.route("/variants", methods=["GET"])
+@token_required
+def get_variants(current_user):
+    variants = fetch_variants()
+
+    return jsonify({
+        "message": "Variants fetched",
+        "variants": variants
+    })
+
 # single resource endpoint
-@variants_bp.route("/products/<int:product_id>/variants/int:<variant_id>", methods=["GET"])
+@variants_bp.route("/products/<int:product_id>/variants/<int:<variant_id>", methods=["GET"])
 @token_required
 def get_single_variant(current_user, variant_id):
    variant = Variant.query.join(Product).filter(
@@ -55,7 +67,7 @@ def get_single_variant(current_user, variant_id):
    
    return jsonify({"variant": variant.to_dict()}), 200
 
-@variants_bp.route("/products/<int:product_id>/variants/int:<variant_id>", methods=["PATCH"])
+@variants_bp.route("/products/<int:product_id>/variants/<int:<variant_id>", methods=["PATCH"])
 @token_required
 def update_variants(current_user, variant_id):
     variant = Variant.query.join(Product).filter(
