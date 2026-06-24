@@ -36,5 +36,10 @@ def shopify_graphql(query):
         json=payload
     )
 
+    print("SHOP DOMAIN:", shop_domain)
+    print("API VERSION:", api_version)
+    print("TOKEN EXISTS:", bool(access_token))
+    print("TOKEN PREFIX:", access_token[:8] if access_token else None)
+
     # return to JSON
     return response.json()

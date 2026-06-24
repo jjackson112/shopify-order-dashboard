@@ -38,12 +38,12 @@ def create_product(current_user):
 @token_required
 def get_products_list(current_user):
     
-    products = Product.query.filter_by(user_id=current_user.id)
+    products = Product.query.filter_by(user_id=current_user.id).all()
 
     return jsonify({
         "message": "Products list is here.",
         "products": [product.to_dict() for product in products]
-        }), 201
+        }), 200
 
 # get a single product
 @products_bp.route("/<int:product_id>", methods=["GET"])
@@ -55,7 +55,7 @@ def get_single_product(current_user, product_id):
     return jsonify({
         "message": "Single product is here.",
         "product": product.to_dict()
-    }), 201
+    }), 200
 
 @products_bp.route("/<int:product_id>", methods=["PATCH"])
 @token_required
