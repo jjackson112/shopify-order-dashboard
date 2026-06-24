@@ -3,6 +3,7 @@ from extensions import db
 from models.product import Product
 from services.token import token_required
 from services.shopify import fetch_products
+from services.shopify import fetch_single_product
 
 products_bp = Blueprint("products", __name__, url_prefix='/api/products')
 
@@ -51,7 +52,7 @@ def get_products_list(current_user):
 @token_required
 def get_single_product(current_user, product_id):
 
-    product = Product.query.filter_by(id=product_id,user_id=current_user.id).first_or_404()
+    product = fetch_single_product()
 
     return jsonify({
         "message": "Single product is here.",
