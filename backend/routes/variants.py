@@ -54,10 +54,10 @@ def get_variants(current_user):
     return jsonify({
         "message": "Variants fetched",
         "variants": variants
-    })
+    }), 200
 
 # single resource endpoint
-@variants_bp.route("/products/<int:product_id>/variants/<int:<variant_id>", methods=["GET"])
+@variants_bp.route("/products/<int:product_id>/variants/<int:variant_id>", methods=["GET"])
 @token_required
 def get_single_variant(current_user, variant_id):
    variant = Variant.query.join(Product).filter(
@@ -67,7 +67,7 @@ def get_single_variant(current_user, variant_id):
    
    return jsonify({"variant": variant.to_dict()}), 200
 
-@variants_bp.route("/products/<int:product_id>/variants/<int:<variant_id>", methods=["PATCH"])
+@variants_bp.route("/products/<int:product_id>/variants/<int:variant_id>", methods=["PATCH"])
 @token_required
 def update_variants(current_user, variant_id):
     variant = Variant.query.join(Product).filter(
@@ -99,7 +99,7 @@ def update_variants(current_user, variant_id):
     return jsonify({
         "message": "Variant updated.",
         "variant": variant.to_dict()
-    }), 201
+    }), 200
 
 
 @variants_bp.route("/products/<int:product_id>/variants/<int:variant_id>", methods=["DELETE"])
