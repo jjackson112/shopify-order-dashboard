@@ -1,8 +1,8 @@
 import os
+from dotenv import load_dotenv
 from flask import Flask
 from extensions import db
 from flask_cors import CORS
-from dotenv import load_dotenv
 from routes.auth import auth_bp
 from routes.protected_auth import protected_auth_bp
 from routes.products import products_bp
@@ -10,8 +10,9 @@ from routes.variants import variants_bp
 from routes.shopify import shopify_bp
 from routes.orders import orders_bp
 
+load_dotenv()
+
 def create_app():
-   load_dotenv()
    app = Flask(__name__)
    CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "*"}})
 
