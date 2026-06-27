@@ -1,7 +1,7 @@
 import jwt
 import os
 from extensions import db
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app
 import datetime
 from models.user import User
 
@@ -47,7 +47,8 @@ def login():
     if not user or not user.check_password(password):
         return jsonify({"error": "Invalid username/email or password."}), 401
     
-    secret = os.getenv("SECRET_KEY") # current_app.config["SECRET_KEY"] later
+    secret = current_app.config["SECRET_KEY"] # was os.getenv("SECRET_KEY")
+    
     if not secret:
         return jsonify({"error": "Server misconfiguration"}), 500
     

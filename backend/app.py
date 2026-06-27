@@ -17,11 +17,11 @@ def create_app():
    CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "*"}})
 
    # DB Configuration
-   app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URL")
+   app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///shopify_dashboard.db"
    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
    # SECRET_KEY - instead of os.getenv("SECRET_KEY") in every route
-   app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+   app.config["SECRET_KEY"] = "dev-secret-key"
 
    # Init DB - connect
    db.init_app(app)
