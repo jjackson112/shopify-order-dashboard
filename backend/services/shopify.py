@@ -34,7 +34,7 @@ def shopify_graphql(query):
     # request
     response = requests.post(
         url,
-        headers,
+        headers=headers,
         json=payload
     )
 
