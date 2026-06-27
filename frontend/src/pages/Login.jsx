@@ -24,8 +24,10 @@ function LoginForm() {
                 password,
             })
 
-            localStorage.setItem("token", data.token)
             console.log(data)
+
+            localStorage.setItem("token", data.token)
+            console.log("TOKEN AFTER SET:", localStorage.getItem("token"))
 
             login(data.token, data.username)
             navigate("/dashboard")
