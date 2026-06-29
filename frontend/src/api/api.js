@@ -27,7 +27,9 @@ const handleResponse = async (res) => {
 
 // avoid repitition - turn headers into a helper method 
 const getHeaders = () => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token")
+    console.log("API TOKEN:", token)
+
     return {
         "Content-Type": "application/json",
         ...(token && { Authorization: `Bearer ${token}` })
@@ -40,7 +42,7 @@ export const api = {
       headers: getHeaders()
     })
 
-    return handleResponse(res);
+    return handleResponse(res)
   },
 
   post: async (endpoint, body) => {
