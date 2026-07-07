@@ -45,7 +45,7 @@ def get_products_list(current_user):
 
         return jsonify({
             "message": "Products list is here.",
-            "products": [product.to_dict() for product in products]
+            "products": products
             }), 200
     except Exception as e:
         print("PRODUCT ROUTE ERROR", e)
