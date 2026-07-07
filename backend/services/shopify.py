@@ -43,6 +43,8 @@ def shopify_graphql(query):
     print("TOKEN EXISTS:", bool(access_token))
     print("TOKEN PREFIX:", access_token[:8] if access_token else None)
 
+    # helper - raise an exception if Shopify sends back HTTP error response
+    response.raise_for_status()
     # return to JSON
     return response.json()
 
@@ -138,5 +140,5 @@ def fetch_variants():
     data = shopify_graphql(query)
     return [
         edge["node"]
-        for edge in data["data"]["orders"]["edges"]
+        for edge in data["data"]["products"]["edges"]
     ]
