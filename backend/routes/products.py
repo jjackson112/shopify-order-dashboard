@@ -40,12 +40,16 @@ def create_product(current_user):
 @token_required
 def get_products_list(current_user):
     
-    products = fetch_products()
+    try:
+        products = fetch_products()
 
-    return jsonify({
-        "message": "Products list is here.",
-        "products": [product.to_dict() for product in products]
-        }), 200
+        return jsonify({
+            "message": "Products list is here.",
+            "products": [product.to_dict() for product in products]
+            }), 200
+    except Exception as e:
+        print("PRODUCT ROUTE ERROR", e)
+        return jsonify({"error": str(e)}), 500
 
 # get a single product
 @products_bp.route("/<int:product_id>", methods=["GET"])
