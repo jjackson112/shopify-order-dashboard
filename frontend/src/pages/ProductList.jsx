@@ -12,7 +12,7 @@ function ProductList() {
   useEffect(() => {
       const fetchProducts = async () => {
           try {
-              const data = await api.get("/shopify/products")
+              const data = await api.get("/products")
               console.log(data)
               setProducts(data.products || [])
           } catch (err) {

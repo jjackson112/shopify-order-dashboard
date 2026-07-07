@@ -60,7 +60,7 @@ def get_single_product(current_user, product_id):
 
     return jsonify({
         "message": "Single product is here.",
-        "product": product.to_dict()
+        "product": product
     }), 200
 
 @products_bp.route("/<int:product_id>", methods=["PATCH"])
