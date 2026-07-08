@@ -79,6 +79,17 @@ def fetch_single_product(product_id):
             id
             title
             description
+            variants(first:20) {{
+                edges {{
+                    node {{
+                        id
+                        title
+                        sku
+                        price
+                        inventoryQuantity
+                    }}
+                }}
+            }}
         }}
     }}
     """

@@ -57,7 +57,7 @@ function ProductDetail() {
                   <Text as="p">No variants yet.</Text>
                 ) : (
                   <DataTable
-                    columnContentTypes={["text", "text", "text", "numeric"]}
+                    columnContentTypes={["text", "text", "numeric", "numeric"]} // title, sku, price, quantity
                     headings={["Title", "SKU", "Price", "Quantity"]}
                     rows={variantRows}
                   />
