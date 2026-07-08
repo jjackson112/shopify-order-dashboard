@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify
-from extensions import db
-from services.shopify import fetch_orders
 from services.token import token_required
+from services.shopify import fetch_orders
 
 orders_bp = Blueprint("orders", __name__, url_prefix='/api/orders')
 
