@@ -10,10 +10,11 @@ function ProductDetail() {
     useEffect(() => {
       const fetchProductDetail = async () => {
         try {
-            const res = await api.get(`/products/${id}`)
-            console.log(res)
-            // data into state
-            setProduct(res.product)
+          // Shopify IDs could break with const res = await api.get(`/products/${id}`)
+          const res = await api.get(`/products/single?id=${encodeURIComponent(id)}`)
+          console.log(res)
+          // data into state
+          setProduct(res.product)
         } catch (err) {
             console.log(err)
         }
