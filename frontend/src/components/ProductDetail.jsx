@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { useParams } from "react-router-dom";
-import { Page, Card, Text, BlockStack, Button, DataTable,} from "@shopify/polaris";
+import { Page, Card, Text, BlockStack, Button, DataTable } from "@shopify/polaris";
 
 function ProductDetail() {
-    const [product, setProduct] = useState(null) // null means modal is closed
-    const { id } = useParams()
+  const [product, setProduct] = useState(null) // null means modal is closed
+  const { id } = useParams()
 
     useEffect(() => {
-        const fetchProductDetail = async () => {
-            try {
-                const res = await api.get(`/products/${id}`)
-                console.log(res)
-
-                // data into state
-                setProduct(res.product)
-            } catch (err) {
-                console.log(err)
-            }
+      const fetchProductDetail = async () => {
+        try {
+            const res = await api.get(`/products/${id}`)
+            console.log(res)
+            // data into state
+            setProduct(res.product)
+        } catch (err) {
+            console.log(err)
         }
-        fetchProductDetail()
+      }
+
+      fetchProductDetail()
     }, [id])
 
     if (!product) {
@@ -27,10 +27,10 @@ function ProductDetail() {
     }
 
     // map over product.variants - title, sku, price, quantity
-    const mapOverVariants = product.variants.map((variant) => [
+    const variantRows = product.variants.map((variant) => [
         variant.title,
-        variant.sku,
-        variant.quantity,
+        variant.sku || "N/A",
+        variant.inventoryQuantity ?? 0,
         `$${variant.price}`
     ])
 
