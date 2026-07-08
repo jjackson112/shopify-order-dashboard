@@ -29,45 +29,43 @@ function ProductDetail() {
 
     // map over product.variants - title, sku, price, quantity
     const variantRows = (product.variants || []).map((variant) => [
-        variant.title,
-        variant.sku || "N/A",
-        `$${variant.price}`,
-        variant.inventoryQuantity ?? 0
+      variant.title,
+      variant.sku || "N/A",
+      `$${variant.price}`,
+      variant.inventoryQuantity ?? 0
     ])
 
     return (
-        <Page
-          title={product.title}
-          primaryAction={{
-            content: "Add Variant",
-            onAction: () => console.log("Add variant"),
-          }}
-        >
-            <BlockStack gap="400">
-                <Card>
-                  <BlockStack gap="200">
-                    <Text as="h2" variant="headingMd">Product Details</Text>
-                    <Text as="p">{product.description}</Text>
-                  </BlockStack>
-                </Card>
-
-                <Card>
-                    <BlockStack gap="300">
-                    <Text as="h2" variant="headingMd">Variants</Text>
-
-                    {variantRows.length === 0 ? (
-                      <Text as="p">No variants yet.</Text>
-                    ) : (
-                      <DataTable
-                        columnContentTypes={["text", "text", "text", "numeric"]}
-                        headings={["Title", "SKU", "Price", "Quantity"]}
-                        rows={variantRows}
-                      />
-                    )}
-                    </BlockStack>
-                </Card>
-            </BlockStack>
-        </Page>
+      <Page
+        title={product.title}
+        primaryAction={{
+          content: "Add Variant",
+          onAction: () => console.log("Add variant"),
+        }}
+      >
+        <BlockStack gap="400">
+            <Card>
+              <BlockStack gap="200">
+                <Text as="h2" variant="headingMd">Product Details</Text>
+                <Text as="p">{product.description}</Text>
+              </BlockStack>
+            </Card>
+            <Card>
+                <BlockStack gap="300">
+                <Text as="h2" variant="headingMd">Variants</Text>
+                {variantRows.length === 0 ? (
+                  <Text as="p">No variants yet.</Text>
+                ) : (
+                  <DataTable
+                    columnContentTypes={["text", "text", "text", "numeric"]}
+                    headings={["Title", "SKU", "Price", "Quantity"]}
+                    rows={variantRows}
+                  />
+                )}
+                </BlockStack>
+            </Card>
+        </BlockStack>
+      </Page>
   )
 }
 
