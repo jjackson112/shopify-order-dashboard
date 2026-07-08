@@ -95,8 +95,14 @@ def fetch_single_product(product_id):
     """
 
     data = shopify_graphql(query)
+    product = data["data"]["product"]
 
-    return data["data"]["product"]
+    product["variants"] = [
+        edge["node"]
+        for edge in product["variants"]["edges"]
+    ]
+
+    return product
 
 # fetch Shopify orders - no need for db model 
 # orders are live from Shopify - proof API works
