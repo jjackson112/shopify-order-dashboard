@@ -10,21 +10,23 @@ function ProductList() {
   const navigate = useNavigate()
   
   useEffect(() => {
-      const fetchProducts = async () => {
-          try {
-              const data = await api.get("/products")
-              console.log(data)
+    const fetchProducts = async () => {
+      try {
+        const data = await api.get("/products")
+        console.log(data)
+        
+        // raw version
+        // setProducts(data.products || [])
 
-              // raw version
-              // setProducts(data.products || [])
+        const productNodes = data.data.products.edges.map(edge => edge.node)
+        setProducts(productNodes)
 
-              const productNodes = data.data.products.edges.map(edge => edge.node)
-              setProducts(productNodes)
-          } catch (err) {
-             console.log(err)
-          }
+      } catch (err) {
+        console.log(err)
       }
-      fetchProducts()
+    }
+
+    fetchProducts()
   }, [])
 
   return (
@@ -45,7 +47,7 @@ function ProductList() {
                     {product.description}
                   </Text>
                   <Button
-                    onClick={() => navigate(`/products/${product.id}`)}
+                    onClick={() => navigate(`/products/${encodeURIComponent(product.id)}`)}
                   >
                     View Product
                   </Button>
