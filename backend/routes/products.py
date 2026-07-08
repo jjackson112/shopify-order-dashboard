@@ -55,6 +55,10 @@ def get_products_list(current_user):
 @products_bp.route("/<int:product_id>", methods=["GET"])
 @token_required
 def get_single_product(current_user, product_id):
+    product_id = request.args.get("id") # read query parameters from URL
+
+    if not product_id:
+        return jsonify({"error": "Product ID required"}), 400
 
     product = fetch_single_product(product_id)
 
