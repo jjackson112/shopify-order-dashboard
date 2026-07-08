@@ -47,9 +47,13 @@ function Dashboard() {
                 <Text as="p">No products yet.</Text>
               ) : (
                 products.slice(0, 5).map((product) => (
-                  <Text as="p" key={product.id}>
+                  <Button 
+                    key={product.id}
+                    variant="plain"
+                    onClick={() => navigate(`/products/${encodeURIComponent(product.id)}`)}
+                  >
                     {product.title}
-                  </Text>
+                  </Button>
                 ))
               )}
               <Button variant="primary" onClick={() => navigate("/products")}>View Products</Button>
