@@ -28,11 +28,11 @@ function ProductDetail() {
     }
 
     // map over product.variants - title, sku, price, quantity
-    const variantRows = product.variants.map((variant) => [
+    const variantRows = (product.variants || []).map((variant) => [
         variant.title,
         variant.sku || "N/A",
-        variant.inventoryQuantity ?? 0,
-        `$${variant.price}`
+        `$${variant.price}`,
+        variant.inventoryQuantity ?? 0
     ])
 
     return (
