@@ -40,6 +40,13 @@ function App() {
               <ProductDetail />
             </ProtectedRoute>}
           />
+          <Route
+            path="/orders"
+            element={
+            <ProtectedRoute>
+              <OrderList />
+            </ProtectedRoute>}
+          />
       </Routes>
       </AppProvider>
   )

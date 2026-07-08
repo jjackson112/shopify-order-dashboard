@@ -45,3 +45,5 @@ function OrderList() {
         </Page>
     )
 }
+
+export default OrderList;
