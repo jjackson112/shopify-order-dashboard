@@ -58,7 +58,7 @@ function Dashboard() {
                       ))
                     )}
     
-                    <Button variant="primary" onClick={() => navigate(`/products/${encodeURIComponent(id)}`)}>View Products</Button>
+                    <Button variant="primary" onClick={() => navigate("/products")}>View Products</Button>
                     </BlockStack>
                 </Card>
             </BlockStack>

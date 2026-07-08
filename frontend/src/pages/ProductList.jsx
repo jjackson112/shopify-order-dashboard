@@ -15,7 +15,6 @@ function ProductList() {
         const data = await api.get("/products")
         console.log(data)
         
-        // raw version - const productNodes = data.data.products.edges.map(edge => edge.node)
         setProducts(data.products || [])
 
       } catch (err) {
