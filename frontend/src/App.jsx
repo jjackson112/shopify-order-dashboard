@@ -6,8 +6,8 @@ import LoginForm from './pages/Login';
 import RegisterForm from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ProductList from './pages/ProductList';
-import ProductDetail from './components/ProductDetail';
 import OrderList from './pages/OrderList';
+import ProductDetail from './components/ProductDetail';
 
 console.log("ORDERLIST IMPORT TEST", OrderList)
 
