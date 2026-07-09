@@ -6,7 +6,7 @@ webhooks_bp = Blueprint("webhooks", __name__, url_prefix="/api/webhooks")
 
 @webhooks_bp.route("/<topic>", methods=["POST"])
 def get_webhook(topic):
-    data = request.get_json() or {}
+    data = request.get_json(silent=True) # or {} means data will almost never be None
 
     if data is None:
         return ({"error": "Invalid JSON"}), 400
