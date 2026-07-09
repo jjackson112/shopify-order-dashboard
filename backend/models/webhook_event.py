@@ -2,6 +2,7 @@ from extensions import db
 from datetime import datetime
 
 # store webhook events, not just print the webhook in console
+# db.JSON sends multiple fields so name, price, sku, title, etc gets messy
 
 class WebhookEvent(db.Model):
     id = db.Column(db.Integer, primary_key=True)
