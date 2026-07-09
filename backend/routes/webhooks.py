@@ -19,11 +19,16 @@ def get_webhook(topic):
     db.session.add(event)
     db.session.commit()
     
-    print("Webhook event", {topic})
+    print("Webhook event", topic)
     print(data)
 
     return jsonify({"received": True}), 200
 
+@webhooks_bp.route("/events", methods=["GET"])
+def list_webhook_events():
+    events = WebhookEvent.query.order_by(WebhookEvent.created_at.desc()).all()
+
+    return jsonify([events.to_dict() for event in events]), 200
 
 # @webhooks_bp.route("/orders/create", methods=["POST"])
 # def create_order():
