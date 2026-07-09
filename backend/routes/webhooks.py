@@ -3,13 +3,14 @@ from flask import Blueprint, jsonify, request
 webhooks_bp = Blueprint("webhooks", __name__, url_prefix="/api/webhooks")
 
 @webhooks_bp.route("/<topic>", methods=["POST"])
-def get_webhook():
+def get_webhook(topic):
     data = request.get_json() or {}
 
     if not data:
         return ({"error": "Invalid JSON"}), 400
     
-    print("Webhook event", data)
+    print("Webhook event", {topic})
+    print(data)
 
     return jsonify({"received": True}), 200
 
