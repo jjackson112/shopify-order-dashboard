@@ -9,6 +9,8 @@ import ProductList from './pages/ProductList';
 import ProductDetail from './components/ProductDetail';
 import OrderList from './pages/OrderList';
 
+console.log("ORDERLIST IMPORT TEST", OrderList)
+
 function App() {
   return (
     <AppProvider>
