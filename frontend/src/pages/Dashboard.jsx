@@ -5,6 +5,8 @@ import { Page, Card, Text, BlockStack, InlineGrid, Button } from "@shopify/polar
 
 function Dashboard() {
   const [products, setProducts] = useState([])
+  const [orders, setOrders] = useState([])
+
   const username = localStorage.getItem("username") || "merchant"
   
   const navigate = useNavigate()
@@ -22,6 +24,19 @@ function Dashboard() {
     }
 
       fetchProducts()
+  }, [])
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const data = await api.get("/orders")
+        setOrders(data.orders || [])
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    fetchOrders()
   }, [])
 
   // const handleView = (id) => {navigate(`/products/${id}`)}
