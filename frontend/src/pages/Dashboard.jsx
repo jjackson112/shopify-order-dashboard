@@ -50,8 +50,8 @@ function Dashboard() {
             <Text as="p" variant="bodyLg">{products.length}</Text>
           </Card>
           <Card>
-            <Text as="h2" variant="headingMd">Total Variants</Text>
-            <Text as="p" variant="bodyLg">Coming soon</Text>
+            <Text as="h2" variant="headingMd">Orders</Text>
+            <Text as="p" variant="bodyLg">{orders.length}</Text>
           </Card>
         </InlineGrid>
           <Card>

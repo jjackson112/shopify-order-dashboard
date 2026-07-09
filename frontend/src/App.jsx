@@ -7,6 +7,7 @@ import RegisterForm from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ProductList from './pages/ProductList';
 import ProductDetail from './components/ProductDetail';
+import OrderList from './pages/OrderList';
 
 function App() {
   return (
