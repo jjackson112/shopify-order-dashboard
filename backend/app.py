@@ -9,6 +9,7 @@ from routes.products import products_bp
 from routes.variants import variants_bp
 from routes.shopify import shopify_bp
 from routes.orders import orders_bp
+from routes.webhooks import webhooks_bp
 
 load_dotenv()
 
@@ -38,6 +39,7 @@ def create_app():
    app.register_blueprint(variants_bp)
    app.register_blueprint(shopify_bp)
    app.register_blueprint(orders_bp)
+   app.register_blueprint(webhooks_bp)
 
    with app.app_context():
       db.create_all()
