@@ -1,4 +1,6 @@
 from flask import Blueprint, jsonify, request
+from extensions import db
+from models.webhook_event import WebhookEvent
 
 webhooks_bp = Blueprint("webhooks", __name__, url_prefix="/api/webhooks")
 
@@ -6,8 +8,11 @@ webhooks_bp = Blueprint("webhooks", __name__, url_prefix="/api/webhooks")
 def get_webhook(topic):
     data = request.get_json() or {}
 
-    if not data:
+    if data is None:
         return ({"error": "Invalid JSON"}), 400
+        
+    db.session.add()
+    db.session.commit()
     
     print("Webhook event", {topic})
     print(data)
