@@ -10,8 +10,13 @@ def get_webhook(topic):
 
     if data is None:
         return ({"error": "Invalid JSON"}), 400
-        
-    db.session.add()
+
+    event = WebhookEvent(
+        topic=topic,
+        payload=data
+    )  
+
+    db.session.add(event)
     db.session.commit()
     
     print("Webhook event", {topic})
