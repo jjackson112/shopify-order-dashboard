@@ -9,7 +9,7 @@ def get_webhook(topic):
     data = request.get_json(silent=True) # or {} means data will almost never be None
 
     if data is None:
-        return ({"error": "Invalid JSON"}), 400
+        return jsonify({"error": "Invalid JSON"}), 400
 
     event = WebhookEvent(
         topic=topic,
@@ -28,7 +28,7 @@ def get_webhook(topic):
 def list_webhook_events():
     events = WebhookEvent.query.order_by(WebhookEvent.created_at.desc()).all()
 
-    return jsonify([events.to_dict() for event in events]), 200
+    return jsonify([event.to_dict() for event in events]), 200
 
 # @webhooks_bp.route("/orders/create", methods=["POST"])
 # def create_order():
