@@ -1,11 +1,22 @@
 from flask import Blueprint, jsonify, request
 from extensions import db
+from services.webhook_verification import verify_shopify_signature
 from models.webhook_event import WebhookEvent
 
 webhooks_bp = Blueprint("webhooks", __name__, url_prefix="/api/webhooks")
 
 @webhooks_bp.route("/<topic>", methods=["POST"])
 def get_webhook(topic):
+    signature = request.headers.get(
+        "X-Shopify-Hmac-SHA256"
+    )
+
+    if not verify_shopify_signature(
+        request.data,
+        signature
+    ):
+        return jsonify({"error": "Invalid signature"}), 401
+
     data = request.get_json(silent=True) # or {} means data will almost never be None
 
     if data is None:
