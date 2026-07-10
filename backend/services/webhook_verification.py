@@ -2,7 +2,6 @@ import hashlib
 import hmac
 import os
 import base64 # Shopify encoded not hex
-from flask import Flask, request, abort
 
 # GitHub uses the X-Hub-Signature-256 header with HMAC-SHA256.
 # change GitHub to Shopify (X-Shopify-Hmac-SHA256)
