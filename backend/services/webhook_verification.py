@@ -11,7 +11,7 @@ SHOPIFY_SECRET = os.environ['SHOPIFY_WEBHOOK_SECRET'].encode()
 
 # Receive the webhook - get the raw body + Shopify sends the header
 def verify_shopify_signature(payload_body: bytes, signature_header: str) -> bool:
-    if not signature_header or not signature_header.startswith('sha256='):
+    if not signature_header:
         return False
     
     # recreate Shopify signature using secret
