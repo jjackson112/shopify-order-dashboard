@@ -5,7 +5,7 @@ from models.webhook_event import WebhookEvent
 
 webhooks_bp = Blueprint("webhooks", __name__, url_prefix="/api/webhooks")
 
-@webhooks_bp.route("/<topic>", methods=["POST"])
+@webhooks_bp.route("/<path:topic>", methods=["POST"])
 def get_webhook(topic):
     signature = request.headers.get(
         "X-Shopify-Hmac-SHA256"
