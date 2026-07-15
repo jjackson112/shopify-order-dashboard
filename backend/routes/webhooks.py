@@ -45,7 +45,7 @@ def get_webhook(topic):
     return jsonify({"received": True}), 200
 
 @webhooks_bp.route("/events", methods=["GET"])
-def list_webhook_events():
+def list_webhook_events(current_user):
     events = WebhookEvent.query.order_by(WebhookEvent.created_at.desc()).all()
 
     return jsonify([event.to_dict() for event in events]), 200
