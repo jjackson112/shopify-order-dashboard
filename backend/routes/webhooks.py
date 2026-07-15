@@ -17,6 +17,15 @@ def get_webhook(topic):
     ):
         return jsonify({"error": "Invalid signature"}), 401
 
+    # read Shopify's topic header - use directly or verify from URL
+    shopify_topic = request.headers.get("X-Shopify-Topic")
+
+    if not shopify_topic:
+        return jsonify({"error": "Missing webhook topic"}), 400
+
+    if shopify_topic != topic:
+        return jsonify({"error": "Webhook topic mismatch"}), 400
+
     data = request.get_json(silent=True) # or {} means data will almost never be None
 
     if data is None:
