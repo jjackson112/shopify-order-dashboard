@@ -10,9 +10,18 @@ def test_valid_webhook(client):
     response = client.post(
         "/api/webhooks/orders/create"
     )
-    
+
     # check the status code
     assert response.status_code == 200
-    
+
     # check JSON
     assert response.json["error"] == "Invalid signature"
+
+def test_invalid_webhook(client):
+    response = client.post(
+        "api/webhooks/orders/create"
+    )
+
+    assert response.status_code == 400
+
+    assert response.json["error"] == "Invalid JSON"
