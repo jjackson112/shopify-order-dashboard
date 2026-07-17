@@ -8,11 +8,12 @@
 # missing input - fake payload, signature + headers - create helper function
 
 def create_valid_webhook():
-    payload = b'{"id": 123}' # b is raw bytes
     secret = "test_secret"
-    
+
 
 def test_valid_webhook(client):
+    payload = b'{"id": 123}' # b is raw bytes
+
     payload, signature, headers = (
         create_valid_webhook()
     )
