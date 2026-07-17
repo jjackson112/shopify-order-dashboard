@@ -23,7 +23,8 @@ def test_valid_webhook(client):
         data=payload,
         content_type="application/json",
         headers={
-            "X-Shopify-Hmac-SHA256": signature
+            "X-Shopify-Hmac-SHA256": signature,
+            "X-Shopify-Topic": "orders/create"
         }
     )
 
@@ -46,7 +47,8 @@ def test_invalid_json(client):
         data=payload,
         content_type="application/json",
         headers={
-            "X-Shopify-Hmac-SHA256": signature
+            "X-Shopify-Hmac-SHA256": signature,
+            "X-Shopify-Topic": "orders/create"
         }
     )
 
