@@ -6,7 +6,9 @@
 # Pytest does it all for me
 
 # missing input - fake payload, signature + headers - create helper function
+
 from tests.create_test_signature import create_test_signature
+
 def test_valid_webhook(client):
     payload = b'{"id": 123}' # b is raw bytes
 

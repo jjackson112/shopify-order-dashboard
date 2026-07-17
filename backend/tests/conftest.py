@@ -1,6 +1,11 @@
+import os
+
+os.environ["SHOPIFY_WEBHOOK_SECRET"] = "test_secret"
+
 import pytest
 from app import create_app
 
+# set test environment variable before importing create_app
 
 @pytest.fixture
 def client():
