@@ -2,7 +2,8 @@ import hashlib
 import hmac
 import base64
 
-def create_test_signature(secret, payload):
+# test helper method to generate the signature from the payload + secret
+def test_signature(secret, payload):
     digest = hmac.new(
         secret.encode("utf-8"),
         payload,

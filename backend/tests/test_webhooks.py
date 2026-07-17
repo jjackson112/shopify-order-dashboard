@@ -6,23 +6,24 @@
 # Pytest does it all for me
 
 # missing input - fake payload, signature + headers - create helper function
-
-def create_valid_webhook():
-    secret = "test_secret"
-
+from tests.create_test_signature import test_signature
 
 def test_valid_webhook(client):
     payload = b'{"id": 123}' # b is raw bytes
 
-    payload, signature, headers = (
-        create_valid_webhook()
+    signature = test_signature(
+        "test_secret",
+        payload
     )
 
     # simulate the request
     response = client.post(
         "/api/webhooks/orders/create",
         data=payload,
-        headers=headers
+        content_type="application/json",
+        headers={
+            "X-Shopify-Hmac-SHA256": signature
+        }
     )
 
     # check the status code
