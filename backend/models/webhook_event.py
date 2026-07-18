@@ -11,4 +11,4 @@ class WebhookEvent(db.Model):
     shopify_id = db.Column(db.String(100))
     payload = db.Column(db.JSON) # lets you store a whole JSON object/dictionary inside one db column
 
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime(timezone=True), nullable=False, default=lambda: datetime.utcnow)
