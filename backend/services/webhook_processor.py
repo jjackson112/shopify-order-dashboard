@@ -1,4 +1,5 @@
 from extensions import db
+from flask import jsonify
 from models.order import Order
 from models.order_item import OrderItem
 
@@ -8,7 +9,7 @@ from models.order_item import OrderItem
 
 def process_order_created(event):
     payload = event.payload
-    
+
     order = Order(
         order_number=payload["order_number"],
         order_status=payload.get("financial_status", "pending"),
@@ -16,6 +17,7 @@ def process_order_created(event):
     )
 
     for item_data in payload.get("line_items", []):
+
         item = OrderItem(
             product_name=item_data["name"],
             quantity=item_data["quantity"],
@@ -32,3 +34,15 @@ def process_order_created(event):
     db.session.add(order)
     event.processed = True
     db.session.commit()
+
+    # handle processing errors
+    try:
+        if topic == "orders/create":
+            process_order_created(event)
+    except Exception as error:
+        db.session.rollback()
+        print("Webhook proessing failed", error)
+
+        return jsonify({
+            "error": "Webhook received but processing failed"
+        })
