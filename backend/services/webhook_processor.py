@@ -6,7 +6,9 @@ from models.order_item import OrderItem
 # webhook routes handle HTTP - no Flask - while processors handle business logic
 # pass WebhookEvent (event) through + if processed = True will be saved to db
 
-def process_order_created(event, payload):
+def process_order_created(event):
+    payload = event.payload
+    
     order = Order(
         order_number=payload["order_number"],
         order_status=payload.get("financial_status", "pending"),
