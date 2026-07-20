@@ -40,11 +40,17 @@ def get_webhook(topic):
     db.session.add(event)
     db.session.commit()
 
-    process_order_created(
-        event,
-        data
-    )
-    
+    try:
+        if topic == "orders/create":
+            process_order_created(event)
+    except Exception as error:
+        db.session.rollback()
+        print("Webhook processing failed:", error)
+
+        return jsonify({
+            "error": "Webhook received but processing failed"
+        }), 500
+        
     print("Webhook event", topic)
     print(data)
 
