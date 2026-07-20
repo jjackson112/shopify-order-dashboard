@@ -3,7 +3,7 @@ from models.order import Order
 from models.order_item import OrderItem
 
 # a webhook processor marks the event that processes
-# webhook routes handle HTTP while processors handle business logic
+# webhook routes handle HTTP - no Flask - while processors handle business logic
 
 def process_order_created(payload):
     order = Order(
