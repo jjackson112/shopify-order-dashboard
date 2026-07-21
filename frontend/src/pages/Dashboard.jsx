@@ -29,7 +29,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const data = await api.get("/orders")
+        const data = await api.get("/orders/shopify")
         setOrders(data.orders || [])
       } catch (err) {
         console.log(err)
