@@ -34,6 +34,19 @@ function OrderList() {
                                 <Text as="h2" variant="headingMd">
                                     {order.name || order.title || "Untitled order"}
                                 </Text>
+
+                                <Text as="p">
+                                    Order #{order.order_number}
+                                </Text>
+                                
+                                <Text as="p">
+                                    Status: {order.order_status}
+                                </Text>
+
+                                <Text as="p">
+                                    Total: {order.total_price}
+                                </Text>
+
                                 <Text as="p">
                                     Created: {order.createdAt}
                                 </Text>
