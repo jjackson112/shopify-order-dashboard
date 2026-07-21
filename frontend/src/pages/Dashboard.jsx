@@ -74,7 +74,27 @@ function Dashboard() {
               <Button variant="primary" onClick={() => navigate("/products")}>View Products</Button>
               </BlockStack>
           </Card>
-      </BlockStack>
+          <Card>
+            <BlockStack gap="300">
+              <Text as="h2" variant="headingMd">Recent Orders</Text>
+
+              {orders.length === 0 ? (
+                  <Text as="p">No orders yet.</Text>
+              ) : (
+                  orders.slice(0,5).map((order) => (
+                    <Button
+                        key={order.id}
+                        variant="plain"
+                        onClick={() => navigate("/orders")}
+                    >
+                        {order.name}
+                    </Button>
+                  ))
+              )}
+                <Button variant="primary" onClick={() => navigate("/orders")}>View Orders</Button>
+            </BlockStack>
+          </Card>
+        </BlockStack>
     </Page>
   )
 }
