@@ -4,21 +4,36 @@ import { Page, Card, Text, BlockStack } from "@shopify/polaris"
 
 function OrderList() {
     const [orders, setOrders] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState("")
 
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const data = await api.get("/orders")
-                console.log(data)
+                setLoading(true)
+                setError("")
 
+                const data = await api.get("/orders")
                 setOrders(data.orders || [])
             } catch (err) {
-                console.error("Failed to fetch orders", err)
+                console.error(err)
+                setError("Failed to fetch orders")
+            } finally {
+                setLoading(false)
             }
         }
 
         fetchOrders()
     }, [])
+
+    // render guards
+    if (loading) {
+        return <p>Loading orders...</p>
+    }
+
+    if (error) {
+        return <p>{error}</p>
+    }
 
     return (
         <Page title="Orders">
