@@ -7,24 +7,50 @@ function ProductDetail() {
   const [product, setProduct] = useState(null) // null means modal is closed
   const { id } = useParams()
 
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
+
     useEffect(() => {
       const fetchProductDetail = async () => {
         try {
+          setLoading(true)
+          setError("")
+
           // Shopify IDs could break with const res = await api.get(`/products/${id}`)
           const res = await api.get(`/products/single?id=${encodeURIComponent(id)}`)
           console.log(res)
           // data into state
-          setProduct(res.product)
+          setProduct(res.product || null)
         } catch (err) {
-            console.log(err)
+          console.error("Failed to fetch product", data)
+          setError(err.message || "Failed to load product")
+        } finally {
+          setLoading(false)
         }
       }
 
       fetchProductDetail()
     }, [id])
 
+    if (loading) {
+      return 
+        <Page title="Product">
+          <Text>Loading product...</Text>
+        </Page>
+    }
+
+    if (error) {
+      return 
+        <Page title="Product">
+          <Text>{error}</Text>
+        </Page>
+    }
+
     if (!product) {
-        return <Page title="Loading product..." />
+      return
+        <Page title="Product">
+          <Text>Product not found</Text>
+        </Page>
     }
 
     // map over product.variants - title, sku, price, quantity
@@ -37,7 +63,7 @@ function ProductDetail() {
 
     return (
       <Page
-        title={product.title}
+        title={product.name}
         primaryAction={{
           content: "Add Variant",
           onAction: () => console.log("Add variant"),
