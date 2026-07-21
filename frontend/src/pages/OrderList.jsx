@@ -57,15 +57,17 @@ function OrderList() {
                         <Card key={order.id}>
                             <BlockStack gap="200">
                                 <Text as="h2" variant="headingMd">
-                                    Order #{order.order_number}
+                                    Order #{order.name}
                                 </Text>
                                 
                                 <Text as="p">
-                                    Status: {order.order_status || "Unknown"}
+                                    Status: {order.displayFinancialStatus || "Unknown"}
                                 </Text>
 
                                 <Text as="p">
-                                    Total: ${order.total_price || "0.00r"}
+                                    Total: 
+                                    ${order.totalPriceSet?.shopMoney?.amount || "0.00"}{""}
+                                    {order.totalPriceSet?.shopMoney?.currencyCode || ""}
                                 </Text>
 
                                 <Text as="p">

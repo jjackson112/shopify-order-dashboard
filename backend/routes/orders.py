@@ -8,7 +8,7 @@ orders_bp = Blueprint("orders", __name__, url_prefix='/api/orders')
 # order data source for live Shopify data - call Shopify directly
 @orders_bp.route("/shopify", methods=["GET"])
 @token_required
-def fetch_orders():
+def fetch_shopify_orders(current_user):
     orders = fetch_orders()
 
     return jsonify({

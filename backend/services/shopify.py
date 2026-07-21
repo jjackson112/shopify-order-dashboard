@@ -123,7 +123,8 @@ def fetch_orders():
                             currencyCode
                         }
                     }
-                    lineItems(first: 20)
+                    
+                    lineItems(first: 20) {
                         edges {
                             node {
                                 name
@@ -136,6 +137,7 @@ def fetch_orders():
                                 }
                             }
                         }
+                    }
                 }
             }
         }
