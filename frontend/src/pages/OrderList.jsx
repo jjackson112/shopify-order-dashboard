@@ -28,11 +28,21 @@ function OrderList() {
 
     // render guards
     if (loading) {
-        return <p>Loading orders...</p>
+        return (
+            <Page title="Orders">
+                <Text as="p">Loading orders...</Text>
+            </Page>
+        )
     }
 
     if (error) {
-        return <p>{error}</p>
+        return (
+            <Page title="Orders">
+                <Card>
+                    <Text as="p">{error}</Text>
+                </Card>
+            </Page>
+        )
     }
 
     return (
