@@ -81,13 +81,13 @@ function Dashboard() {
               {orders.length === 0 ? (
                   <Text as="p">No orders yet.</Text>
               ) : (
-                  orders.slice(0,5).map((order) => (
+                  orders.slice(0, 3).map((order) => (
                     <Button
                         key={order.id}
                         variant="plain"
                         onClick={() => navigate("/orders")}
                     >
-                        {order.name}
+                        {order.name}  — {order.displayFinancialStatus || "Unknown"}
                     </Button>
                   ))
               )}
