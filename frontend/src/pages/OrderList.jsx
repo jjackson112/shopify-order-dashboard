@@ -16,7 +16,7 @@ function OrderList() {
                 const data = await api.get("/orders")
                 setOrders(data.orders || [])
             } catch (err) {
-                console.error(err)
+                console.error("Failed to fetch orders", err)
                 setError("Failed to fetch orders")
             } finally {
                 setLoading(false)
@@ -61,11 +61,11 @@ function OrderList() {
                                 </Text>
                                 
                                 <Text as="p">
-                                    Status: {order.order_status}
+                                    Status: {order.order_status || "Unknown"}
                                 </Text>
 
                                 <Text as="p">
-                                    Total: ${order.total_price}
+                                    Total: ${order.total_price || "0.00"}
                                 </Text>
 
                                 <Text as="p">
