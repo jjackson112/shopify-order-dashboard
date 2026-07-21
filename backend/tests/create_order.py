@@ -35,3 +35,9 @@ def test_order(client):
             "X-Shopify-Topic": "orders/create"
         }
     )
+
+    # status code
+    assert response.status_code == 200
+
+    # check JSON
+    assert response.json["received"] is True
