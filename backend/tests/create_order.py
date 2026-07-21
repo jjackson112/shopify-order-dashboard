@@ -9,5 +9,13 @@ def test_order():
         "order_number": 1001,
         "order_status": "paid",
         "total_price": "59.98"
+        "line_items": [
+            {
+                "product_name": "Black T-shirt",
+                "quantity": 2,
+                "price": "29.99",
+                "sku": "SHIRT-BLK-M"
+            }
+        ]
     }
     '''

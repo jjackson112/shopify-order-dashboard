@@ -1,5 +1,5 @@
 from extensions import db
-from datetime import datetime
+from datetime import UTC, datetime
 
 class Product(db.Model):
     __tablename__ = "products"
@@ -8,8 +8,8 @@ class Product(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     title = db.Column(db.String(75), nullable=False)
     description = db.Column(db.String(1000), nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(UTC))
+    updated_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(UTC))
 
     # def to_dict(self): not needed because product is not a dictionary 
     # SQLAlchemy object only 
