@@ -106,6 +106,7 @@ def fetch_single_product(product_id):
 
 # fetch Shopify orders - no need for db model 
 # orders are live from Shopify - proof API works
+# Shopify returns fields (name, displayFinancialStatus, totalPriceSet, createdAt)
 def fetch_orders():
     query = """
     query {
@@ -114,16 +115,27 @@ def fetch_orders():
                 node {
                     id
                     name
-                    order_number
-                    order_status
-                    total_price
-                    line_items {
-                        product_name
-                        quantity
-                        price
-                        sku
-                    }
                     createdAt
+                    displayFinancialStatus
+                    totalPriceSet {
+                        shopMoney {
+                            amount
+                            currencyCode
+                        }
+                    }
+                    lineItems(first: 20)
+                        edges {
+                            node {
+                                name
+                                quantity
+                                sku
+                                originalUnitPriceSet {
+                                    shopMoney {
+                                        amount
+                                    }
+                                }
+                            }
+                        }
                 }
             }
         }
