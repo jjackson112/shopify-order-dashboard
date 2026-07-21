@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
 from extensions import db
+from services.webhook_processor import process_order_created
 from services.webhook_verification import verify_shopify_signature
 from models.webhook_event import WebhookEvent
-from services.webhook_processor import process_order_created
 
 webhooks_bp = Blueprint("webhooks", __name__, url_prefix="/api/webhooks")
 
