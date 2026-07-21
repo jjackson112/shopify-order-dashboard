@@ -3,7 +3,7 @@ from models.order_item import OrderItem
 from models.webhook_event import WebhookEvent
 from tests.create_test_signature import create_test_signature
 
-def test_order():
+def test_order(client):
     payload = b'''
     {
         "order_number": 1001,
@@ -19,3 +19,19 @@ def test_order():
         ]
     }
     '''
+
+    signature = create_test_signature(
+        "test_secret",
+        payload
+    )
+
+    # simulate the request
+    response = client.post(
+        "/api/webhooks/orders/create",
+        data=payload,
+        content_type="application/json",
+        headers={
+            "X-Shopify-Hmac-SHA256": signature,
+            "X-Shopify-Topic": "orders/create"
+        }
+    )
