@@ -13,7 +13,7 @@ function OrderList() {
                 setLoading(true)
                 setError("")
 
-                const data = await api.get("/orders")
+                const data = await api.get("/orders/shopify")
                 setOrders(data.orders || [])
             } catch (err) {
                 console.error("Failed to fetch orders", err)
@@ -75,6 +75,10 @@ function OrderList() {
                                     {order.created_at
                                         ? new Date(order.created_at).toLocaleDateString()
                                         : "Unknown"}
+                                </Text>
+
+                                <Text as="p">
+                                    Items: {order.lineItems?.edges?.length || 0}
                                 </Text>
                             </BlockStack>
                         </Card>
