@@ -138,6 +138,23 @@ def fetch_orders():
                             }
                         }
                     }
+
+                    customer {
+                        id
+                        firstName
+                        lastName
+                        email
+                        phone
+                    }
+
+                    shippingAddress {
+                        address1
+                        address2
+                        city
+                        province
+                        zip
+                        country
+                    }
                 }
             }
         }
