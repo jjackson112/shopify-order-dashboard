@@ -113,7 +113,16 @@ def fetch_orders():
             edges {
                 node {
                     id
-                    title
+                    name
+                    order_number
+                    order_status
+                    total_price
+                    line_items {
+                        product_name
+                        quantity
+                        price
+                        sku
+                    }
                     createdAt
                 }
             }

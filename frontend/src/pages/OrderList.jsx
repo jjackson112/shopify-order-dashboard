@@ -65,7 +65,7 @@ function OrderList() {
                                 </Text>
 
                                 <Text as="p">
-                                    Total: ${order.total_price || "0.00"}
+                                    Total: ${order.total_price || "0.00r"}
                                 </Text>
 
                                 <Text as="p">

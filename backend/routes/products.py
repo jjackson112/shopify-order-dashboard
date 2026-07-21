@@ -15,14 +15,14 @@ def create_product(current_user):
     if not data:
         return jsonify({"error": "Invalid JSON"}), 400
     
-    title = data.get("title", "").strip()
+    name = data.get("name", "").strip()
     description = data.get("description", "").strip()
 
-    if not title or not description:
+    if not name or not description:
         return jsonify({"error": "Title and description are required."}), 400
 
     product = Product(
-        title=title,
+        name=name,
         description=description,
         user_id=current_user.id
     )
