@@ -19,7 +19,7 @@ def fetch_orders():
 # order data source for locally sourced webhook data
 @orders_bp.route("", methods=["GET"])
 @token_required
-def list_saved_orders():
+def list_saved_orders(current_user):
     orders = Order.query.order_by(Order.created_at.desc()).all()
 
     return jsonify({

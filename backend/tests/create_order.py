@@ -8,13 +8,13 @@ def test_order(client, app):
     {
         "order_number": 1001,
         "order_status": "paid",
-        "total_price": "59.98"
+        "total_price": "79.98"
         "line_items": [
             {
-                "product_name": "Black T-shirt",
+                "product_name": "Cold Brew Starter Kit",
                 "quantity": 2,
-                "price": "29.99",
-                "sku": "SHIRT-BLK-M"
+                "price": "39.99",
+                "sku": "CD-BREW-ST-KIT"
             }
         ]
     }
@@ -50,16 +50,16 @@ def test_order(client, app):
         # does the order exist?
         assert order is not None
         assert order.order_status == "paid"
-        assert str(order.total_price) == "59.98"
+        assert str(order.total_price) == "79.98"
 
         assert len(order.items) == 1
 
         item = order.items[0]
 
-        assert item.product_name == "Black T-Shirt"
+        assert item.product_name == "Cold Brew Starter Kit"
         assert item.quantity == 2
-        assert str(item.unit_price) == "29.99"
-        assert str(item.total_price) == "59.98"
+        assert str(item.unit_price) == "39.99"
+        assert str(item.total_price) == "79.98"
 
         event = WebhookEvent.query.filter_by(topic="orders/create").order_by(WebhookEvent.id.desc()).first()
 
