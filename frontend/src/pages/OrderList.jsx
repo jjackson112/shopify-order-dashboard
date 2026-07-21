@@ -57,7 +57,7 @@ function OrderList() {
                         <Card key={order.id}>
                             <BlockStack gap="200">
                                 <Text as="h2" variant="headingMd">
-                                    Order #{order.name}
+                                    Order {order.name}
                                 </Text>
                                 
                                 <Text as="p">
@@ -72,8 +72,8 @@ function OrderList() {
 
                                 <Text as="p">
                                     Created: {""}
-                                    {order.created_at
-                                        ? new Date(order.created_at).toLocaleDateString()
+                                    {order.createdAt
+                                        ? new Date(order.createdAt).toLocaleDateString()
                                         : "Unknown"}
                                 </Text>
 
