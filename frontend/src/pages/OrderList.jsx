@@ -13,7 +13,7 @@ function OrderList() {
 
                 setOrders(data.orders || [])
             } catch (err) {
-                console.log(err)
+                console.error("Failed to fetch orders", err)
             }
         }
 
@@ -32,10 +32,6 @@ function OrderList() {
                         <Card key={order.id}>
                             <BlockStack gap="200">
                                 <Text as="h2" variant="headingMd">
-                                    {order.name || order.title || "Untitled order"}
-                                </Text>
-
-                                <Text as="p">
                                     Order #{order.order_number}
                                 </Text>
                                 
@@ -44,11 +40,14 @@ function OrderList() {
                                 </Text>
 
                                 <Text as="p">
-                                    Total: {order.total_price}
+                                    Total: ${order.total_price}
                                 </Text>
 
                                 <Text as="p">
-                                    Created: {order.createdAt}
+                                    Created: {""}
+                                    {order.created_at
+                                        ? new Date(order.created_at).toLocaleDateString()
+                                        : "Unknown"}
                                 </Text>
                             </BlockStack>
                         </Card>
