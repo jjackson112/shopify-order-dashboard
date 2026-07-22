@@ -36,10 +36,10 @@ function RegisterForm() {
             setEmail("");
             setPassword("")
 
-            navigate("/dashboard")
+            navigate("/login")
 
         } catch (err) {
-            console.error("Registeration failed", err)
+            console.error("Registration failed", err)
             setError(err.message || "Registration failed")
         } finally {
             setLoading(false)
@@ -48,36 +48,38 @@ function RegisterForm() {
 
     return (
       <Form onSubmit={handleSubmit}>
-        <TextField 
-           label="Username" 
-           value={username}
-           onChange={setUsername}
-           autoComplete="username"
-       />
+        <FormLayout>
+            <TextField 
+                label="Username" 
+                value={username}
+                onChange={setUsername}
+                autoComplete="username"
+            />
 
-        <TextField 
-           label="email" 
-           type="email" 
-           value={email}
-           onChange={setEmail}
-           autoComplete="email"
-       />
+            <TextField 
+                label="email" 
+                type="email" 
+                value={email}
+                onChange={setEmail}
+                autoComplete="email"
+            />
 
-       <TextField 
-           label="Password" 
-           type="password" 
-           value={password}
-           onChange={setPassword}
-           autoComplete="password"
-       />
+            <TextField 
+                label="Password" 
+                type="password" 
+                value={password}
+                onChange={setPassword}
+                autoComplete="password"
+            />
 
-       {error && (
-            <Text as="p" tone="critical">{error}</Text>
-       )}
+            {error && (
+                <Text as="p" tone="critical">{error}</Text>
+            )}
 
-       <Button submit variant="primary">Register</Button>
+            <Button submit variant="primary" loading={loading} disabled={loading}>Register</Button>
 
-       <Text as="p">Already registered? <Link to="/login">Click here to login.</Link></Text>
+            <Text as="p">Already registered? <Link to="/login">Click here to login.</Link></Text>
+        </FormLayout>
       </Form>
     );
 }

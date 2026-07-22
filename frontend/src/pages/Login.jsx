@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Form, FormLayout, TextField, Button, Text } from "@shopify/polaris";
 
@@ -47,29 +46,31 @@ function LoginForm() {
 
     return (
       <Form onSubmit={handleSubmit}>
-       <h1>Login</h1>
+        <FormLayout>
+            <h1>Login</h1>
 
-        <TextField 
-           label="Username/Email" 
-           value={identifier}
-           onChange={setIdentifier}
-           autoComplete="username"
-       />
+            <TextField 
+               label="Username/Email" 
+               value={identifier}
+               onChange={setIdentifier}
+               autoComplete="username"
+           />
 
-        <TextField 
-           label="Password" 
-           type="password" 
-           value={password}
-           onChange={setPassword}
-           autoComplete="password"
-       />
+            <TextField 
+               label="Password" 
+               type="password" 
+               value={password}
+               onChange={setPassword}
+               autoComplete="password"
+            />
 
-        {error && (
-          <Text as="p" tone="critical">{error}</Text>
-        )}
+            {error && (
+              <Text as="p" tone="critical">{error}</Text>
+            )}
 
-       <Button submit variant="primary" loading={loading}>Login</Button>
-       <Button onClick={(() => navigate("/register"))} disabled={loading}>Register</Button>
+            <Button submit variant="primary" loading={loading}>Login</Button>
+            <Button onClick={(() => navigate("/register"))} disabled={loading}>Register</Button>
+        </FormLayout>
       </Form>
     );
 }
