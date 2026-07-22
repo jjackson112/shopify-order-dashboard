@@ -14,6 +14,7 @@ function OrderList() {
                 setError("")
 
                 const data = await api.get("/orders/shopify")
+                console.log("SHOPIFY ORDERS", data.orders)
                 setOrders(data.orders || [])
             } catch (err) {
                 console.error("Failed to fetch orders", err)

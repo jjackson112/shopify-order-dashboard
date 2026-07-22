@@ -170,7 +170,7 @@ def fetch_orders():
     
     return [
         edge["node"]
-        for edge in data["data"]["products"]["edges"]
+        for edge in data["data"]["orders"]["edges"]
     ]
 
 # fetch variants
