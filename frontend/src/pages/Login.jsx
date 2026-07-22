@@ -47,7 +47,7 @@ function LoginForm() {
 
     return (
       <Form onSubmit={handleSubmit}>
-       <h1>Login Page</h1>
+       <h1>Login</h1>
 
         <TextField 
            label="Username/Email" 
@@ -64,8 +64,12 @@ function LoginForm() {
            autoComplete="password"
        />
 
+        {error && (
+          <Text as="p" tone="critical">{error}</Text>
+        )}
+
        <Button submit variant="primary" loading={loading}>Login</Button>
-       <Button variant="primary" onClick={(() => navigate("/register"))}>Register</Button>
+       <Button onClick={(() => navigate("/register"))} disabled={loading}>Register</Button>
       </Form>
     );
 }
