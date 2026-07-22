@@ -3,13 +3,15 @@ import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Form, FormLayout, TextField, Button } from "@shopify/polaris";
+import { Form, FormLayout, TextField, Button, Text } from "@shopify/polaris";
 
 // autocomplete (boolean) gives the browser the ability to autocomplete input elements
 
 function LoginForm() {
     const [identifier, setIdentifier] = useState("")
     const [password, setPassword] = useState("")
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
 
     const { login } = useContext(AuthContext)
     const navigate = useNavigate()
@@ -19,6 +21,9 @@ function LoginForm() {
         console.log("Logging in")
 
         try {
+            setLoading(true)
+            setError("")
+
             const data = await api.post("/auth/login", {
                 identifier,
                 password,
@@ -34,6 +39,9 @@ function LoginForm() {
 
         } catch (err) {
             console.error(err)
+            setError(err.message || "Login failed. Invalid username or password")
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -56,8 +64,8 @@ function LoginForm() {
            autoComplete="password"
        />
 
-       <Button submit variant="primary">Login</Button>
-       <Button submit variant="primary" onClick={(() => navigate("/register"))}>Register</Button>
+       <Button submit variant="primary" loading={loading}>Login</Button>
+       <Button variant="primary" onClick={(() => navigate("/register"))}>Register</Button>
       </Form>
     );
 }
