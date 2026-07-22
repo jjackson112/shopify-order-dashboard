@@ -115,8 +115,11 @@ def fetch_orders():
                 node {
                     id
                     name
+                    email
                     createdAt
                     displayFinancialStatus
+                    displayFulfillmentStatus
+
                     totalPriceSet {
                         shopMoney {
                             amount
@@ -127,9 +130,11 @@ def fetch_orders():
                     lineItems(first: 20) {
                         edges {
                             node {
+                                id
                                 name
                                 quantity
                                 sku
+                                
                                 originalUnitPriceSet {
                                     shopMoney {
                                         amount

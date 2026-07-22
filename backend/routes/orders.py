@@ -3,20 +3,66 @@ from services.token import token_required
 from services.shopify import fetch_orders
 from models.order import Order
 
-orders_bp = Blueprint("orders", __name__, url_prefix='/api/orders')
+orders_bp = Blueprint("orders", __name__, url_prefix="/api/orders")
 
-# order data source for live Shopify data - call Shopify directly
+# Order data source for live Shopify data
 @orders_bp.route("/shopify", methods=["GET"])
 @token_required
 def fetch_shopify_orders(current_user):
-    orders = fetch_orders()
+    try:
+        orders = fetch_orders()
 
-    return jsonify({
-        "message": "Orders fetched",
-        "orders": orders
-    }), 200
+        normalized_orders = []
 
-# order data source for locally sourced webhook data
+        for order in orders:
+            customer = order.get("customer") or {}
+            shipping_address = order.get("shippingAddress") or {}
+
+            normalized_orders.append({
+                "id": order.get("id"),
+                "name": order.get("name"),
+                "email": order.get("email"),
+                "created_at": order.get("createdAt"),
+                "display_financial_status": order.get(
+                    "displayFinancialStatus"
+                ),
+                "display_fulfillment_status": order.get(
+                    "displayFulfillmentStatus"
+                ),
+                "total_price": order.get("totalPriceSet"),
+                "customer": {
+                    "id": customer.get("id"),
+                    "first_name": customer.get("firstName"),
+                    "last_name": customer.get("lastName"),
+                    "email": customer.get("email"),
+                    "phone": customer.get("phone"),
+                },
+                "shipping_address": {
+                    "first_name": shipping_address.get("firstName"),
+                    "last_name": shipping_address.get("lastName"),
+                    "address1": shipping_address.get("address1"),
+                    "address2": shipping_address.get("address2"),
+                    "city": shipping_address.get("city"),
+                    "province": shipping_address.get("province"),
+                    "zip": shipping_address.get("zip"),
+                    "country": shipping_address.get("country"),
+                },
+            })
+
+        return jsonify({
+            "message": "Orders fetched",
+            "orders": normalized_orders,
+        }), 200
+
+    except Exception as err:
+        print(f"Failed to fetch Shopify orders: {err}")
+
+        return jsonify({
+            "error": "Failed to fetch Shopify orders"
+        }), 500
+
+
+# Order data source for locally saved webhook data
 @orders_bp.route("", methods=["GET"])
 @token_required
 def list_saved_orders(current_user):
@@ -24,5 +70,5 @@ def list_saved_orders(current_user):
 
     return jsonify({
         "message": "Saved orders",
-        "orders": [order.to_dict() for order in orders]
+        "orders": [order.to_dict() for order in orders],
     }), 200

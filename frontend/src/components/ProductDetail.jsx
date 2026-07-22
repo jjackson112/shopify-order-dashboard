@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Page, Card, Text, BlockStack, Button, DataTable } from "@shopify/polaris";
 
 function ProductDetail() {
-  const [product, setProduct] = useState(null) // null means modal is closed
+  const [product, setProduct] = useState(null)
   const { id } = useParams()
 
   const [loading, setLoading] = useState(false)
@@ -22,7 +22,7 @@ function ProductDetail() {
           // data into state
           setProduct(res.product || null)
         } catch (err) {
-          console.error("Failed to fetch product", data)
+          console.error("Failed to fetch product", err)
           setError(err.message || "Failed to load product")
         } finally {
           setLoading(false)
@@ -53,7 +53,7 @@ function ProductDetail() {
         </Page>
     }
 
-    // map over product.variants - title, sku, price, quantity
+    // map over product.variants - name, sku, price, quantity
     const variantRows = (product.variants || []).map((variant) => [
       variant.title,
       variant.sku || "N/A",
@@ -83,7 +83,7 @@ function ProductDetail() {
                   <Text as="p">No variants yet.</Text>
                 ) : (
                   <DataTable
-                    columnContentTypes={["text", "text", "numeric", "numeric"]} // title, sku, price, quantity
+                    columnContentTypes={["text", "text", "numeric", "numeric"]} // name, sku, price, quantity
                     headings={["Title", "SKU", "Price", "Quantity"]}
                     rows={variantRows}
                   />
