@@ -57,6 +57,7 @@ function LoginForm() {
        />
 
        <Button submit variant="primary">Login</Button>
+       <Button submit variant="primary" onClick={(() => navigate("/register"))}>Register</Button>
       </Form>
     );
 }

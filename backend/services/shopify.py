@@ -134,7 +134,7 @@ def fetch_orders():
                                 name
                                 quantity
                                 sku
-                                
+
                                 originalUnitPriceSet {
                                     shopMoney {
                                         amount
@@ -167,9 +167,10 @@ def fetch_orders():
     """
 
     data = shopify_graphql(query)
+    
     return [
-        edge["node"] 
-        for edge in data["data"]["orders"]["edges"]
+        edge["node"]
+        for edge in data["data"]["products"]["edges"]
     ]
 
 # fetch variants
@@ -180,8 +181,9 @@ def fetch_variants():
             edges {
                 node {
                     id
-                    title
+                    name
                     description
+
                     variants(first: 10) {
                         edges {
                             node {
@@ -189,7 +191,7 @@ def fetch_variants():
                                 title
                                 sku
                                 price
-                                quantity
+                                inventoryQuantity
                             }
                         }
                     }

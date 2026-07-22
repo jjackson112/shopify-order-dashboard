@@ -64,6 +64,8 @@ function RegisterForm() {
        />
 
        <Button submit variant="primary">Register</Button>
+
+       <Text as="p" onClick={() => navigate("/login")}>Already registered? Click here to login.</Text>
       </Form>
     );
 }
