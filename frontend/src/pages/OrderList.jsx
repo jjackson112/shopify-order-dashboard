@@ -62,19 +62,19 @@ function OrderList() {
                                 </Text>
                                 
                                 <Text as="p">
-                                    Status: {order.displayFinancialStatus || "Unknown"}
+                                    Status: {order.display_financial_status || "Unknown"}
                                 </Text>
 
                                 <Text as="p">
                                     Total: 
-                                    ${order.totalPriceSet?.shopMoney?.amount || "0.00"}{""}
-                                    {order.totalPriceSet?.shopMoney?.currencyCode || ""}
+                                    ${order.total_price || "0.00"}{""}
+                                    {order.currency || ""}
                                 </Text>
 
                                 <Text as="p">
                                     Created: {""}
-                                    {order.createdAt
-                                        ? new Date(order.createdAt).toLocaleDateString()
+                                    {order.created_at
+                                        ? new Date(order.created_at).toLocaleDateString()
                                         : "Unknown"}
                                 </Text>
 

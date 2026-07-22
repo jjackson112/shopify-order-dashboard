@@ -18,6 +18,9 @@ def fetch_shopify_orders(current_user):
             customer = order.get("customer") or {}
             shipping_address = order.get("shippingAddress") or {}
 
+            total_price_set = order.get("totalPriceSet") or {}
+            shop_money = total_price_set.get("shopMoney") or {}
+
             normalized_orders.append({
                 "id": order.get("id"),
                 "name": order.get("name"),
@@ -26,10 +29,14 @@ def fetch_shopify_orders(current_user):
                 "display_financial_status": order.get(
                     "displayFinancialStatus"
                 ),
+
                 "display_fulfillment_status": order.get(
                     "displayFulfillmentStatus"
                 ),
-                "total_price": order.get("totalPriceSet"),
+
+                "total_price": order.get("amount"),
+                "currency": order.get("currencyCode"),
+
                 "customer": {
                     "id": customer.get("id"),
                     "first_name": customer.get("firstName"),
@@ -37,6 +44,7 @@ def fetch_shopify_orders(current_user):
                     "email": customer.get("email"),
                     "phone": customer.get("phone"),
                 },
+                
                 "shipping_address": {
                     "first_name": shipping_address.get("firstName"),
                     "last_name": shipping_address.get("lastName"),
