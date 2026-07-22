@@ -21,6 +21,19 @@ def fetch_shopify_orders(current_user):
             total_price_set = order.get("totalPriceSet") or {}
             shop_money = total_price_set.get("shopMoney") or {}
 
+            # line items in shopify graphql don't exist in the normalized response - alternative solution
+            line_items = []
+            
+            for edge in order.get("lineItems", {} .get("edges", [])):
+                item = edge.get("node") or {}
+
+            line_items.append({
+                "id": item.get("id"),
+                "name": item.get("name"),
+                "quantity": item.get("quantity"),
+                "sku": item.get("sku")
+            })
+
             normalized_orders.append({
                 "id": order.get("id"),
                 "name": order.get("name"),
@@ -36,6 +49,7 @@ def fetch_shopify_orders(current_user):
 
                 "total_price": order.get("amount"),
                 "currency": order.get("currencyCode"),
+                "line_items": line_items
 
                 "customer": {
                     "id": customer.get("id"),
@@ -44,7 +58,7 @@ def fetch_shopify_orders(current_user):
                     "email": customer.get("email"),
                     "phone": customer.get("phone"),
                 },
-                
+
                 "shipping_address": {
                     "first_name": shipping_address.get("firstName"),
                     "last_name": shipping_address.get("lastName"),

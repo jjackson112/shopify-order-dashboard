@@ -79,7 +79,7 @@ function OrderList() {
                                 </Text>
 
                                 <Text as="p">
-                                    Items: {order.lineItems?.edges?.length || 0}
+                                    Items: {order.line_items?.length || 0}
                                 </Text>
                             </BlockStack>
                         </Card>
