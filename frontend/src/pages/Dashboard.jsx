@@ -82,9 +82,13 @@ function Dashboard() {
                   <Text as="p">No orders yet.</Text>
               ) : (
                   orders.slice(0, 3).map((order) => {
-                    const customerName = `${order.customer?.first_name || ""} 
-                      ${order.customer?.last_name || ""}`.trim()
-                    
+                    const customerName = [
+                      order.customer?.first_name, 
+                      order.customer?.last_name
+                    ]
+                      .filter(Boolean)
+                      .join("")
+                      
                     return (
 
                       <Button
