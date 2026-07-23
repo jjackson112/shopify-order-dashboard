@@ -49,6 +49,8 @@ function RegisterForm() {
     return (
       <Form onSubmit={handleSubmit}>
         <FormLayout>
+            <h1>Register</h1>
+
             <TextField 
                 label="Username" 
                 value={username}

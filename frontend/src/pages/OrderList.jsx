@@ -60,6 +60,10 @@ function OrderList() {
                                 <Text as="h2" variant="headingMd">
                                     Order {order.name}
                                 </Text>
+
+                                <Text as="p">
+                                    Name: {order.last_name, order.first_name || "Name unavailable"}
+                                </Text>
                                 
                                 <Text as="p">
                                     Status: {order.display_financial_status || "Unknown"}
