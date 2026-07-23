@@ -27,12 +27,12 @@ def fetch_shopify_orders(current_user):
             for edge in order.get("lineItems", {}).get("edges", []):
                 item = edge.get("node") or {}
 
-            line_items.append({
-                "id": item.get("id"),
-                "name": item.get("name"),
-                "quantity": item.get("quantity"),
-                "sku": item.get("sku")
-            })
+                line_items.append({
+                    "id": item.get("id"),
+                    "name": item.get("name"),
+                    "quantity": item.get("quantity"),
+                    "sku": item.get("sku")
+                })
 
             normalized_orders.append({
                 "id": order.get("id"),
@@ -47,8 +47,8 @@ def fetch_shopify_orders(current_user):
                     "displayFulfillmentStatus"
                 ),
 
-                "total_price": shop_money("amount"),
-                "currency": shop_money("currencyCode"),
+                "total_price": shop_money.get("amount"),
+                "currency": shop_money.get("currencyCode"),
                 "line_items": line_items,
 
                 "customer": {

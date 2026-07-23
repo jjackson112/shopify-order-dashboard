@@ -81,16 +81,22 @@ function Dashboard() {
               {orders.length === 0 ? (
                   <Text as="p">No orders yet.</Text>
               ) : (
-                  orders.slice(0, 3).map((order) => (
-                    <Button
-                        key={order.id}
-                        variant="plain"
-                        onClick={() => navigate("/orders")}
-                    >
-                        {order.name}  — {order.displayFinancialStatus || "Unknown"}
-                    </Button>
-                  ))
-              )}
+                  orders.slice(0, 3).map((order) => {
+                    const customerName = `${order.customer?.first_name || ""} 
+                      ${order.customer?.last_name || ""}`.trim()
+                    
+                    return (
+
+                      <Button
+                          key={order.id}
+                          variant="plain"
+                          onClick={() => navigate("/orders")}
+                      >
+                        {customerName || "Guest"}
+                      </Button>
+                    )
+                  })
+                )}
                 <Button variant="primary" onClick={() => navigate("/orders")}>View Orders</Button>
             </BlockStack>
           </Card>
