@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { Page, Card, Text, BlockStack } from "@shopify/polaris"
-import { customerName } from "../utils/customerName";
+import { customerName } from "../utils/customer_name";
 
 function OrderList() {
     const [orders, setOrders] = useState([])

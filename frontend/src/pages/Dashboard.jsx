@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { Page, Card, Text, BlockStack, InlineGrid, Button } from "@shopify/polaris";
-import { customerName } from "../utils/customerName";
+import { customerName } from "../utils/customer_name";
 
 function Dashboard() {
   const [products, setProducts] = useState([])
@@ -89,7 +89,7 @@ function Dashboard() {
                           variant="plain"
                           onClick={() => navigate("/orders")}
                       >
-                        {customerName(order.customer) || "Guest"}
+                        {order.name} - {customerName(order.customer) || "Guest"}
                       </Button>
                     )
                   })
