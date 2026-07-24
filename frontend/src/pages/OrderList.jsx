@@ -63,7 +63,7 @@ function OrderList() {
                                 </Text>
 
                                 <Text as="p">
-                                    Name: {customerName || "Guest"}
+                                    Name: {customerName(order.customer) || "Guest"}
                                 </Text>
                                 
                                 <Text as="p">

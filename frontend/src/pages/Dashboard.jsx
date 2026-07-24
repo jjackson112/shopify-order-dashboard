@@ -89,7 +89,7 @@ function Dashboard() {
                           variant="plain"
                           onClick={() => navigate("/orders")}
                       >
-                        {customerName || "Guest"}
+                        {customerName(order.customer) || "Guest"}
                       </Button>
                     )
                   })
