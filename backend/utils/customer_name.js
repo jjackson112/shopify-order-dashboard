@@ -1,4 +1,4 @@
-export function formatCustomerName(customer) {
+export function customerName(customer) {
     return [
         customer?.first_name,
         customer?.last_name,

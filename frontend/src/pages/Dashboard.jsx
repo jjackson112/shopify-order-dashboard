@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { Page, Card, Text, BlockStack, InlineGrid, Button } from "@shopify/polaris";
+import { customerName } from "../utils/customerName";
 
 function Dashboard() {
   const [products, setProducts] = useState([])

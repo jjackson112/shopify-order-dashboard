@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { Page, Card, Text, BlockStack } from "@shopify/polaris"
+import { customerName } from "../utils/customerName";
 
 function OrderList() {
     const [orders, setOrders] = useState([])
@@ -62,7 +63,7 @@ function OrderList() {
                                 </Text>
 
                                 <Text as="p">
-                                    Name: {order.customer?.last_name, order.customer?.first_name || "Name unavailable"}
+                                    Name: {customerName || "Guest"}
                                 </Text>
                                 
                                 <Text as="p">
