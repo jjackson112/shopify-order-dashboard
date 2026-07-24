@@ -62,7 +62,7 @@ function OrderList() {
                                 </Text>
 
                                 <Text as="p">
-                                    Name: {order.last_name, order.first_name || "Name unavailable"}
+                                    Name: {order.customer?.last_name, order.customer?.first_name || "Name unavailable"}
                                 </Text>
                                 
                                 <Text as="p">
