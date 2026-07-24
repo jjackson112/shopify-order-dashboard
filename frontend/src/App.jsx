@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import ProductList from './pages/ProductList';
 import OrderList from './pages/OrderList';
 import ProductDetail from './components/ProductDetail';
+import OrderDetail from './components/OrderDetail';
 
 console.log("ORDERLIST IMPORT TEST", OrderList)
 
@@ -48,6 +49,13 @@ function App() {
             element={
             <ProtectedRoute>
               <OrderList />
+            </ProtectedRoute>}
+          />
+          <Route
+            path="/orders/:id"
+            element={
+            <ProtectedRoute>
+              <OrderDetail />
             </ProtectedRoute>}
           />
       </Routes>

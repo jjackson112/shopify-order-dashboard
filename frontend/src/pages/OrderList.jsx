@@ -65,6 +65,10 @@ function OrderList() {
                                 <Text as="p">
                                     Name: {customerName(order.customer) || "Guest"}
                                 </Text>
+
+                                <Text as="p">
+                                    Email: {order.email}
+                                </Text>
                                 
                                 <Text as="p">
                                     Status: {order.display_financial_status || "Unknown"}
