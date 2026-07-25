@@ -40,6 +40,22 @@ function OrderDetail() {
 
     }, [id]})
 
+    // render guard
+    if (loading) {
+        return (
+            <Page title="Order">
+                <Text as="p">Loading order...</Text>
+            </Page>
+        )
+    }
+
+    if (error) {
+        return (
+            <Page title="Order">
+                <Text as="p" tone="critical">{error}</Text>
+            </Page>
+        )
+    }
 
     return (
         <Page title="Orders">
