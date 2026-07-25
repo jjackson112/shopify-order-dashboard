@@ -68,7 +68,7 @@ function Dashboard() {
                     variant="plain"
                     onClick={() => navigate("/products")}
                   >
-                    {product.title}
+                    {product.name}
                   </Button>
                 ))
               )}
