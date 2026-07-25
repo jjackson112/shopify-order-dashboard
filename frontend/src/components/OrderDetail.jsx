@@ -7,7 +7,7 @@ import { customerName } from "../utils/customer_name"
 // useLocation lets one pass data when navigating between pages without calling to API
 
 function OrderDetail() {
-    const [order, setOrder] = useState([])
+    const [order, setOrder] = useState(null)
 
     const { id } = useParams()
 
@@ -31,10 +31,11 @@ function OrderDetail() {
             } finally {
                 setLoading(false)
             }
+        }
 
         fetchOrderDetail()
 
-    }, [id]})
+    }, [id])
 
     // render guards
     if (loading) {
