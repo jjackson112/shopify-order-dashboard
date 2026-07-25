@@ -179,58 +179,54 @@ def fetch_single_order(order_id):
     query = """
     query GetOrder ($id: ID!) {
         order (id: $id) {
-            edge {
-                node {
-                    id
-                    name
-                    email
-                    createdAt
-                    displayFinancialStatus
-                    displayFulfillmentStatus    
-                    totalPriceSet {
-                        shopMoney {
-                            amount
-                            currencyCode
-                        }
-                    }   
+            id
+            name
+            email
+            createdAt
+            displayFinancialStatus
+            displayFulfillmentStatus  
+              
+            totalPriceSet {
+                shopMoney {
+                    amount
+                    currencyCode
+                }  
+            }
 
-                    lineItems(first: 20) {
-                        edges {
-                            node {
-                                id
-                                name
-                                quantity
-                                sku
-
-                                originalUnitPriceSet {
-                                    shopMoney {
-                                        amount
-                                        currencyCode
-                                    }
-                                }
+            lineItems(first: 20) {
+                edges {
+                    node {
+                        id
+                        name
+                        quantity
+                        sk
+                        originalUnitPriceSet {
+                            shopMoney {
+                                amount
+                                currencyCode
                             }
                         }
-                    } 
-
-                    customer {
-                        id
-                        firstName
-                        lastName
-                        email
-                        phone
-                    }   
-
-                    shippingAddress {
-                        firstName
-                        lastName
-                        address1
-                        address2
-                        city
-                        province
-                        zip
-                        country
                     }
                 }
+            }
+
+            customer {
+                id
+                firstName
+                lastName
+                email
+                phone
+            }  
+
+            shippingAddress {
+                firstName
+                lastName
+                address1
+                address2
+                city
+                province
+                zip
+                country
             }
         }
     }
