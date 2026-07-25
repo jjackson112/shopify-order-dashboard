@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Page, Card, Text, BlockStack } from "@shopify/polaris";
 import { customerName } from "../utils/customer_name"
 
@@ -10,11 +10,6 @@ function OrderDetail() {
     const [order, setOrder] = useState([])
 
     const { id } = useParams()
-    // const location = useLocation => const state = location.state
-    const { state } = useLocation()
-
-    // is state exists then return state.order or else undefined
-    const order = state?.order
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
@@ -22,20 +17,20 @@ function OrderDetail() {
     useEffect(() => {
         const fetchOrderDetail = async () => {
 
-        try {
-            setLoading(true)
-            setError("")
+            try {
+                setLoading(true)
+                setError("")
 
-            const res = await api.get(`/orders/shopify/id?id=${encodeURIComponent(id)}`)
-            console.log(res)
+                const res = await api.get(`/orders/shopify/id?id=${encodeURIComponent(id)}`)
+                console.log(res)
 
-            setOrder(res.order)
-        } catch (err) {
-            console.error(err)
-            setError(err.message || "Cannot show order")
-        } finally {
-            setLoading(false)
-        }
+                setOrder(res.order)
+            } catch (err) {
+                console.error(err)
+                setError(err.message || "Cannot show order")
+            } finally {
+                setLoading(false)
+            }
 
         fetchOrderDetail()
 
