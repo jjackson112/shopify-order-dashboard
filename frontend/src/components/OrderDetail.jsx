@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { useLocation, useParams } from "react-router-dom";
+import { Page, Card, Text, BlockStack } from "@shopify/polaris";
+import { customerName } from "../utils/customer_name"
 
 // useLocation lets one pass data when navigating between pages without calling to API
 
@@ -14,7 +16,7 @@ function OrderDetail() {
     // is state exists then return state.order or else undefined
     const order = state?.order
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
 
     useEffect(() => {
@@ -23,10 +25,10 @@ function OrderDetail() {
             setLoading(true)
             setError("")
 
-            const res = await api.get("/order/single?id=${encodeURIComponent(id)}")
+            const res = await api.get(`/order/shopify/id?id=${encodeURIComponent(id)}`)
             console.log(res)
 
-            setShowOrder()
+            setShowOrder(res.order)
         } catch (err) {
             console(err)
             setError(err.message || "Cannot show order")
