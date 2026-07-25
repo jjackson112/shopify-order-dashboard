@@ -173,6 +173,52 @@ def fetch_orders():
         for edge in data["data"]["orders"]["edges"]
     ]
 
+# fetch single order
+def fetch_single_order():
+    query = """
+    query {
+        order (id: $id) {
+            id
+            name
+            email
+            createdAt
+            displayFinancialStatus
+            displayFulfillmentStatus
+
+            totalPriceSet {
+                shopMoney {
+                    amount
+                    currencyCode
+                }
+            }
+
+            customer {
+                id
+                firstName
+                lastName
+                email
+                phone
+            }
+
+            shippingAddress {
+                firstName
+                lastName
+                address1
+                address2
+                city
+                province
+                zip
+                country
+            }
+        }
+    }
+    """
+
+    variables = {"id": order_id}
+    data = shopify_graphql(query)
+    
+    return 
+    
 # fetch variants
 def fetch_variants():
     query = """
