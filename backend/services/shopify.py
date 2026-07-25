@@ -56,7 +56,7 @@ def fetch_products():
         edges {
           node {
             id
-            title
+            name
             description
           }
         }
@@ -77,7 +77,7 @@ def fetch_single_product(product_id):
     query {{
         product(id: "{product_id}") {{
             id
-            title
+            name
             description
             variants(first:20) {{
                 edges {{

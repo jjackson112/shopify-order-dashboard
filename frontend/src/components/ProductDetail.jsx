@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { useParams } from "react-router-dom";
-import { Page, Card, Text, BlockStack, Button, DataTable } from "@shopify/polaris";
+import { Page, Card, Text, BlockStack, DataTable } from "@shopify/polaris";
 
 function ProductDetail() {
   const [product, setProduct] = useState(null)
@@ -32,25 +32,29 @@ function ProductDetail() {
       fetchProductDetail()
     }, [id])
 
+    // render guards
     if (loading) {
-      return 
+      return (
         <Page title="Product">
-          <Text>Loading product...</Text>
+          <Text as="p">Loading product...</Text>
         </Page>
+      )
     }
 
     if (error) {
-      return 
+      return (
         <Page title="Product">
-          <Text>{error}</Text>
+          <Text as="p">{error}</Text>
         </Page>
+      )
     }
 
     if (!product) {
-      return
+      return (
         <Page title="Product">
-          <Text>Product not found</Text>
+          <Text as="p">Product not found</Text>
         </Page>
+      )
     }
 
     // map over product.variants - name, sku, price, quantity

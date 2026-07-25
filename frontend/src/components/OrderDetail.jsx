@@ -22,7 +22,7 @@ function OrderDetail() {
                 const res = await api.get(`/orders/shopify/id?id=${encodeURIComponent(id)}`)
                 console.log(res)
 
-                setOrder(res.order)
+                setOrder(res.order || null)
             } catch (err) {
                 console.error(err)
                 setError(err.message || "Cannot show order")
@@ -62,7 +62,13 @@ function OrderDetail() {
 
     return (
         // backAction provides a back btn labeled orders that links to orders
-        <Page title={`Order ${order.name}`} backAction={{content: "Orders", url: "/orders",}}>
+        <Page 
+            title={`Order ${order.name}`} 
+            backAction={{
+                content: "Orders", 
+                url: "/orders",
+            }}
+        >
             <BlockStack gap="400">
                 <Card>
                     <BlockStack gap="200">
