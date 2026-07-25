@@ -1,4 +1,4 @@
-def normalize_orders(order):
+def normalize_order(order):
     customer = order.get("customer") or {}
     shipping_address = order.get("shippingAddress") or {}
     
@@ -10,6 +10,7 @@ def normalize_orders(order):
             
     for edge in order.get("lineItems", {}).get("edges", []):
         item = edge.get("node") or {}
+        
         line_items.append({
             "id": item.get("id"),
             "name": item.get("name"),
