@@ -1,4 +1,4 @@
-def normalize_order(order):
+def normalize_orders(order):
     customer = order.get("customer") or {}
     shipping_address = order.get("shippingAddress") or {}
     

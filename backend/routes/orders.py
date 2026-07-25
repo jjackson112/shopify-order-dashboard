@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from services.token import token_required
 from services.shopify import fetch_orders, fetch_single_order
 from models.order import Order
+from backend_utils.orders_normalization import normalize_orders
 
 orders_bp = Blueprint("orders", __name__, url_prefix="/api/orders")
 
@@ -12,8 +13,9 @@ def fetch_shopify_orders(current_user):
     try:
         orders = fetch_orders()
 
+        # simpler loop + dictionary code moved to utils
         normalized_orders = [
-            normalized_orders(order)
+            normalize_orders(order)
             for order in orders
         ]
 
