@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 // useLocation lets one pass data when navigating between pages without calling to API
 
 function OrderDetail() {
     const [showOrder, setShowOrder] = useState([])
 
+    const { id } = useParams()
     // const location = useLocation => const state = location.state
     const { state } = useLocation()
 
@@ -17,8 +18,25 @@ function OrderDetail() {
     const [error, setError] = useState("")
 
     useEffect(() => {
-        const res = await api
-    })
+        const fetchOrderDetail = async => {
+        try {
+            setLoading(true)
+            setError("")
+
+            const res = await api.get("/order/single?id=${encodeURIComponent(id)}")
+            console.log(res)
+
+            setShowOrder()
+        } catch (err) {
+            console(err)
+            setError(err.message || "Cannot show order")
+        } finally {
+            setLoading(false)
+        }
+
+        fetchOrderDetail()
+
+    }, [id]})
 
 
     return (
