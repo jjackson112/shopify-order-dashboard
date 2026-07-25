@@ -19,7 +19,7 @@ def create_product(current_user):
     description = data.get("description", "").strip()
 
     if not name or not description:
-        return jsonify({"error": "Title and description are required."}), 400
+        return jsonify({"error": "Name and description are required."}), 400
 
     product = Product(
         name=name,
@@ -74,11 +74,11 @@ def update_product(current_user, product_id):
     product = Product.query.filter_by(id=product_id, user_id=current_user.id).first_or_404()
 
     data = request.get_json() or {}
-    title = data.get("title")
+    name = data.get("name")
     description = data.get("description")
 
-    if title is not None:
-        product.title = title.strip()
+    if name is not None:
+        product.name = name.strip()
 
     if description is not None:
         product.description = description.strip()

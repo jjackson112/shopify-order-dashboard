@@ -83,6 +83,21 @@ def fetch_shopify_orders(current_user):
             "error": "Failed to fetch Shopify orders"
         }), 500
 
+# Get a single Shopify order - single resource endpoint
+@orders_bp.route("/shopify/id", methods=["GET"])
+@token_required
+def get_single_order(current_user)
+    order_id = request.args.get("id")
+
+    if not order_id:
+        return jsonify({"error": "Order ID required"}), 400
+
+    order = fetch_single_order(order_id)
+
+    return jsonify({
+        "message": "Order not found",
+        "order": normalized_orders(order)
+    }), 200
 
 # Order data source for locally saved webhook data
 @orders_bp.route("", methods=["GET"])
