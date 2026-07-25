@@ -52,7 +52,7 @@ def get_products_list(current_user):
         return jsonify({"error": str(e)}), 500
 
 # get a single product
-@products_bp.route("/<int:product_id>", methods=["GET"])
+@products_bp.route("/single", methods=["GET"])
 @token_required
 def get_single_product(current_user, product_id):
     product_id = request.args.get("id") # read query parameters from URL
