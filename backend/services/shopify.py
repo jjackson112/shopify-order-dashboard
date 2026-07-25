@@ -10,7 +10,7 @@ def shopify_config():
     }
 
 # generic Shopify GraphQL Client - any query, send to Shopify + return JSON response
-def shopify_graphql(query):
+def shopify_graphql(query, variables=None):
     config = shopify_config()
 
     shop_domain = config["shop_domain"]
@@ -28,7 +28,8 @@ def shopify_graphql(query):
 
     # query - only one endpoint
     payload = {
-        "query": query
+        "query": query, 
+        "variables": variables or {},
     }
 
     # request
@@ -45,6 +46,7 @@ def shopify_graphql(query):
 
     # helper - raise an exception if Shopify sends back HTTP error response
     response.raise_for_status()
+    
     # return to JSON
     return response.json()
 
@@ -199,7 +201,7 @@ def fetch_single_order(order_id):
                         id
                         name
                         quantity
-                        sk
+                        sku
                         originalUnitPriceSet {
                             shopMoney {
                                 amount
