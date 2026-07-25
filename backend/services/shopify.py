@@ -79,7 +79,7 @@ def fetch_single_product(product_id):
     query {{
         product(id: "{product_id}") {{
             id
-            name
+            name: title
             description
             variants(first:20) {{
                 edges {{
