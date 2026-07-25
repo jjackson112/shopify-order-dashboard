@@ -32,7 +32,7 @@ def fetch_shopify_orders(current_user):
         }), 500
 
 # Get a single Shopify order - single resource endpoint
-@orders_bp.route("/shopify/id", methods=["GET"])
+@orders_bp.route("/single", methods=["GET"])
 @token_required
 def get_single_order(current_user):
     order_id = request.args.get("id")
