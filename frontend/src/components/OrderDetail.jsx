@@ -80,7 +80,7 @@ function OrderDetail() {
                         </Text>
 
                         <Text as="p">
-                            Email: {order.email}
+                            Email: {order.email || "Email unavailable"}
                         </Text>
                         
                         <Text as="p">
