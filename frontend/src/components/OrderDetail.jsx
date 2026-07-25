@@ -7,7 +7,7 @@ import { customerName } from "../utils/customer_name"
 // useLocation lets one pass data when navigating between pages without calling to API
 
 function OrderDetail() {
-    const [showOrder, setShowOrder] = useState([])
+    const [order, setOrder] = useState([])
 
     const { id } = useParams()
     // const location = useLocation => const state = location.state
@@ -21,7 +21,7 @@ function OrderDetail() {
 
     useEffect(() => {
         const fetchOrderDetail = async () => {
-            
+
         try {
             setLoading(true)
             setError("")
@@ -29,7 +29,7 @@ function OrderDetail() {
             const res = await api.get(`/orders/shopify/id?id=${encodeURIComponent(id)}`)
             console.log(res)
 
-            setShowOrder(res.order)
+            setOrder(res.order)
         } catch (err) {
             console.error(err)
             setError(err.message || "Cannot show order")
@@ -110,3 +110,5 @@ function OrderDetail() {
         </Page>
     )
 }
+
+export default OrderDetail;
