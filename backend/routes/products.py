@@ -60,12 +60,20 @@ def get_single_product(current_user):
     if not product_id:
         return jsonify({"error": "Product ID required"}), 400
 
-    product = fetch_single_product(product_id)
+    try:
+        product = fetch_single_product(product_id)
 
-    return jsonify({
-        "message": "Single product is here.",
-        "product": product
-    }), 200
+        print("SINGLE PRODUCT INFO", product)
+
+        return jsonify({
+            "message": "Single product is here.",
+            "product": product
+        }), 200
+
+    except Exception as e:
+        print("SINGLE PRODUCT INFO", repr(e))
+
+        return jsonify({"error": str(e)}), 500
 
 @products_bp.route("/<int:product_id>", methods=["PATCH"])
 @token_required
