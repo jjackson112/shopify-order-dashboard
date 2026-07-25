@@ -84,7 +84,7 @@ function ProductDetail() {
                 ) : (
                   <DataTable
                     columnContentTypes={["text", "text", "numeric", "numeric"]} // name, sku, price, quantity
-                    headings={["Title", "SKU", "Price", "Quantity"]}
+                    headings={["Name", "SKU", "Price", "Quantity"]}
                     rows={variantRows}
                   />
                 )}

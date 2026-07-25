@@ -40,7 +40,7 @@ function OrderDetail() {
 
     }, [id]})
 
-    // render guard
+    // render guards
     if (loading) {
         return (
             <Page title="Order">
@@ -57,8 +57,17 @@ function OrderDetail() {
         )
     }
 
+    if (!order) {
+        return (
+            <Page title="Order">
+                <Text as="p">Order not found</Text>
+            </Page>
+        )
+    }
+
     return (
-        <Page title="Orders">
+        // backAction provides a back btn labeled orders that links to orders
+        <Page title={`Order ${order.name}`} backAction={{content: "Orders", url: "/orders",}}>
             <BlockStack gap="400">
                 {orders.length === 0 ? (
                     <Card>
