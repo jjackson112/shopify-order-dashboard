@@ -66,7 +66,7 @@ function Dashboard() {
                   <Button 
                     key={product.id}
                     variant="plain"
-                    onClick={() => navigate(`/products/single?id=${encodeURIComponent(product.id)}`)}
+                    onClick={() => navigate(`/products/detail?id=${encodeURIComponent(id)}`)}
                   >
                     {product.name}
                   </Button>
