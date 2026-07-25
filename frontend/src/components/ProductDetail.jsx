@@ -7,7 +7,7 @@ function ProductDetail() {
   const [product, setProduct] = useState(null)
   const { id } = useParams()
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
 
     useEffect(() => {
@@ -77,7 +77,7 @@ function ProductDetail() {
             <Card>
               <BlockStack gap="200">
                 <Text as="h2" variant="headingMd">Product Details</Text>
-                <Text as="p">{product.description}</Text>
+                <Text as="p">{product.description || "No product description available."}</Text>
               </BlockStack>
             </Card>
             <Card>
