@@ -1,23 +1,32 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Page, Card, Text, BlockStack, DataTable } from "@shopify/polaris";
 
 function ProductDetail() {
   const [product, setProduct] = useState(null)
-  const { id } = useParams()
+
+  const [searchParams] = useSearchParams()
+  const id  = searchParams.get("id")
 
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
 
     useEffect(() => {
       const fetchProductDetail = async () => {
+        // add ID guard before API request
+        if (!id) {
+          setError("Product ID is missing")
+          setLoading(false)
+          return
+        }
+
         try {
           setLoading(true)
           setError("")
 
           // Shopify IDs could break with const res = await api.get(`/products/${id}`)
-          const res = await api.get(`/products/single?id=${encodeURIComponent(id)}`)
+          const res = await api.get(`/products/single?id=${encodeURIComponent(product.id)}`)
           console.log(res)
           // data into state
           setProduct(res.product || null)
