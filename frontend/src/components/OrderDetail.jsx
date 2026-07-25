@@ -20,17 +20,18 @@ function OrderDetail() {
     const [error, setError] = useState("")
 
     useEffect(() => {
-        const fetchOrderDetail = async => {
+        const fetchOrderDetail = async () => {
+            
         try {
             setLoading(true)
             setError("")
 
-            const res = await api.get(`/order/shopify/id?id=${encodeURIComponent(id)}`)
+            const res = await api.get(`/orders/shopify/id?id=${encodeURIComponent(id)}`)
             console.log(res)
 
             setShowOrder(res.order)
         } catch (err) {
-            console(err)
+            console.error(err)
             setError(err.message || "Cannot show order")
         } finally {
             setLoading(false)
