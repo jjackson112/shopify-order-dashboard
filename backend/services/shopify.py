@@ -56,7 +56,7 @@ def fetch_products():
         edges {
           node {
             id
-            name
+            name: title
             description
           }
         }
@@ -83,7 +83,7 @@ def fetch_single_product(product_id):
                 edges {{
                     node {{
                         id
-                        title
+                        name: title
                         sku
                         price
                         inventoryQuantity
