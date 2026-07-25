@@ -23,7 +23,7 @@ function ProductList() {
 
       } catch (err) {
         console.log(err)
-        setError(err.message, "Cannot fetch products")
+        setError(err.message || "Cannot fetch products")
       } finally {
         setLoading(false)
       }
@@ -31,6 +31,25 @@ function ProductList() {
 
     fetchProducts()
   }, [])
+
+  // render guards
+  if (loading) {
+    return (
+      <Page title="Products">
+        <Text as="p">Loading products...</Text>
+      </Page>
+    )
+  }
+
+  if (error) {
+    return (
+      <Page title="Products">
+        <Text as="p" tone="critical">
+          {error}
+        </Text>
+      </Page>
+    )
+  }
 
   return (
       <Page title="Products">
@@ -44,7 +63,7 @@ function ProductList() {
               <Card key={product.id}>
                 <BlockStack gap="200">
                   <Text as="h2" variant="headingMd">
-                    {product.title}
+                    {product.name}
                   </Text>
                   <Text as="p">
                     {product.description}
