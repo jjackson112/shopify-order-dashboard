@@ -176,48 +176,51 @@ def fetch_orders():
 # fetch single order
 def fetch_single_order():
     query = """
-    query {
+    query GetOrder ($id: ID!) {
         order (id: $id) {
-            id
-            name
-            email
-            createdAt
-            displayFinancialStatus
-            displayFulfillmentStatus
+            edge {
+                node {
+                    id
+                    name
+                    email
+                    createdAt
+                    displayFinancialStatus
+                    displayFulfillmentStatus    
+                    totalPriceSet {
+                        shopMoney {
+                            amount
+                            currencyCode
+                        }
+                    }   
 
-            totalPriceSet {
-                shopMoney {
-                    amount
-                    currencyCode
+                    customer {
+                        id
+                        firstName
+                        lastName
+                        email
+                        phone
+                    }   
+
+                    shippingAddress {
+                        firstName
+                        lastName
+                        address1
+                        address2
+                        city
+                        province
+                        zip
+                        country
+                    }
                 }
-            }
-
-            customer {
-                id
-                firstName
-                lastName
-                email
-                phone
-            }
-
-            shippingAddress {
-                firstName
-                lastName
-                address1
-                address2
-                city
-                province
-                zip
-                country
             }
         }
     }
     """
 
     variables = {"id": order_id}
-    data = shopify_graphql(query)
-    
-    return 
+    data = shopify_graphql(query, variables)
+
+    return data.get("data", {}).get("order")
     
 # fetch variants
 def fetch_variants():

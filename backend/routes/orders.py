@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from services.token import token_required
-from services.shopify import fetch_orders
+from services.shopify import fetch_orders, fetch_single_order
 from models.order import Order
 
 orders_bp = Blueprint("orders", __name__, url_prefix="/api/orders")
@@ -92,12 +92,18 @@ def get_single_order(current_user)
     if not order_id:
         return jsonify({"error": "Order ID required"}), 400
 
-    order = fetch_single_order(order_id)
+    try:
+        order = fetch_single_order(order_id)
 
-    return jsonify({
-        "message": "Order not found",
-        "order": normalized_orders(order)
-    }), 200
+        if not order:
+            return jsonify({"error": "Order not found"}), 404
+
+    except:
+
+        return jsonify({
+            "message": "Order found",
+            "order": order
+        }), 200
 
 # Order data source for locally saved webhook data
 @orders_bp.route("", methods=["GET"])
