@@ -138,6 +138,7 @@ def fetch_orders():
                                 originalUnitPriceSet {
                                     shopMoney {
                                         amount
+                                        currencyCode
                                     }
                                 }
                             }
@@ -192,6 +193,24 @@ def fetch_single_order():
                             currencyCode
                         }
                     }   
+
+                    lineItems(first: 20) {
+                        edges {
+                            node {
+                                id
+                                name
+                                quantity
+                                sku
+
+                                originalUnitPriceSet {
+                                    shopMoney {
+                                        amount
+                                        currencyCode
+                                    }
+                                }
+                            }
+                        }
+                    } 
 
                     customer {
                         id
