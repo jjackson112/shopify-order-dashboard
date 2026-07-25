@@ -20,6 +20,7 @@ function ProductList() {
         console.log(data)
         
         setProducts(data.products || [])
+        console.log("PRODUCTS ARRAY:", data.products)
 
       } catch (err) {
         console.log(err)
@@ -63,10 +64,10 @@ function ProductList() {
               <Card key={product.id}>
                 <BlockStack gap="200">
                   <Text as="h2" variant="headingMd">
-                    {product.name}
+                    {product.name || "Product name unavailable"}
                   </Text>
                   <Text as="p">
-                    {product.description}
+                    {product.description || "Description unavailable"}
                   </Text>
                   <Button
                     onClick={() => navigate(`/products/${encodeURIComponent(product.id)}`)}
