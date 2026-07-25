@@ -4,8 +4,6 @@ import { useParams } from "react-router-dom";
 import { Page, Card, Text, BlockStack } from "@shopify/polaris";
 import { customerName } from "../utils/customer_name"
 
-// useLocation lets one pass data when navigating between pages without calling to API
-
 function OrderDetail() {
     const [order, setOrder] = useState(null)
 
@@ -77,7 +75,7 @@ function OrderDetail() {
                         </Text>
 
                         <Text as="p">
-                            Email: {order.email || "Email unavailable"}
+                            Email: {order.email || order.customer?.email || "Email unavailable"}
                         </Text>
                         
                         <Text as="p">
@@ -85,7 +83,7 @@ function OrderDetail() {
                         </Text>
 
                         <Text as="p">
-                            Total: 
+                            Total: {""}
                             ${order.total_price || "0.00"}{""}
                             {order.currency || ""}
                         </Text>
