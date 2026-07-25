@@ -4,14 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { Page, Card, Text, BlockStack, Button } from "@shopify/polaris";
 
 function ProductList() {
-
   const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
 
   const navigate = useNavigate()
   
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        setLoading(true)
+        setError("")
+
         const data = await api.get("/products")
         console.log(data)
         
@@ -19,6 +23,9 @@ function ProductList() {
 
       } catch (err) {
         console.log(err)
+        setError(err.message, "Cannot fetch products")
+      } finally {
+        setLoading(false)
       }
     }
 
