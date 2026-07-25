@@ -88,7 +88,7 @@ function OrderDetail() {
                         </Text>
 
                         <Text as="p">
-                            Email: {order.email || order.customer?.email || "Email unavailable"}
+                            Email: {order.email || order.customer?.email || "N/A"}
                         </Text>
                         
                         <Text as="p">

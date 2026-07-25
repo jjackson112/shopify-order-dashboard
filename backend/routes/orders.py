@@ -53,7 +53,6 @@ def get_single_order(current_user):
 
     except Exception as err:
         print(f"Failed to fetch order", err)
-
         return jsonify({"error": "Failed to fetch order"}), 500
 
 # Order data source for locally saved webhook data
