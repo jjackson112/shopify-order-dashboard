@@ -41,7 +41,7 @@ def normalize_order(order):
             "last_name": customer.get("lastName"),
             "email": customer.get("email"),
             "phone": customer.get("phone"),
-        },   
+        } if customer else None,   
 
         "shipping_address": {
             "first_name": shipping_address.get("firstName"),
@@ -52,5 +52,5 @@ def normalize_order(order):
             "province": shipping_address.get("province"),
             "zip": shipping_address.get("zip"),
             "country": shipping_address.get("country"),
-        }
+        } if shipping_address else None
     }
