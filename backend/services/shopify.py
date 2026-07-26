@@ -58,7 +58,7 @@ def fetch_products():
         edges {
           node {
             id
-            name: title
+            title
             description
           }
         }
@@ -79,13 +79,13 @@ def fetch_single_product(product_id):
     query {{
         product(id: "{product_id}") {{
             id
-            name: title
+            title
             description
             variants(first:20) {{
                 edges {{
                     node {{
                         id
-                        name: title
+                        title
                         sku
                         price
                         inventoryQuantity
@@ -116,7 +116,7 @@ def fetch_orders():
             edges {
                 node {
                     id
-                    name
+                    title
                     email
                     createdAt
                     displayFinancialStatus
@@ -133,7 +133,7 @@ def fetch_orders():
                         edges {
                             node {
                                 id
-                                name
+                                title
                                 quantity
                                 sku
 
@@ -182,7 +182,7 @@ def fetch_single_order(order_id):
     query GetOrder ($id: ID!) {
         order (id: $id) {
             id
-            name
+            title
             email
             createdAt
             displayFinancialStatus
@@ -199,7 +199,7 @@ def fetch_single_order(order_id):
                 edges {
                     node {
                         id
-                        name
+                        title
                         quantity
                         sku
                         originalUnitPriceSet {

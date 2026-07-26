@@ -11,7 +11,7 @@ def test_order(client, app):
         "total_price": "79.98"
         "line_items": [
             {
-                "product_name": "Cold Brew Starter Kit",
+                "product_title": "Cold Brew Starter Kit",
                 "quantity": 2,
                 "price": "39.99",
                 "sku": "CD-BREW-ST-KIT"
@@ -56,7 +56,7 @@ def test_order(client, app):
 
         item = order.items[0]
 
-        assert item.product_name == "Cold Brew Starter Kit"
+        assert item.product_title == "Cold Brew Starter Kit"
         assert item.quantity == 2
         assert str(item.unit_price) == "39.99"
         assert str(item.total_price) == "79.98"

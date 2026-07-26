@@ -64,7 +64,7 @@ function ProductList() {
               <Card key={product.id}>
                 <BlockStack gap="200">
                   <Text as="h2" variant="headingMd">
-                    {product.name || "Product name unavailable"}
+                    {product.title || "Product name unavailable"}
                   </Text>
                   <Text as="p">
                     {product.description || "Description unavailable"}

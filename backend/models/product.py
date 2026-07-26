@@ -6,7 +6,7 @@ class Product(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    name = db.Column(db.String(75), nullable=False)
+    title = db.Column(db.String(75), nullable=False)
     description = db.Column(db.String(1000), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(UTC))
     updated_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(UTC))

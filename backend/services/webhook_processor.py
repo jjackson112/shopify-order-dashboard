@@ -21,7 +21,7 @@ def process_order_created(event):
         quantity = item_data["quantity"]
 
         item = OrderItem(
-            product_name=item_data["name"],
+            product_name=item_data["title"],
             quantity=quantity,
             unit_price=unit_price,
             total_price=unit_price * quantity,
