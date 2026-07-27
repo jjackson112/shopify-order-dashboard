@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import "../App.css";
 import { Form, FormLayout, TextField, Button, Text } from "@shopify/polaris";
 
 // autocomplete (boolean) gives the browser the ability to autocomplete input elements
@@ -45,33 +46,37 @@ function LoginForm() {
     }
 
     return (
-      <Form onSubmit={handleSubmit}>
-        <FormLayout>
-            <h1>Login</h1>
+        <div className="container">
+            <Form onSubmit={handleSubmit}>
+                <FormLayout>
+                    <Text as="h1" variant="headingLg">Login</Text>
 
-            <TextField 
-               label="Username/Email" 
-               value={identifier}
-               onChange={setIdentifier}
-               autoComplete="username"
-           />
+                    <TextField 
+                       label="Username/Email" 
+                       value={identifier}
+                       onChange={setIdentifier}
+                       autoComplete="username"
+                   />
 
-            <TextField 
-               label="Password" 
-               type="password" 
-               value={password}
-               onChange={setPassword}
-               autoComplete="password"
-            />
+                    <TextField 
+                       label="Password" 
+                       type="password" 
+                       value={password}
+                       onChange={setPassword}
+                       autoComplete="password"
+                    />
 
-            {error && (
-              <Text as="p" tone="critical">{error}</Text>
-            )}
+                    {error && (
+                      <Text as="p" tone="critical">{error}</Text>
+                    )}
 
-            <Button submit variant="primary" loading={loading}>Login</Button>
-            <Button onClick={(() => navigate("/register"))} disabled={loading}>Register</Button>
-        </FormLayout>
-      </Form>
+                    <div className="login-register-row">
+                        <Button submit variant="primary" loading={loading}>Login</Button>
+                        <Button onClick={(() => navigate("/register"))} disabled={loading}>Register</Button>
+                    </div>
+                </FormLayout>
+            </Form>
+        </div>
     );
 }
 

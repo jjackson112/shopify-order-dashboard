@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { useSearchParams } from "react-router-dom";
-import "../App.css"
+import "../App.css";
 import { Page, Card, Text, BlockStack, DataTable } from "@shopify/polaris";
 
 function ProductDetail() {

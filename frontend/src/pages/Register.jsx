@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { api } from "../api/api";
 import { useNavigate, Link } from "react-router-dom";
+import "../App.css";
 import { Form, FormLayout, TextField, Button, Text } from "@shopify/polaris";
 
 // autocomplete (boolean) gives the browser the ability to autocomplete input elements
@@ -47,42 +48,44 @@ function RegisterForm() {
     }
 
     return (
-      <Form onSubmit={handleSubmit}>
-        <FormLayout>
-            <h1>Register</h1>
+        <div className="container">
+            <Form onSubmit={handleSubmit}>
+                <FormLayout>
+                    <Text as="h1" variant="headingLg">Register</Text>
 
-            <TextField 
-                label="Username" 
-                value={username}
-                onChange={setUsername}
-                autoComplete="username"
-            />
+                    <TextField 
+                        label="Username" 
+                        value={username}
+                        onChange={setUsername}
+                        autoComplete="username"
+                    />
 
-            <TextField 
-                label="email" 
-                type="email" 
-                value={email}
-                onChange={setEmail}
-                autoComplete="email"
-            />
+                    <TextField 
+                        label="Email" 
+                        type="email" 
+                        value={email}
+                        onChange={setEmail}
+                        autoComplete="email"
+                    />
 
-            <TextField 
-                label="Password" 
-                type="password" 
-                value={password}
-                onChange={setPassword}
-                autoComplete="password"
-            />
+                    <TextField 
+                        label="Password" 
+                        type="password" 
+                        value={password}
+                        onChange={setPassword}
+                        autoComplete="password"
+                    />
 
-            {error && (
-                <Text as="p" tone="critical">{error}</Text>
-            )}
+                    {error && (
+                        <Text as="p" tone="critical">{error}</Text>
+                    )}
 
-            <Button submit variant="primary" loading={loading} disabled={loading}>Register</Button>
-
-            <Text as="p">Already registered? <Link to="/login">Click here to login.</Link></Text>
-        </FormLayout>
-      </Form>
+                    <Button submit variant="primary" loading={loading} disabled={loading}>Register</Button>
+                
+                    <Text as="p">Already registered? <Link to="/login">Click here to login.</Link></Text>
+                </FormLayout>
+            </Form>
+        </div>
     );
 }
 

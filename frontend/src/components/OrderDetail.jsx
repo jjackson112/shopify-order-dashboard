@@ -79,7 +79,7 @@ function OrderDetail() {
                 }}
             >
                 <BlockStack gap="400">
-                    <div className="card-accent-caramel">
+                    <div className="card-accent-sage">
                         <Card>
                             <BlockStack gap="200">
                                 <Text as="h2" variant="headingMd">

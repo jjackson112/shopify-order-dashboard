@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import "../App.css";
 import { Page, Card, Text, BlockStack, Button } from "@shopify/polaris";
 
 function ProductList() {

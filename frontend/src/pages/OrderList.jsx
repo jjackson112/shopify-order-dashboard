@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
+import "../App.css";
 import { Page, Card, Text, BlockStack } from "@shopify/polaris"
 import { customerName } from "../utils/customer_name";
 
@@ -48,54 +49,58 @@ function OrderList() {
     }
 
     return (
-        <Page title="Orders">
-            <BlockStack gap="400">
-                {orders.length === 0 ? (
-                    <Card>
-                        <Text as="p">No orders found.</Text>
-                    </Card>
-                ) : (
-                    orders.map((order) => (
-                        <Card key={order.id}>
-                            <BlockStack gap="200">
-                                <Text as="h2" variant="headingMd">
-                                    Order {order.name}
-                                </Text>
-
-                                <Text as="p">
-                                    Name: {customerName(order.customer) || "Guest"}
-                                </Text>
-
-                                <Text as="p">
-                                    Email: {order.email || "N/A"}
-                                </Text>
-                                
-                                <Text as="p">
-                                    Status: {order.display_financial_status || "Unknown"}
-                                </Text>
-
-                                <Text as="p">
-                                    Total: 
-                                    ${order.total_price || "0.00"}{""}
-                                    {order.currency || ""}
-                                </Text>
-
-                                <Text as="p">
-                                    Created: {""}
-                                    {order.created_at
-                                        ? new Date(order.created_at).toLocaleDateString()
-                                        : "Unknown"}
-                                </Text>
-
-                                <Text as="p">
-                                    Items: {order.line_items?.length || 0}
-                                </Text>
-                            </BlockStack>
+        <div className="app-page">
+            <Page title="Orders">
+                <BlockStack gap="400">
+                    {orders.length === 0 ? (
+                        <Card>
+                            <Text as="p">No orders found.</Text>
                         </Card>
-                    ))
-                )}
-            </BlockStack>
-        </Page>
+                    ) : (
+                        orders.map((order) => (
+                            <div className="card-accent-sage">
+                                <Card key={order.id}>
+                                    <BlockStack gap="200">
+                                        <Text as="h2" variant="headingMd">
+                                            Order {order.name}
+                                        </Text>
+
+                                        <Text as="p">
+                                            Name: {customerName(order.customer) || "Guest"}
+                                        </Text>
+
+                                        <Text as="p">
+                                            Email: {order.email || "N/A"}
+                                        </Text>
+
+                                        <Text as="p">
+                                            Status: {order.display_financial_status || "Unknown"}
+                                        </Text>
+
+                                        <Text as="p">
+                                            Total: 
+                                            ${order.total_price || "0.00"}{""}
+                                            {order.currency || ""}
+                                        </Text>
+
+                                        <Text as="p">
+                                            Created: {""}
+                                            {order.created_at
+                                                ? new Date(order.created_at).toLocaleDateString()
+                                                : "Unknown"}
+                                        </Text>
+
+                                        <Text as="p">
+                                            Items: {order.line_items?.length || 0}
+                                        </Text>
+                                    </BlockStack>
+                                </Card>
+                            </div>
+                        ))
+                    )}
+                </BlockStack>
+            </Page>
+        </div>
     )
 }
 

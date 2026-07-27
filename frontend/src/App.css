@@ -29,9 +29,22 @@ body {
 .app-shell,
 .auth-shell {
   min-height: 100vh;
-  background: var(--coffee-background);
 }
 
+/* Login + Register */
+.container {
+  max-width: 450px;
+  margin: 5rem auto;
+}
+
+.login-register-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* General Styles */
 .app-page {
   min-height: 100vh;
   background: var(--coffee-background);
@@ -50,3 +63,11 @@ body {
 .muted-text {
   color: var(--coffee-muted);
 }
+
+/*button {
+  color: var(--coffee-primary);
+}
+
+button:hover {
+  color: var(--coffee-primary-hover);
+}*/
