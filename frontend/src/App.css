@@ -26,7 +26,11 @@ body {
   color: var(--coffee-primary);
 }
 
-/* ProductDetail */
+.app-shell,
+.auth-shell {
+  min-height: 100vh;
+  background: var(--coffee-background);
+}
 
 .app-page {
   min-height: 100vh;
