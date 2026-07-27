@@ -76,7 +76,7 @@ function ProductDetail() {
 
     return (
       <Page
-        title={product.name}
+        title={product.title}
         primaryAction={{
           content: "Add Variant",
           onAction: () => console.log("Add variant"),

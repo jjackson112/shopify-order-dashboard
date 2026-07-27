@@ -1,3 +1,15 @@
+:root {
+  --coffee-background: #f8f5f2;
+  --coffee-surface: #fffdfb;
+  --coffee-primary: #6f4e37;
+  --coffee-primary-hover: #593d2c;
+  --coffee-sage: #a3b18a;
+  --coffee-caramel: #d4a373;
+  --coffee-text: #2f2926;
+  --coffee-muted: #746a64;
+  --coffee-border: #e5ddd5;
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
