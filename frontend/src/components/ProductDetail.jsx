@@ -76,7 +76,7 @@ function ProductDetail() {
     ])
 
     return (
-      <div className="product-detail-page">
+      <div className="app-page">
         <Page
           title={product.title}
           primaryAction={{
@@ -85,7 +85,7 @@ function ProductDetail() {
           }}
         >
           <BlockStack gap="400">
-            <div className="product-detail-accent">
+            <div className="card-accent-caramel">
               <Card>
                 <BlockStack gap="200">
                   <Text as="h2" variant="headingMd">Product Details</Text>
@@ -94,7 +94,7 @@ function ProductDetail() {
               </Card>
             </div>
 
-            <div className="variants-accent">
+            <div className="card-accent-sage">
               <Card>
                   <BlockStack gap="300">
                   <Text as="h2" variant="headingMd">Variants</Text>

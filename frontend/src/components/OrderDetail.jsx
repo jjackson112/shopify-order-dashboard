@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { useSearchParams } from "react-router-dom";
+import "../App.css"
 import { Page, Card, Text, BlockStack } from "@shopify/polaris";
 import { customerName } from "../utils/customer_name"
 
@@ -68,53 +69,57 @@ function OrderDetail() {
     }
 
     return (
-        // backAction provides a back btn labeled orders that links to orders
-        <Page 
-            title={`Order ${order.name}`} 
-            backAction={{
-                content: "Orders", 
-                url: "/orders",
-            }}
-        >
-            <BlockStack gap="400">
-                <Card>
-                    <BlockStack gap="200">
-                        <Text as="h2" variant="headingMd">
-                            Order Summary
-                        </Text>
+        <div className="app-page">
+            // backAction provides a back btn labeled orders that links to orders
+            <Page 
+                title={`Order ${order.name}`} 
+                backAction={{
+                    content: "Orders", 
+                    url: "/orders",
+                }}
+            >
+                <BlockStack gap="400">
+                    <div className="card-accent-caramel">
+                        <Card>
+                            <BlockStack gap="200">
+                                <Text as="h2" variant="headingMd">
+                                    Order Summary
+                                </Text>
 
-                        <Text as="p">
-                            Name: {customerName(order.customer) || "Guest"}
-                        </Text>
+                                <Text as="p">
+                                    Name: {customerName(order.customer) || "Guest"}
+                                </Text>
 
-                        <Text as="p">
-                            Email: {order.email || order.customer?.email || "N/A"}
-                        </Text>
-                        
-                        <Text as="p">
-                            Payment Status: {order.display_financial_status || "Unknown"}
-                        </Text>
+                                <Text as="p">
+                                    Email: {order.email || order.customer?.email || "N/A"}
+                                </Text>
 
-                        <Text as="p">
-                            Total: {""}
-                            ${order.total_price || "0.00"}{""}
-                            {order.currency || ""}
-                        </Text>
+                                <Text as="p">
+                                    Payment Status: {order.display_financial_status || "Unknown"}
+                                </Text>
 
-                        <Text as="p">
-                            Created: {""}
-                            {order.created_at
-                                ? new Date(order.created_at).toLocaleDateString()
-                                : "Unknown"}
-                        </Text>
+                                <Text as="p">
+                                    Total: {""}
+                                    ${order.total_price || "0.00"}{""}
+                                    {order.currency || ""}
+                                </Text>
 
-                        <Text as="p">
-                            Items: {order.line_items?.length || 0}
-                        </Text>
-                    </BlockStack>
-                </Card>
-            </BlockStack>
-        </Page>
+                                <Text as="p">
+                                    Created: {""}
+                                    {order.created_at
+                                        ? new Date(order.created_at).toLocaleDateString()
+                                        : "Unknown"}
+                                </Text>
+
+                                <Text as="p">
+                                    Items: {order.line_items?.length || 0}
+                                </Text>
+                            </BlockStack>
+                        </Card>
+                    </div>
+                </BlockStack>
+            </Page>
+        </div>
     )
 }
 

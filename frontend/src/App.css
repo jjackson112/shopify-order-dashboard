@@ -28,17 +28,21 @@ body {
 
 /* ProductDetail */
 
-.product-detail-page {
+.app-page {
   min-height: 100vh;
   background: var(--coffee-background);
 }
 
-.product-detail-accent {
+.card-accent-caramel {
   border-top: 4px solid var(--coffee-caramel);
   border-radius: 12px;
 }
 
-.variants-accent {
+.card-accent-sage {
   border-top: 4px solid var(--coffee-sage);
   border-radius: 12px;
+}
+
+.muted-text {
+  color: var(--coffee-muted);
 }
