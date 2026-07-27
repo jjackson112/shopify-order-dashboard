@@ -75,37 +75,45 @@ function ProductDetail() {
     ])
 
     return (
-      <Page
-        title={product.title}
-        primaryAction={{
-          content: "Add Variant",
-          onAction: () => console.log("Add variant"),
-        }}
-      >
-        <BlockStack gap="400">
-            <Card>
-              <BlockStack gap="200">
-                <Text as="h2" variant="headingMd">Product Details</Text>
-                <Text as="p">{product.description || "No product description available."}</Text>
-              </BlockStack>
-            </Card>
-            <Card>
-                <BlockStack gap="300">
-                <Text as="h2" variant="headingMd">Variants</Text>
-                {variantRows.length === 0 ? (
-                  <Text as="p">No variants yet.</Text>
-                ) : (
-                  <DataTable
-                    columnContentTypes={["text", "text", "numeric", "numeric"]} // title, sku, price, quantity
-                    headings={["Title", "SKU", "Price", "Quantity"]}
-                    rows={variantRows}
-                  />
-                )}
+      <div className="product-detail-page">
+        <Page
+          title={product.title}
+          primaryAction={{
+            content: "Add Variant",
+            onAction: () => console.log("Add variant"),
+          }}
+        >
+          <BlockStack gap="400">
+            <div className="product-detail-accent">
+              <Card>
+                <BlockStack gap="200">
+                  <Text as="h2" variant="headingMd">Product Details</Text>
+                  <Text as="p">{product.description || "No product description available."}</Text>
                 </BlockStack>
-            </Card>
-        </BlockStack>
-      </Page>
-  )
+              </Card>
+            </div>
+
+            <div className="variants-accent">
+              <Card>
+                  <BlockStack gap="300">
+                  <Text as="h2" variant="headingMd">Variants</Text>
+                  {variantRows.length === 0 ? (
+                    <Text as="p">No variants yet.</Text>
+                  ) : (
+                    <DataTable
+                      columnContentTypes={["text", "text", "numeric", "numeric"]} // title, sku, price, quantity
+                      headings={["Title", "SKU", "Price", "Quantity"]}
+                      rows={variantRows}
+                    />
+                  )}
+                  </BlockStack>
+              </Card>
+            </div>
+            
+          </BlockStack>
+        </Page>
+      </div>
+    )
 }
 
 export default ProductDetail;
