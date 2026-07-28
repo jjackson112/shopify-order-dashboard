@@ -5,6 +5,7 @@
   --coffee-primary-hover: #593d2c;
   --coffee-sage: #a3b18a;
   --coffee-caramel: #d4a373;
+  --coffee-espresso: #4e2a2a;
   --coffee-text: #2f2926;
   --coffee-muted: #746a64;
   --coffee-border: #e5ddd5;
@@ -63,6 +64,11 @@ body {
 
 .card-accent-sage {
   border-top: 4px solid var(--coffee-sage);
+  border-radius: 12px;
+}
+
+.card-accent-espresso {
+  border-top: 4px solid var(--coffee-espresso);
   border-radius: 12px;
 }
 

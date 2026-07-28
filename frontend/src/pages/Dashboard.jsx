@@ -111,6 +111,15 @@ function Dashboard() {
                 </Card>
               </div>
 
+              <div className="card-accent-espresso">
+                <Card>
+                  <BlockStack gap="300">
+                    <Text as="h2" variant="headingMd">Customers</Text>
+  
+                  </BlockStack>
+                </Card>
+              </div>
+
             </BlockStack>
           </div>
       </Page>
