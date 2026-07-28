@@ -17,40 +17,31 @@ function Dashboard() {
   const [error, setError] = useState("")
   
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchDashboardData = async () => {
       try {
         setLoading(true)
         setError("")
 
-        const res = await api.get("/products")
-        console.log(res)
+        const [productData, orderData] = await Promise.all([
+          api.get("/products"),
+          api.get("/orders/shopify"),
+        ])
         
         // data into state
         setProducts(res.products || [])
+        setOrders(res.orders || [])
+
       } catch (err) {
         console.log(err)
+        setError("Failed to load data to dashboard")
+
       } finally {
         setLoading(false)
       }
     }
 
-      fetchProducts()
+      fetchDashboardData()
   }, [])
-
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const data = await api.get("/orders/shopify")
-        setOrders(data.orders || [])
-      } catch (err) {
-        console.log(err)
-      }
-    }
-
-    fetchOrders()
-  }, [])
-
-  // const handleView = (id) => {navigate(`/products/${id}`)}
 
   return (
     <div className="app-page">
@@ -137,7 +128,26 @@ function Dashboard() {
                   </BlockStack>
                 </Card>
               </div>
-            </InlineGrid>        
+            </InlineGrid> 
+
+            <InlineGrid columns={{ xs: 1, md: 3 }} gap="400">
+              <Card>
+                <BlockStack>
+                  <Text as="h3" variant="headingMd">Order Status Summary</Text>
+                </BlockStack>
+              </Card>
+              <Card>
+                <BlockStack>
+                  <Text as="h3" variant="headingMd">Low Inventory Products</Text>
+                </BlockStack>
+              </Card>
+              <Card>
+                <BlockStack>
+                  <Text as="h2" variant="headingMd">Recent Activity</Text>
+                </BlockStack>
+              </Card>
+            </InlineGrid>
+
           </BlockStack>
         </div>
       </Page>
