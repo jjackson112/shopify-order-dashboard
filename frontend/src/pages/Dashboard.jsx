@@ -45,7 +45,11 @@ function Dashboard() {
 
   return (
     <div className="app-page">
-      <Page title={`Welcome, ${username}`}>
+      <Page title="Shopify Order Dashboard">
+        <div>
+          <Text as="p">{`Welcome, ${username}`}</Text>
+        </div>
+
         <div className="page-content">
           <BlockStack gap="400">
             <InlineGrid columns={2} gap="400">

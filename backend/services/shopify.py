@@ -193,7 +193,6 @@ def fetch_single_order(order_id):
         order (id: $id) {
             id
             name
-            email
             createdAt
             displayFinancialStatus
             displayFulfillmentStatus  
@@ -212,6 +211,7 @@ def fetch_single_order(order_id):
                         name
                         quantity
                         sku
+
                         originalUnitPriceSet {
                             shopMoney {
                                 amount
@@ -220,25 +220,6 @@ def fetch_single_order(order_id):
                         }
                     }
                 }
-            }
-
-            customer {
-                id
-                firstName
-                lastName
-                email
-                phone
-            }  
-
-            shippingAddress {
-                firstName
-                lastName
-                address1
-                address2
-                city
-                province
-                zip
-                country
             }
         }
     }
