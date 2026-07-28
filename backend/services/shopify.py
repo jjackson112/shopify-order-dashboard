@@ -17,6 +17,15 @@ def shopify_graphql(query, variables=None):
     access_token = config["access_token"]
     api_version = config["api_version"]
 
+    if not shop_domain:
+        raise RuntimeError("SHOPIFY_STORE_DOMAIN is missing")
+
+    if not access_token:
+        raise RuntimeError("SHOPIFY_ADMIN_ACCESS_TOKEN is missing")
+
+    if not api_version:
+        raise RuntimeError("SHOPIFY_API_VERSION is missing")
+
     # Admin GraphQL URL
     url = f"https://{shop_domain}/admin/api/{api_version}/graphql.json"
     
@@ -36,7 +45,8 @@ def shopify_graphql(query, variables=None):
     response = requests.post(
         url,
         headers=headers,
-        json=payload
+        json=payload, 
+        timeout=20,
     )
 
     print("SHOP DOMAIN:", shop_domain)
