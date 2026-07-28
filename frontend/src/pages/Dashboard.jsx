@@ -12,16 +12,25 @@ function Dashboard() {
   const username = localStorage.getItem("username") || "merchant"
   
   const navigate = useNavigate()
+
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState("")
   
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-          const res = await api.get("/products")
-          console.log(res)
-          // data into state
-          setProducts(res.products || [])
+        setLoading(true)
+        setError("")
+
+        const res = await api.get("/products")
+        console.log(res)
+        
+        // data into state
+        setProducts(res.products || [])
       } catch (err) {
-          console.log(err)
+        console.log(err)
+      } finally {
+        setLoading(false)
       }
     }
 

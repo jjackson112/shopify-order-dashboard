@@ -33,6 +33,7 @@ body {
 }
 
 /* Login + Register */
+
 .container {
   max-width: 450px;
   margin: 5rem auto;
@@ -46,10 +47,13 @@ body {
 }
 
 /* General Styles */
+
 .app-page {
   min-height: 100vh;
   background: var(--coffee-background);
 }
+
+/* Dashboard Styles */
 
 .page-content {
   max-width: 1100px;
@@ -57,19 +61,29 @@ body {
   padding: 2rem;
 }
 
+.card-accent-caramel,
+.card-accent-sage,
+.card-accent-espresso {
+  height: 100%;
+  border-radius: 12px;
+}
+
+.card-accent-caramel > div,
+.card-accent-sage > div,
+.card-accent-espresso > div {
+  height: 100%;
+}
+
 .card-accent-caramel {
   border-top: 4px solid var(--coffee-caramel);
-  border-radius: 12px;
 }
 
 .card-accent-sage {
   border-top: 4px solid var(--coffee-sage);
-  border-radius: 12px;
 }
 
 .card-accent-espresso {
   border-top: 4px solid var(--coffee-espresso);
-  border-radius: 12px;
 }
 
 .muted-text {
