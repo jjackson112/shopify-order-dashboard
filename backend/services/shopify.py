@@ -180,6 +180,9 @@ def fetch_orders():
     """
 
     data = shopify_graphql(query)
+
+    if data.get("errors"):
+        print("ORDER LIST ERRORS", data["errors"])
     
     return [
         edge["node"]
