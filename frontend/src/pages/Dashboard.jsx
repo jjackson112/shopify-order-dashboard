@@ -28,8 +28,8 @@ function Dashboard() {
         ])
         
         // data into state
-        setProducts(res.products || [])
-        setOrders(res.orders || [])
+        setProducts(productData.products || [])
+        setOrders(orderData.orders || [])
 
       } catch (err) {
         console.log(err)
@@ -42,6 +42,15 @@ function Dashboard() {
 
       fetchDashboardData()
   }, [])
+
+  // render guards
+  {loading && (
+    <Text as="p" tone="subdued">Loading dashboard...</Text>
+  )}
+
+  {error && (
+    <Text as="p" tone="critical">{error}</Text>
+  )}
 
   return (
     <div className="app-page">
