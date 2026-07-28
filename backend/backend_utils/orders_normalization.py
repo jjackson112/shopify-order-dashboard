@@ -1,6 +1,6 @@
 def normalize_order(order):
-    # customer = order.get("customer") or {}
-    # shipping_address = order.get("shippingAddress") or {}
+    customer = order.get("customer") or {}
+    shipping_address = order.get("shippingAddress") or {}
     
     total_price_set = order.get("totalPriceSet") or {}
     shop_money = total_price_set.get("shopMoney") or {}
@@ -21,7 +21,7 @@ def normalize_order(order):
     return {
         "id": order.get("id"),
         "name": order.get("name"),
-        # "email": order.get("email"),
+        "email": order.get("email"),
         "created_at": order.get("createdAt"),
         "display_financial_status": order.get(
             "displayFinancialStatus"
@@ -35,25 +35,25 @@ def normalize_order(order):
         "currency": shop_money.get("currencyCode"),
         "line_items": line_items,    
 
-        "customer": None,
-        "shipping_address": None,
+        # "customer": None,
+        # "shipping_address": None,
         
-        # "customer": {
-        #    "id": customer.get("id"),
-        #    "first_name": customer.get("firstName"),
-        #    "last_name": customer.get("lastName"),
-        #    "email": customer.get("email"),
-        #    "phone": customer.get("phone"),
-        # } if customer else None,   
+        "customer": {
+            "id": customer.get("id"),
+            "first_name": customer.get("firstName"),
+            "last_name": customer.get("lastName"),
+            "email": customer.get("email"),
+            "phone": customer.get("phone"),
+        } if customer else None,   
 
-        # "shipping_address": {
-        #    "first_name": shipping_address.get("firstName"),
-        #    "last_name": shipping_address.get("lastName"),
-        #    "address1": shipping_address.get("address1"),
-        #   "address2": shipping_address.get("address2"),
-        #    "city": shipping_address.get("city"),
-        #    "province": shipping_address.get("province"),
-        #    "zip": shipping_address.get("zip"),
-        #    "country": shipping_address.get("country"),
-        # } if shipping_address else None
+         "shipping_address": {
+            "first_name": shipping_address.get("firstName"),
+            "last_name": shipping_address.get("lastName"),
+            "address1": shipping_address.get("address1"),
+           "address2": shipping_address.get("address2"),
+            "city": shipping_address.get("city"),
+            "province": shipping_address.get("province"),
+            "zip": shipping_address.get("zip"),
+            "country": shipping_address.get("country"),
+         } if shipping_address else None
     }

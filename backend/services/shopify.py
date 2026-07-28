@@ -49,10 +49,10 @@ def shopify_graphql(query, variables=None):
         timeout=20,
     )
 
-    print("SHOP DOMAIN:", shop_domain)
-    print("API VERSION:", api_version)
-    print("TOKEN EXISTS:", bool(access_token))
-    print("TOKEN PREFIX:", access_token[:8] if access_token else None)
+    # print("SHOP DOMAIN:", shop_domain)
+    # print("API VERSION:", api_version)
+    # print("TOKEN EXISTS:", bool(access_token))
+    # print("TOKEN PREFIX:", access_token[:8] if access_token else None)
 
     # helper - raise an exception if Shopify sends back HTTP error response
     response.raise_for_status()
@@ -223,6 +223,23 @@ def fetch_single_order(order_id):
                         }
                     }
                 }
+            }
+            
+            customer {
+                id
+                firstName
+                lastName
+                email
+                phone
+            }
+            
+            shippingAddress {
+                address1
+                address2
+                city
+                province
+                zip
+                country
             }
         }
     }
