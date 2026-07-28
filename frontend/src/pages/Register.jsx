@@ -51,7 +51,7 @@ function RegisterForm() {
         <div className="container">
             <Form onSubmit={handleSubmit}>
                 <FormLayout>
-                    <Text as="h1" variant="headingLg">Register</Text>
+                    <Text as="h1" variant="headingLg" alignment="center">Register</Text>
 
                     <TextField 
                         label="Username" 

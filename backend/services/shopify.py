@@ -116,7 +116,7 @@ def fetch_orders():
             edges {
                 node {
                     id
-                    title
+                    name
                     email
                     createdAt
                     displayFinancialStatus
@@ -133,7 +133,7 @@ def fetch_orders():
                         edges {
                             node {
                                 id
-                                title
+                                name
                                 quantity
                                 sku
 
@@ -182,7 +182,7 @@ def fetch_single_order(order_id):
     query GetOrder ($id: ID!) {
         order (id: $id) {
             id
-            title
+            name
             email
             createdAt
             displayFinancialStatus
@@ -199,7 +199,7 @@ def fetch_single_order(order_id):
                 edges {
                     node {
                         id
-                        title
+                        name
                         quantity
                         sku
                         originalUnitPriceSet {
@@ -236,6 +236,11 @@ def fetch_single_order(order_id):
 
     variables = {"id": order_id}
     data = shopify_graphql(query, variables)
+
+    if data.get("errors"):
+        raise RuntimeError(
+            f"Shopify GraphQL errors: {data['errors']}"
+        )
 
     return data.get("data", {}).get("order")
     

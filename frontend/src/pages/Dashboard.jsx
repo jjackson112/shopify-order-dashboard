@@ -46,67 +46,69 @@ function Dashboard() {
   return (
     <div className="app-page">
       <Page title={`Welcome, ${username}`}>
-        <BlockStack gap="400">
-          <InlineGrid columns={2} gap="400">
-            <Card>
-              <Text as="h2" variant="headingMd">Total Products</Text>
-              <Text as="p" variant="bodyLg">{products.length}</Text>
-            </Card>
-            <Card>
-              <Text as="h2" variant="headingMd">Orders</Text>
-              <Text as="p" variant="bodyLg">{orders.length}</Text>
-            </Card>
-          </InlineGrid>
-
-            <div className="card-accent-caramel">
+        <div className="page-content">
+          <BlockStack gap="400">
+            <InlineGrid columns={2} gap="400">
               <Card>
-                  <BlockStack gap="300">
-                  <Text as="h2" variant="headingMd">Recent Products</Text>
-
-                  {products.length === 0 ? (
-                    <Text as="p">No products yet.</Text>
-                  ) : (
-                    products.slice(0, 5).map((product) => (
-                      <Button 
-                        key={product.id}
-                        variant="plain"
-                        onClick={() => navigate(`/products/detail?id=${encodeURIComponent(product.id)}`)}
-                      >
-                        {product.title}
-                      </Button>
-                    ))
-                  )}
-                  <Button variant="primary" onClick={() => navigate("/products")}>View Products</Button>
-                  </BlockStack>
+                <Text as="h2" variant="headingMd">Total Products</Text>
+                <Text as="p" variant="bodyLg">{products.length}</Text>
               </Card>
-            </div>
-
-            <div className="card-accent-sage">
               <Card>
-                <BlockStack gap="300">
-                  <Text as="h2" variant="headingMd">Recent Orders</Text>
+                <Text as="h2" variant="headingMd">Orders</Text>
+                <Text as="p" variant="bodyLg">{orders.length}</Text>
+              </Card>
+            </InlineGrid>
 
-                  {orders.length === 0 ? (
-                      <Text as="p">No orders yet.</Text>
-                  ) : (
-                      orders.slice(0, 3).map((order) => {
-                        return (
-                          <Button
-                              key={order.id}
-                              variant="plain"
-                              onClick={() => navigate(`/orders/detail?id=${encodeURIComponent(order.id)}`)}
-                          >
-                            {order.name} - {customerName(order.customer) || "Guest"}
-                          </Button>
-                        )
-                      })
+              <div className="card-accent-caramel">
+                <Card>
+                    <BlockStack gap="300">
+                    <Text as="h2" variant="headingMd">Recent Products</Text>
+
+                    {products.length === 0 ? (
+                      <Text as="p">No products yet.</Text>
+                    ) : (
+                      products.slice(0, 5).map((product) => (
+                        <Button 
+                          key={product.id}
+                          variant="plain"
+                          onClick={() => navigate(`/products/detail?id=${encodeURIComponent(product.id)}`)}
+                        >
+                          {product.title}
+                        </Button>
+                      ))
                     )}
-                    <Button variant="primary" onClick={() => navigate("/orders")}>View Orders</Button>
-                </BlockStack>
-              </Card>
-            </div>
+                    <Button variant="primary" onClick={() => navigate("/products")}>View Products</Button>
+                    </BlockStack>
+                </Card>
+              </div>
 
-          </BlockStack>
+              <div className="card-accent-sage">
+                <Card>
+                  <BlockStack gap="300">
+                    <Text as="h2" variant="headingMd">Recent Orders</Text>
+
+                    {orders.length === 0 ? (
+                        <Text as="p">No orders yet.</Text>
+                    ) : (
+                        orders.slice(0, 3).map((order) => {
+                          return (
+                            <Button
+                                key={order.id}
+                                variant="plain"
+                                onClick={() => navigate(`/orders/detail?id=${encodeURIComponent(order.id)}`)}
+                            >
+                              {order.name} - {customerName(order.customer) || "Guest"}
+                            </Button>
+                          )
+                        })
+                      )}
+                      <Button variant="primary" onClick={() => navigate("/orders")}>View Orders</Button>
+                  </BlockStack>
+                </Card>
+              </div>
+
+            </BlockStack>
+          </div>
       </Page>
     </div>
   )

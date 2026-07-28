@@ -50,6 +50,12 @@ body {
   background: var(--coffee-background);
 }
 
+.page-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
 .card-accent-caramel {
   border-top: 4px solid var(--coffee-caramel);
   border-radius: 12px;

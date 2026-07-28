@@ -49,7 +49,7 @@ function LoginForm() {
         <div className="container">
             <Form onSubmit={handleSubmit}>
                 <FormLayout>
-                    <Text as="h1" variant="headingLg">Login</Text>
+                    <Text as="h1" variant="headingLg" alignment="center">Login</Text>
 
                     <TextField 
                        label="Username/Email" 
