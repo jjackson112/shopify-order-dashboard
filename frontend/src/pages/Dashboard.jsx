@@ -46,20 +46,28 @@ function Dashboard() {
   return (
     <div className="app-page">
       <Page title="Shopify Order Dashboard">
-        <div>
           <Text as="p">{`Welcome, ${username}`}</Text>
-        </div>
 
         <div className="page-content">
           <BlockStack gap="400">
-            <InlineGrid columns={2} gap="400">
+            <InlineGrid columns={{ xs: 1, sm: 1, md: 3 }} gap="400">
               <Card>
-                <Text as="h2" variant="headingMd">Total Products</Text>
-                <Text as="p" variant="bodyLg">{products.length}</Text>
+                  <BlockStack gap="200">
+                    <Text as="h2" variant="headingMd">Total Products</Text>
+                    <Text as="p" variant="bodyLg">{products.length}</Text>
+                  </BlockStack>
               </Card>
               <Card>
-                <Text as="h2" variant="headingMd">Orders</Text>
-                <Text as="p" variant="bodyLg">{orders.length}</Text>
+                  <BlockStack gap="200">
+                    <Text as="h2" variant="headingMd">Orders</Text>
+                    <Text as="p" variant="bodyLg">{orders.length}</Text>
+                  </BlockStack>
+              </Card>
+              <Card>
+                <BlockStack gap="200">
+                  <Text as="h2" variant="headingMd">Customers</Text>
+                  <Text as="p" variant="bodyLg">Unavailable</Text>
+                </BlockStack>
               </Card>
             </InlineGrid>
 
@@ -101,7 +109,7 @@ function Dashboard() {
                                 variant="plain"
                                 onClick={() => navigate(`/orders/detail?id=${encodeURIComponent(order.id)}`)}
                             >
-                              {order.name} - {customerName(order.customer) || "Guest"}
+                              {order.name} - {customerName(order.customer?.firstName) || "Guest"}
                             </Button>
                           )
                         })
@@ -115,7 +123,7 @@ function Dashboard() {
                 <Card>
                   <BlockStack gap="300">
                     <Text as="h2" variant="headingMd">Customers</Text>
-  
+                    <Text as="p" tone="subdued">Customer data not yet available.</Text>
                   </BlockStack>
                 </Card>
               </div>
