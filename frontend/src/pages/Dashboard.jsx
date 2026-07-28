@@ -71,6 +71,7 @@ function Dashboard() {
               </Card>
             </InlineGrid>
 
+            <InlineGrid columns={{ xs: 1, md: 3 }} gap="400">
               <div className="card-accent-caramel">
                 <Card>
                     <BlockStack gap="300">
@@ -127,9 +128,9 @@ function Dashboard() {
                   </BlockStack>
                 </Card>
               </div>
-
-            </BlockStack>
-          </div>
+            </InlineGrid>        
+          </BlockStack>
+        </div>
       </Page>
     </div>
   )
