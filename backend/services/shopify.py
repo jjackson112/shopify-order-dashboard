@@ -189,8 +189,8 @@ def fetch_orders():
 # fetch single order
 def fetch_single_order(order_id):
     query = """
-    query GetOrder ($id: ID!) {
-        order (id: $id) {
+    query GetOrder($id: ID!) {
+        order(id: $id) {
             id
             name
             createdAt

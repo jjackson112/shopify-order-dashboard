@@ -68,9 +68,10 @@ function OrderDetail() {
         )
     }
 
+    // backAction provides a back btn labeled orders that links to orders
+
     return (
         <div className="app-page">
-            // backAction provides a back btn labeled orders that links to orders
             <Page 
                 title={`Order ${order.name}`} 
                 backAction={{

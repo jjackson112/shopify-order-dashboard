@@ -50,7 +50,7 @@ def get_single_order(current_user):
 
         return jsonify({
             "message": "Order found",
-            "order": normalize_order
+            "order": normalized_order
         }), 200
 
     except Exception as err:
