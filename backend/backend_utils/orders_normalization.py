@@ -1,4 +1,6 @@
 def normalize_order(order):
+    print("RAW SHOPIFY ORDER", order)
+
     customer = order.get("customer") or {}
     shipping_address = order.get("shippingAddress") or {}
     
