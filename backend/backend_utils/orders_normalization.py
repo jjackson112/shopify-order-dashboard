@@ -52,7 +52,7 @@ def normalize_order(order):
             "first_name": shipping_address.get("firstName"),
             "last_name": shipping_address.get("lastName"),
             "address1": shipping_address.get("address1"),
-           "address2": shipping_address.get("address2"),
+            "address2": shipping_address.get("address2"),
             "city": shipping_address.get("city"),
             "province": shipping_address.get("province"),
             "zip": shipping_address.get("zip"),

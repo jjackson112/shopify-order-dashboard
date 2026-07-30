@@ -119,7 +119,7 @@ function Dashboard() {
                                 variant="plain"
                                 onClick={() => navigate(`/orders/detail?id=${encodeURIComponent(order.id)}`)}
                             >
-                              {order.name} - {customerName(order.customer?.firstName) || "Guest"}
+                              {order.name} - {customerName(order.customer) || "Guest"}
                             </Button>
                           )
                         })

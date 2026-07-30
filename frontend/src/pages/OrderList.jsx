@@ -70,7 +70,7 @@ function OrderList() {
                                         </Text>
 
                                         <Text as="p">
-                                            Email: {order.email || "N/A"}
+                                            Email: {order.email || order.customer?.email || "N/A"}
                                         </Text>
 
                                         <Text as="p">

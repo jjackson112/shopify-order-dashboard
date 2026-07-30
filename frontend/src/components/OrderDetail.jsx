@@ -115,6 +115,14 @@ function OrderDetail() {
                                 <Text as="p">
                                     Items: {order.line_items?.length || 0}
                                 </Text>
+
+                                <Text as="p">
+                                    {order.shipping_address.address1}, {order.shipping_address.address2}
+                                    {order.shipping_address.city}, {order.shipping_address.province}{" "}
+                                    {order.shipping_address.zip}
+                                </Text>
+
+                                <Text>{order.shipping_address.country}</Text>
                             </BlockStack>
                         </Card>
                     </div>
