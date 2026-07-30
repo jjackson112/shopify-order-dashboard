@@ -15,6 +15,17 @@ function Dashboard() {
 
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
+
+  // customer count
+  const customers = orders
+    .map((order) => order.customer)
+    .filter((customer) => customer?.id)
+  
+  const uniqueCustomers = new Map(
+    customers.map((customer) => [customer.id, customer])
+  )
+
+  const customerCount = uniqueCustomers.size
   
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -75,7 +86,7 @@ function Dashboard() {
               <Card>
                 <BlockStack gap="200">
                   <Text as="h2" variant="headingMd">Customers</Text>
-                  <Text as="p" variant="bodyLg">Unavailable</Text>
+                  <Text as="p" variant="bodyLg">{customerCount}</Text>
                 </BlockStack>
               </Card>
             </InlineGrid>
