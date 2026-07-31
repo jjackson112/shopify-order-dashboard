@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import "../App.css";
-import { Page, Card, Text, BlockStack, InlineGrid, TextField, Select, Button } from "@shopify/polaris";
+import { Page, Card, Text, BlockStack, InlineGrid, TextField, Select } from "@shopify/polaris";
 import { customerName } from "../utils/customer_name";
 
 function CustomerList() {
@@ -13,7 +13,7 @@ function CustomerList() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
 
-    const displayCustomer = [...customers]
+    const displayCustomers = [...customers]
         .filter((customer) => {
             const name = customerName(customer).toLowerCase()
             const email = (customer.email || "").toLowerCase()
@@ -29,6 +29,14 @@ function CustomerList() {
 
             return customerName(a).localeCompare(customerName(b))
         })
+
+        if (sortBy === "email") {
+            if (!a.email && !b.email) return 0 // first condition - treat 2 customers with no email as equal
+            if (!a.email) return 1 // second condition - compare a customer with an email (true because it's null) with one who doesn't - put A after B
+            if (!b.email) return -1 // third condition - if customer b is null or missing, then A with the email stays ahead (A before B)
+
+            return a.email.localeCompare(b.email) // runs only if both customers have emails
+        }
 
     useEffect(() => {
         const fetchCustomers = async () => {
@@ -95,7 +103,7 @@ function CustomerList() {
                     clearButton
                     onClearButtonClick={() => setSearch("")}
                   />
-    
+
                   <Select
                     label="Sort customers"
                     value={sortBy}
@@ -106,14 +114,14 @@ function CustomerList() {
                     ]}
                   />
                 </InlineGrid>
-                
+
                 {customers.length === 0 ? (
                   <Card>
                     <Text as="p" tone="subdued">
                       There are no customers.
                     </Text>
                   </Card>
-                ) : displayedCustomers.length === 0 ? (
+                ) : displayCustomers.length === 0 ? (
                   <Card>
                     <Text as="p" tone="subdued">
                       No customers match your search.
@@ -124,17 +132,17 @@ function CustomerList() {
                     columns={{ xs: 1, sm: 2, md: 3 }}
                     gap="400"
                   >
-                    {displayedCustomers.map((customer) => (
+                    {displayCustomers.map((customer) => (
                       <Card key={customer.id}>
                         <BlockStack gap="200">
                           <Text as="h2" variant="headingMd">
                             {customerName(customer) || "Guest"}
                           </Text>
-                    
+
                           <Text as="p">
                             Email: {customer.email || "N/A"}
                           </Text>
-                    
+
                           <Text as="p">
                             Phone: {customer.phone || "N/A"}
                           </Text>
