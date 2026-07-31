@@ -21,6 +21,16 @@ function CustomerList() {
                 // extract the orders
                 const orders = data.orders || []
 
+                // a customer may have multiple orders - have them only appear once on this page
+                const uniqueCustomers = new Map()
+
+                //
+                orders.forEach((order) => {
+                    const customer = order.customer
+
+
+                })
+
             } catch (err) {
                 console.log(err)
                 setError("Cannot fetch customer list")
