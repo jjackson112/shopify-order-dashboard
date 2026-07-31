@@ -15,6 +15,12 @@ function CustomerList() {
             try {
                 setLoading(true)
                 setError("")
+
+                // customer objects are already included with /orders/shopify URL
+                const data = await api.get("/orders/shopify")
+                // extract the orders
+                const orders = data.orders || []
+
             } catch (err) {
                 console.log(err)
                 setError("Cannot fetch customer list")
