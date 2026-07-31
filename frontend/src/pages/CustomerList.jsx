@@ -7,6 +7,9 @@ import { customerName } from "../utils/customer_name";
 function CustomerList() {
     const [customers, setCustomers] = useState([])
 
+    const [search, setSearch] = useState("")
+    const [sortBy, setSortBy] = useState("name")
+
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
 
