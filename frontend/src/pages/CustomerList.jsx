@@ -22,7 +22,22 @@ function CustomerList() {
                 setLoading(false)
             }
         }
-    })
+
+        fetchCustomers()
+    }, [])
+
+    // render guards
+    if (loading) {
+        return (
+            <Text as="p" tone="subdued">Loading customers...</Text>
+        )
+    }
+
+    if (error) {
+        return (
+            <Text as="p" tone="critical">{error}</Text>
+        )
+    }
 }
 
 export default CustomerList;
