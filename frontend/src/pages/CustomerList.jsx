@@ -10,6 +10,19 @@ function CustomerList() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
 
+    useEffect(() => {
+        const fetchCustomers = async () => {
+            try {
+                setLoading(true)
+                setError("")
+            } catch (err) {
+                console.log(err)
+                setError("Cannot fetch customer list")
+            } finally {
+                setLoading(false)
+            }
+        }
+    })
 }
 
 export default CustomerList;
