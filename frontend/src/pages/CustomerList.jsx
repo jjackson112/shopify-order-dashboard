@@ -38,6 +38,14 @@ function CustomerList() {
             <Text as="p" tone="critical">{error}</Text>
         )
     }
+
+    return (
+        <div className="app-page">
+            <Page title="Customers">
+
+            </Page>
+        </div>
+    )
 }
 
 export default CustomerList;

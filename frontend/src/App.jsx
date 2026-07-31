@@ -9,6 +9,7 @@ import ProductList from './pages/ProductList';
 import OrderList from './pages/OrderList';
 import ProductDetail from './components/ProductDetail';
 import OrderDetail from './components/OrderDetail';
+import CustomerList from './pages/CustomerList';
 
 // console.log("ORDERLIST IMPORT TEST", OrderList)
 
@@ -57,6 +58,14 @@ function App() {
             <ProtectedRoute>
               <OrderDetail />
             </ProtectedRoute>}
+          />
+          <Route
+            path="/customers"
+            element={
+              <ProtectedRoute>
+                <CustomerList />
+              </ProtectedRoute>
+            }
           />
       </Routes>
       </AppProvider>
