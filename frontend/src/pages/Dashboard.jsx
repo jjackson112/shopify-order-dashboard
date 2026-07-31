@@ -55,13 +55,17 @@ function Dashboard() {
   }, [])
 
   // render guards
-  {loading && (
-    <Text as="p" tone="subdued">Loading dashboard...</Text>
-  )}
+  if (loading) {
+    return (
+      <Text as="p" tone="subdued">Loading dashboard...</Text>
+    )
+  }
 
-  {error && (
-    <Text as="p" tone="critical">{error}</Text>
-  )}
+  if (error) {
+    return (
+      <Text as="p" tone="critical">{error}</Text>
+    )
+  }
 
   return (
     <div className="app-page">
@@ -150,7 +154,7 @@ function Dashboard() {
                       Array.from(uniqueCustomers.values())
                         .slice(0, 5)
                         .map((customer) => (
-                          <Text as="p" key={customer.id}>{customerName(customerName(customer))}</Text>
+                          <Text as="p" key={customer.id}>{customerName(customer)}</Text>
                         ))
                     )}
                     <Button variant="primary">View Customers</Button>
