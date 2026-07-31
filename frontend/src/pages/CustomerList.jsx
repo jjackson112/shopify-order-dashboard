@@ -5,7 +5,7 @@ import { Page, Card, Text, BlockStack, InlineGrid, Button } from "@shopify/polar
 import { customerName } from "../utils/customer_name";
 
 function CustomerList() {
-    const [customer, setCustomer] = useState([])
+    const [customers, setCustomers] = useState([])
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
@@ -62,7 +62,28 @@ function CustomerList() {
     return (
         <div className="app-page">
             <Page title="Customers">
-
+                <div className="page-content">
+                    <BlockStack gap="400">
+                        {customers.length === 0 ? (
+                            <Card>
+                                <Text as="p" tone="subdued">There are no customers.</Text>
+                            </Card>
+                        ) : (
+                            <InlineGrid columns={{ xs: 1, sm: 2, md: 3 }}>
+                                {customer.map((customer) => (
+                                    <Card key={customer.id}>
+                                        <BlockStack gap="200">
+                                            <Text as="p" variant="headingMd">{customerName(customer) || "Guest"}</Text>
+                                            <Text as="p">Email: {customer.email || "N/A"}</Text>
+                                            <Text as="p">Phone: {customer.phone || "N/A"}</Text>
+                                        </BlockStack>
+                                    </Card>
+                                ))}
+                            </InlineGrid>
+                        )
+                    }
+                </BlockStack>
+                </div>
             </Page>
         </div>
     )
