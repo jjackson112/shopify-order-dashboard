@@ -28,7 +28,11 @@ function CustomerList() {
                 orders.forEach((order) => {
                     const customer = order.customer
 
+                    if (customer?.id) {
+                        uniqueCustomers.set(customer.id, customer)
+                    }
 
+                    Array.from(uniqueCustomers.values())
                 })
 
             } catch (err) {
