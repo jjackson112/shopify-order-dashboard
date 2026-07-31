@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import "../App.css";
-import { Page, Card, Text, BlockStack, InlineGrid, Button } from "@shopify/polaris";
+import { Page, Card, Text, BlockStack, InlineGrid, TextField, Select, Button } from "@shopify/polaris";
 import { customerName } from "../utils/customer_name";
 
 function CustomerList() {
@@ -24,10 +24,10 @@ function CustomerList() {
 
         .sort((a, b) => {
             if (sortBy === "email") {
-                return (a.email || "").localCompare(b.email || "") // compare 2 strings based on current locale
+                return (a.email || "").localeCompare(b.email || "") // compare 2 strings based on current locale
             }
 
-            return customerName(a).localCompare(customerName(b))
+            return customerName(a).localeCompare(customerName(b))
         })
 
     useEffect(() => {
@@ -90,7 +90,21 @@ function CustomerList() {
                                 <Text as="p" tone="subdued">There are no customers.</Text>
                             </Card>
                         ) : (
-                            <InlineGrid columns={{ xs: 1, sm: 2, md: 3 }}>
+                            <InlineGrid columns={{ xs: 1, sm: 2, md: 3 }} gap="400">
+                                <TextField
+                                    label="Search customers"
+                                    value={search}
+                                    onChange={setSearch}
+                                    placeholder="Search by name or email"
+                                    autoComplete="off"
+                                >
+                                    <Select
+                                        label="Sort customers"
+                                        value={sortBy}
+                                        onChange={setSortBy}
+                                    />
+                    
+                                </TextField>
                                 {customers.map((customer) => (
                                     <Card key={customer.id}>
                                         <BlockStack gap="200">
