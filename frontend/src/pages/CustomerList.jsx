@@ -13,7 +13,7 @@ function CustomerList() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
 
-    const displayCustomer = customers
+    const displayCustomer = [...customers]
         .filter((customer) => {
             const name = customerName(customer).toLowerCase()
             const email = (customer.email || "").toLowerCase()
@@ -82,43 +82,70 @@ function CustomerList() {
 
     return (
         <div className="app-page">
-            <Page title="Customers">
-                <div className="page-content">
-                    <BlockStack gap="400">
-                        {customers.length === 0 ? (
-                            <Card>
-                                <Text as="p" tone="subdued">There are no customers.</Text>
-                            </Card>
-                        ) : (
-                            <InlineGrid columns={{ xs: 1, sm: 2, md: 3 }} gap="400">
-                                <TextField
-                                    label="Search customers"
-                                    value={search}
-                                    onChange={setSearch}
-                                    placeholder="Search by name or email"
-                                    autoComplete="off"
-                                >
-                                    <Select
-                                        label="Sort customers"
-                                        value={sortBy}
-                                        onChange={setSortBy}
-                                    />
+          <Page title="Customers">
+            <div className="page-content">
+              <BlockStack gap="400">
+                <InlineGrid columns={{ xs: 1, sm: 2 }} gap="400">
+                  <TextField
+                    label="Search customers"
+                    value={search}
+                    onChange={setSearch}
+                    placeholder="Search by name or email"
+                    autoComplete="off"
+                    clearButton
+                    onClearButtonClick={() => setSearch("")}
+                  />
+    
+                  <Select
+                    label="Sort customers"
+                    value={sortBy}
+                    onChange={setSortBy}
+                    options={[
+                      { label: "Name A–Z", value: "name" },
+                      { label: "Email A–Z", value: "email" },
+                    ]}
+                  />
+                </InlineGrid>
+                
+                {customers.length === 0 ? (
+                  <Card>
+                    <Text as="p" tone="subdued">
+                      There are no customers.
+                    </Text>
+                  </Card>
+                ) : displayedCustomers.length === 0 ? (
+                  <Card>
+                    <Text as="p" tone="subdued">
+                      No customers match your search.
+                    </Text>
+                  </Card>
+                ) : (
+                  <InlineGrid
+                    columns={{ xs: 1, sm: 2, md: 3 }}
+                    gap="400"
+                  >
+                    {displayedCustomers.map((customer) => (
+                      <Card key={customer.id}>
+                        <BlockStack gap="200">
+                          <Text as="h2" variant="headingMd">
+                            {customerName(customer) || "Guest"}
+                          </Text>
                     
-                                </TextField>
-                                {customers.map((customer) => (
-                                    <Card key={customer.id}>
-                                        <BlockStack gap="200">
-                                            <Text as="p" variant="headingMd">{customerName(customer) || "Guest"}</Text>
-                                            <Text as="p">Email: {customer.email || "N/A"}</Text>
-                                            <Text as="p">Phone: {customer.phone || "N/A"}</Text>
-                                        </BlockStack>
-                                    </Card>
-                                ))}
-                            </InlineGrid>
-                        )}
-                </BlockStack>
-                </div>
-            </Page>
+                          <Text as="p">
+                            Email: {customer.email || "N/A"}
+                          </Text>
+                    
+                          <Text as="p">
+                            Phone: {customer.phone || "N/A"}
+                          </Text>
+                        </BlockStack>
+                      </Card>
+                    ))}
+                  </InlineGrid>
+                )}
+              </BlockStack>
+            </div>
+          </Page>
         </div>
     )
 }
