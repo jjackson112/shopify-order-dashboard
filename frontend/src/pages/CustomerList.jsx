@@ -24,16 +24,17 @@ function CustomerList() {
                 // a customer may have multiple orders - have them only appear once on this page
                 const uniqueCustomers = new Map()
 
-                //
+                // loop through the orders, extract them + create an array
                 orders.forEach((order) => {
                     const customer = order.customer
 
                     if (customer?.id) {
                         uniqueCustomers.set(customer.id, customer)
                     }
-
-                    Array.from(uniqueCustomers.values())
                 })
+
+                const customerList = Array.from(uniqueCustomers.values())
+                setCustomers(customerList)
 
             } catch (err) {
                 console.log(err)
@@ -70,7 +71,7 @@ function CustomerList() {
                             </Card>
                         ) : (
                             <InlineGrid columns={{ xs: 1, sm: 2, md: 3 }}>
-                                {customer.map((customer) => (
+                                {customers.map((customer) => (
                                     <Card key={customer.id}>
                                         <BlockStack gap="200">
                                             <Text as="p" variant="headingMd">{customerName(customer) || "Guest"}</Text>
@@ -80,8 +81,7 @@ function CustomerList() {
                                     </Card>
                                 ))}
                             </InlineGrid>
-                        )
-                    }
+                        )}
                 </BlockStack>
                 </div>
             </Page>
