@@ -144,7 +144,16 @@ function Dashboard() {
                 <Card>
                   <BlockStack gap="300">
                     <Text as="h2" variant="headingMd">Customers</Text>
-                    <Text as="p" tone="subdued">Customer data not yet available.</Text>
+                    {uniqueCustomers.size === 0 ? (
+                      <Text as="p" tone="subdued">No customer information is available.</Text>
+                    ) : (
+                      Array.from(uniqueCustomers.values())
+                        .slice(0, 5)
+                        .map((customer) => (
+                          <Text as="p" key={customer.id}>{customerName(customerName(customer))}</Text>
+                        ))
+                    )}
+                    <Button variant="primary">View Customers</Button>
                   </BlockStack>
                 </Card>
               </div>
