@@ -22,6 +22,14 @@ function CustomerList() {
             return name.includes(query) || email.includes(query)
         })
 
+        .sort((a, b) => {
+            if (sortBy === "email") {
+                return (a.email || "").localCompare(b.email || "") // compare 2 strings based on current locale
+            }
+
+            return customerName(a).localCompare(customerName(b))
+        })
+
     useEffect(() => {
         const fetchCustomers = async () => {
             try {
