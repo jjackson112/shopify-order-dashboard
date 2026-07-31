@@ -13,6 +13,15 @@ function CustomerList() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
 
+    const displayCustomer = customers
+        .filter((customer) => {
+            const name = customerName(customer).toLowerCase()
+            const email = (customer.email || "").toLowerCase()
+            const query = search.toLowerCase().trim()
+
+            return name.includes(query) || email.includes(query)
+        })
+
     useEffect(() => {
         const fetchCustomers = async () => {
             try {
