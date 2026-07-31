@@ -157,7 +157,7 @@ function Dashboard() {
                           <Text as="p" key={customer.id}>{customerName(customer)}</Text>
                         ))
                     )}
-                    <Button variant="primary">View Customers</Button>
+                    <Button variant="primary" onClick={() => navigate("/customers")}>View Customers</Button>
                   </BlockStack>
                 </Card>
               </div>
