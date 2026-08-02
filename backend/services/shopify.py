@@ -49,16 +49,25 @@ def shopify_graphql(query, variables=None):
         timeout=20,
     )
 
-    # print("SHOP DOMAIN:", shop_domain)
-    # print("API VERSION:", api_version)
-    # print("TOKEN EXISTS:", bool(access_token))
+    print("SHOP DOMAIN:", shop_domain)
+    print("API VERSION:", api_version)
+    print("TOKEN EXISTS:", bool(access_token))
+    print("SHOPIFY STATUS:", response.status_code, flush=True)
+    print("SHOPIFY RESPONSE:", response.text, flush=True)
+
+    # TOKEN EXISTS is enough
     # print("TOKEN PREFIX:", access_token[:8] if access_token else None)
 
     # helper - raise an exception if Shopify sends back HTTP error response
     response.raise_for_status()
+
+    data = response.json()
+
+    if data.get("errors"):
+        raise RuntimeError(f"Shopify GraphQL errors: {data['errors']}")
     
     # return to JSON
-    return response.json()
+    return data
 
 # get list of Shopify products
 def fetch_products():
@@ -270,7 +279,7 @@ def fetch_variants():
                         edges {
                             node {
                                 id
-                                title
+                                name
                                 sku
                                 price
                                 inventoryQuantity

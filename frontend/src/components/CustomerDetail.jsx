@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { customerName } from "../utils/customer_name";
 
 function CustomerDetail() {
-    const [showCustomer, setShowCustomer] = useState([])
+    const [customer, setCustomer] = useState([])
 
     const [searchParams] = useSearchParams()
     const customerId = searchParams.get("id")
@@ -22,10 +22,9 @@ function CustomerDetail() {
                 const data = await api.get("/orders/shopify")
                 console.log(data)
 
-                setShowCustomer(data.showCustomer || [])
 
             } catch (err) {
-                console.log(error)
+                console.log(err)
                 setError(err.message || "Customer details unavailable")
             } finally {
                 setLoading(false)
