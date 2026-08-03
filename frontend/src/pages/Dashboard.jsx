@@ -89,7 +89,7 @@ function Dashboard() {
               </Card>
               <Card>
                 <BlockStack gap="200">
-                  <Text as="h2" variant="headingMd">Customers</Text>
+                  <Text as="h2" variant="headingMd">Ordering Customers</Text>
                   <Text as="p" variant="bodyLg">{customerCount}</Text>
                 </BlockStack>
               </Card>
@@ -147,7 +147,7 @@ function Dashboard() {
               <div className="card-accent-espresso">
                 <Card>
                   <BlockStack gap="300">
-                    <Text as="h2" variant="headingMd">Ordering Customers</Text>
+                    <Text as="h2" variant="headingMd">Customer List</Text>
                     {uniqueCustomers.size === 0 ? (
                       <Text as="p" tone="subdued">No customer information is available.</Text>
                     ) : (

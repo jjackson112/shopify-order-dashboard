@@ -71,7 +71,7 @@ function ProductList() {
                     {product.description || "Description unavailable"}
                   </Text>
                   <Button
-                    onClick={() => navigate(`/products/${encodeURIComponent(product.id)}`)}
+                    onClick={() => navigate(`/products/single?id=${encodeURIComponent(id)}`)}
                   >
                     View Product
                   </Button>

@@ -77,13 +77,7 @@ function ProductDetail() {
 
     return (
       <div className="app-page">
-        <Page
-          title={product.title}
-          primaryAction={{
-            content: "Add Variant",
-            onAction: () => console.log("Add variant"),
-          }}
-        >
+        <Page title={product.title}>
           <BlockStack gap="400">
             <div className="card-accent-caramel">
               <Card>
