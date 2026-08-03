@@ -89,7 +89,7 @@ function Dashboard() {
               </Card>
               <Card>
                 <BlockStack gap="200">
-                  <Text as="h2" variant="headingMd">Ordering Customers</Text>
+                  <Text as="h2" variant="headingMd">Customers</Text>
                   <Text as="p" variant="bodyLg">{customerCount}</Text>
                 </BlockStack>
               </Card>
@@ -104,7 +104,7 @@ function Dashboard() {
                     {products.length === 0 ? (
                       <Text as="p">No products yet.</Text>
                     ) : (
-                      products.slice(0, 5).map((product) => (
+                      products.slice(2, 8).map((product) => (
                         <Button 
                           key={product.id}
                           variant="plain"

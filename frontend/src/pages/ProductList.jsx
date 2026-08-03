@@ -54,15 +54,16 @@ function ProductList() {
   }
 
   return (
+    <div className="product-page">
       <Page title="Products">
         <BlockStack gap="400">
           {products.length === 0 ? (
-            <Card className="card-accent-caramel">
+            <Card>
               <Text as="p">No products found.</Text>
             </Card>
           ) : (
             products.map((product) => (
-              <Card key={product.id} className="card-accent-caramel">
+              <Card key={product.id} className="product-card">
                 <BlockStack gap="200">
                   <Text as="h2" variant="headingMd">
                     {product.title || "Product name unavailable"}
@@ -71,7 +72,8 @@ function ProductList() {
                     {product.description || "Description unavailable"}
                   </Text>
                   <Button
-                    onClick={() => navigate(`/products/detail?id=${encodeURIComponent(id)}`)}
+                    variant="primary"
+                    onClick={() => navigate(`/products/detail?id=${encodeURIComponent(product.id)}`)}
                   >
                     View Product
                   </Button>
@@ -81,6 +83,7 @@ function ProductList() {
           )}
         </BlockStack>
       </Page>
+    </div>
   )
 }
 

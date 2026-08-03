@@ -98,3 +98,7 @@ button:hover {
   color: var(--coffee-primary-hover);
 }*/
 
+/* Product List */
+.product-page {
+  background-color: var(--coffee-caramel);
+}
