@@ -55,7 +55,7 @@ function ProductList() {
 
   return (
       <Page title="Products">
-        <BlockStack gap="400">
+        <BlockStack className="page-content"gap="400">
           {products.length === 0 ? (
             <Card>
               <Text as="p">No products found.</Text>
@@ -71,7 +71,7 @@ function ProductList() {
                     {product.description || "Description unavailable"}
                   </Text>
                   <Button
-                    onClick={() => navigate(`/products/single?id=${encodeURIComponent(id)}`)}
+                    onClick={() => navigate(`/products/detail?id=${encodeURIComponent(product.id)}`)}
                   >
                     View Product
                   </Button>
