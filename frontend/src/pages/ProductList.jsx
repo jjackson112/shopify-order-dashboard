@@ -55,7 +55,7 @@ function ProductList() {
 
   return (
       <Page title="Products">
-        <BlockStack className="page-content" gap="400">
+        <BlockStack gap="400">
           {products.length === 0 ? (
             <Card className="card-accent-caramel">
               <Text as="p">No products found.</Text>
