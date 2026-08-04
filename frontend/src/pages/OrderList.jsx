@@ -12,7 +12,17 @@ function OrderList() {
     const [error, setError] = useState("")
 
     const [search, setSearch] = useState("")
-    const [sortBy, setSortBy] = useState("")
+    const [sortBy, setSortBy] = useState("name")
+
+    const query = search.toLowerCase().trim()
+
+    const showOrders = [...orders]
+        .filter((order) => {
+            const name = customerName(order.customer).toLowerCase()
+            const orderNumber = (order.name || "").toLowerCase()
+
+            return name.includes(query) || order_number.includes(query)
+        })
 
     // financial + fulfillment statuses filtered
     const paidOrders = orders.filter(
