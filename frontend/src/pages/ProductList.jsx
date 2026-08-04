@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
-import { Page, Card, Text, BlockStack, Button } from "@shopify/polaris";
+import { Page, Card, Text, BlockStack, Button, InlineGrid } from "@shopify/polaris";
 
 function ProductList() {
   const [products, setProducts] = useState([])
@@ -56,7 +56,7 @@ function ProductList() {
   return (
     <div className="product-page">
       <Page title="Products">
-        <BlockStack gap="400">
+        <BlockStack gap="200">
           {products.length === 0 ? (
             <Card>
               <Text as="p">No products found.</Text>
@@ -65,18 +65,28 @@ function ProductList() {
             products.map((product) => (
               <Card key={product.id} className="product-card">
                 <BlockStack gap="200">
-                  <Text as="h2" variant="headingMd">
-                    {product.title || "Product name unavailable"}
-                  </Text>
-                  <Text as="p">
-                    {product.description || "Description unavailable"}
-                  </Text>
-                  <Button
-                    variant="primary"
-                    onClick={() => navigate(`/products/detail?id=${encodeURIComponent(product.id)}`)}
+                  <InlineGrid 
+                    columns={{ xs: 1, sm: 1, md: "1fr 1.4fr auto" }}
+                    gap="400"
+                    alignItems="center"
                   >
-                    View Product
-                  </Button>
+                    <Text as="h2" variant="headingMd">
+                      {product.title || "Product name unavailable"}
+                    </Text>
+
+                    <Text as="p">
+                      {product.description || "Description unavailable"}
+                    </Text>
+
+                    <div className="product-actions">
+                      <Button
+                        variant="primary"
+                        onClick={() => navigate(`/products/detail?id=${encodeURIComponent(product.id)}`)}
+                      >
+                        View Product
+                      </Button>
+                    </div>
+                  </InlineGrid>
                 </BlockStack>
               </Card>
             ))

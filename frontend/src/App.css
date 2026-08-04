@@ -102,3 +102,16 @@ button:hover {
 .product-page {
   background-color: var(--coffee-caramel);
 }
+
+.product-card {
+  width: min(100%, 700px);
+  margin-inline: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-actions {
+  display: flex;
+  justify-content: center;
+}
