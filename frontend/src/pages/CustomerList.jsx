@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import "../App.css";
-import { Page, Card, Text, BlockStack, InlineGrid, TextField, Select } from "@shopify/polaris";
+import { Page, Card, Text, BlockStack, InlineGrid, TextField, Select, Badge } from "@shopify/polaris";
 import { customerName } from "../utils/customer_name";
 
 function CustomerList() {
@@ -141,6 +141,18 @@ function CustomerList() {
 
                           <Text as="p">
                             Phone: {customer.phone || "N/A"}
+                          </Text>
+
+                          <Text as="p">
+                            Orders
+                          </Text>
+
+                          <Text as="p">
+                            Total Spent: 
+                          </Text>
+
+                          <Text as="p">
+                            Last Order
                           </Text>
                         </BlockStack>
                       </Card>
