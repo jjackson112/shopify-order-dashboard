@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import "../App.css";
-import { Page, Card, Text, BlockStack, Badge, TextField, Select } from "@shopify/polaris"
+import { Page, Card, Text, BlockStack, Badge, InlineGrid, TextField, Select } from "@shopify/polaris"
 import { customerName } from "../utils/customer_name";
 import { fulfillmentTone } from "../utils/badge_fulfillment";
 import { financialTone } from "../utils/badge_financial";
@@ -12,7 +12,7 @@ function OrderList() {
     const [error, setError] = useState("")
 
     const [search, setSearch] = useState("")
-    const [sortBy, setSortBy] = useState("name")
+    const [sortBy, setSortBy] = useState("newest")
 
     const query = search.toLowerCase().trim()
 
@@ -22,6 +22,31 @@ function OrderList() {
             const orderNumber = (order.name || "").toLowerCase()
 
             return name.includes(query) || order_number.includes(query)
+        })
+
+        .sort((a, b) => {
+            if (sortBy ==="oldest") {
+                return new Date(a.created_at) - new Date(b.created_at)
+            }
+
+            if (sortBy === "order-asc") {
+                return (a.name || "").localeCompare(b.name || "", undefined, {
+                numeric: true,
+                })
+            }
+
+            if (sortBy === "order-desc") {
+              return (b.name || "").localeCompare(a.name || "", undefined, {
+                numeric: true,
+              })
+            }
+
+            if (sortBy === "customer") {
+                return customerName(a).localeCompare(customerName(b))
+            }
+
+            // default - newest first
+            return new Date(b.created_at) - new Date(a.created_at)
         })
 
     // financial + fulfillment statuses filtered
@@ -94,7 +119,11 @@ function OrderList() {
                 </div>
 
                 <BlockStack gap="400">
-                    <InlineGrid>
+                    <InlineGrid   
+                        columns={{ xs: 1, md: "1fr 1fr auto auto" }}
+                        gap="400"
+                        alignItems="center"
+                    >
                         <TextField
                             label="Search orders"
                             value={search}
