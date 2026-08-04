@@ -11,6 +11,23 @@ function OrderList() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
 
+    // financial + fulfillment statuses filtered
+    const paidOrders = orders.filter(
+        (order) => order.display_financial_status === "paid"
+    )
+
+    const pendingOrders = orders.filter(
+        (order) => order.display_financial_status === "pending"
+    )
+
+    const refundedOrders = orders.filter(
+        (order) => order.display_financial_status === "refunded"
+    )
+
+    const fulfilledOrders = orders.filter(
+        (order) => order.display_fulfillment_status === "fulfilled"
+    )
+
     useEffect(() => {
         const fetchOrders = async () => {
             try {
@@ -53,6 +70,16 @@ function OrderList() {
     return (
         <div className="app-page">
             <Page title="Orders">
+                <div className="order-stats">
+                    <Card>
+                        <Text as="p">Total Orders: {orders.length}</Text>
+                        <Text as="p">Paid: {paidOrders.length}</Text>
+                        <Text as="p">Pending: {pendingOrders.length}</Text> 
+                        <Text as="p">Refunded: {refundedOrders.length}</Text>
+                        <Text as="p">Fulfilled:</Text>
+                    </Card>
+                </div>
+
                 <BlockStack gap="400">
                     {orders.length === 0 ? (
                         <Card>

@@ -118,7 +118,12 @@ body {
   justify-content: center;
 }
 
-/* */
+/* OrderList */
+.order-stats {
+  display: inline;
+}
+
+/* OrderDetail Styles */
 .badge-status {
   display: flex;
   gap: 0.5rem;
