@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import "../App.css";
-import { Page, Card, Text, BlockStack, Badge, TextField } from "@shopify/polaris"
+import { Page, Card, Text, BlockStack, Badge, TextField, Select } from "@shopify/polaris"
 import { customerName } from "../utils/customer_name";
 import { fulfillmentTone } from "../utils/badge_fulfillment";
 import { financialTone } from "../utils/badge_financial";
@@ -10,7 +10,9 @@ function OrderList() {
     const [orders, setOrders] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
+
     const [search, setSearch] = useState("")
+    const [sortBy, setSortBy] = useState("")
 
     // financial + fulfillment statuses filtered
     const paidOrders = orders.filter(
@@ -89,6 +91,15 @@ function OrderList() {
                             onChange={setSearch}
                             placeholder="Search by order number or customer name"
                         />
+                        <Select
+                            label="Sort orders"
+                            value={sortBy}
+                            onChange={setSortBy}
+                            options={[
+                                { label: "Newest first", value: "newest" },
+                                { label: "Oldest first", value: "oldest" }
+                            ]}
+                        />  
                     </InlineGrid>
 
                     {orders.length === 0 ? (
