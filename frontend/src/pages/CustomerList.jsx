@@ -3,7 +3,6 @@ import { api } from "../api/api";
 import "../App.css";
 import { Page, Card, Text, BlockStack, InlineGrid, TextField, Select, Badge } from "@shopify/polaris";
 import { customerName } from "../utils/customer_name";
-import { fulfillmentTone } from "../utils/badge_fulfillment";
 
 function CustomerList() {
     const [customers, setCustomers] = useState([])

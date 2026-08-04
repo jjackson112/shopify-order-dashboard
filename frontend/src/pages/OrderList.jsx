@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import "../App.css";
-import { Page, Card, Text, BlockStack } from "@shopify/polaris"
+import { Page, Card, Text, BlockStack, Badge } from "@shopify/polaris"
 import { customerName } from "../utils/customer_name";
+import { fulfillmentTone } from "../utils/badge_fulfillment";
+import { financialTone } from "../utils/badge_financial";
 
 function OrderList() {
     const [orders, setOrders] = useState([])
@@ -64,6 +66,17 @@ function OrderList() {
                                         <Text as="h2" variant="headingMd">
                                             Order {order.name}
                                         </Text>
+                                        
+                                        <div className="badge-status">
+                                            <Badge tone={financialTone(order.display_financial_status)}>
+                                                Status: {order.display_financial_status || "Unknown"}
+                                            </Badge>
+
+                                        
+                                            <Badge tone={fulfillmentTone(order.display_fulfillment_status)}>
+                                                Status: {order.display_fulfillment_status || "Unknown"}
+                                            </Badge>
+                                        </div>
 
                                         <Text as="p">
                                             Name: {customerName(order.customer) || "Guest"}
@@ -71,10 +84,6 @@ function OrderList() {
 
                                         <Text as="p">
                                             Email: {order.email || order.customer?.email || "N/A"}
-                                        </Text>
-
-                                        <Text as="p">
-                                            Status: {order.display_financial_status || "Unknown"}
                                         </Text>
 
                                         <Text as="p">

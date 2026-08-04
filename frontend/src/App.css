@@ -108,3 +108,9 @@ body {
   display: flex;
   justify-content: center;
 }
+
+/* */
+.badge-status {
+  display: flex;
+  gap: 0.5rem;
+}
