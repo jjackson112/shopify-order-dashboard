@@ -42,7 +42,7 @@ function OrderList() {
             }
 
             if (sortBy === "customer") {
-                return customerName(a).localeCompare(customerName(b))
+                return customerName(a.customer).localeCompare(customerName(b.customer))
             }
 
             // default - newest first
