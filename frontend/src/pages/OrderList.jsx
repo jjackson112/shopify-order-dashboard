@@ -13,19 +13,19 @@ function OrderList() {
 
     // financial + fulfillment statuses filtered
     const paidOrders = orders.filter(
-        (order) => order.display_financial_status === "paid"
+        (order) => order.display_financial_status === "PAID"
     )
 
     const pendingOrders = orders.filter(
-        (order) => order.display_financial_status === "pending"
+        (order) => order.display_financial_status === "PENDING"
     )
 
     const refundedOrders = orders.filter(
-        (order) => order.display_financial_status === "refunded"
+        (order) => order.display_financial_status === "REFUNDED"
     )
 
     const fulfilledOrders = orders.filter(
-        (order) => order.display_fulfillment_status === "fulfilled"
+        (order) => order.display_fulfillment_status === "FULFILLED"
     )
 
     useEffect(() => {
@@ -76,19 +76,19 @@ function OrderList() {
                         <Text as="p">Paid: {paidOrders.length}</Text>
                         <Text as="p">Pending: {pendingOrders.length}</Text> 
                         <Text as="p">Refunded: {refundedOrders.length}</Text>
-                        <Text as="p">Fulfilled:</Text>
+                        <Text as="p">Fulfilled: {fulfilledOrders.length}</Text>
                     </Card>
                 </div>
 
                 <BlockStack gap="400">
                     {orders.length === 0 ? (
-                        <Card>
+                        <Card  key={order.id}>
                             <Text as="p">No orders found.</Text>
                         </Card>
                     ) : (
                         orders.map((order) => (
                             <div className="card-accent-sage">
-                                <Card key={order.id}>
+                                <Card>
                                     <BlockStack gap="200">
                                         <Text as="h2" variant="headingMd">
                                             Order {order.name}
