@@ -60,7 +60,7 @@ function CustomerList() {
           orderCount.set(customer.id, orderCount(get(customer.id) || 0) + 1)
         })
 
-        const customerList = Array.from(uniqueCustomers.values())
+        const customerList = Array.from(uniqueCustomers.values()).map((customer) => ({...customer, orderCount: orderCount.get(customer.id) || 0,}))
         setCustomers(customerList)
 
       } catch (err) {
@@ -143,7 +143,7 @@ function CustomerList() {
                         Phone: {customer.phone || "N/A"}
                       </Text>
                       <Text as="p">
-                        Orders {orderCount.length || 0}
+                        Orders {customer.orderCount || 0}
                       </Text>
                       <Text as="p">
                         Total Spent: 
