@@ -21,7 +21,7 @@ function OrderList() {
             const name = customerName(order.customer).toLowerCase()
             const orderNumber = (order.name || "").toLowerCase()
 
-            return name.includes(query) || order_number.includes(query)
+            return name.includes(query) || orderNumber.includes(query)
         })
 
         .sort((a, b) => {
@@ -136,7 +136,10 @@ function OrderList() {
                             onChange={setSortBy}
                             options={[
                                 { label: "Newest first", value: "newest" },
-                                { label: "Oldest first", value: "oldest" }
+                                { label: "Oldest first", value: "oldest" },
+                                { label: "Order number ascending", value: "order-asc"},
+                                { label: "Order number descending", value: "order-desc"},
+                                { label: "Customer name A-Z", value: "customer"},
                             ]}
                         />  
                     </InlineGrid>
@@ -146,7 +149,7 @@ function OrderList() {
                             <Text as="p">No orders found.</Text>
                         </Card>
                     ) : (
-                        orders.map((order) => (
+                        showOrders.map((order) => (
                             <div className="card-accent-sage">
                                 <Card>
                                     <BlockStack gap="200">
