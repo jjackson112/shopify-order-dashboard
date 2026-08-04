@@ -86,8 +86,17 @@ body {
   border-top: 4px solid var(--coffee-espresso);
 }
 
-.muted-text {
+.dashboard-link, .dashboard-link:link, .dashboard-link:visited {
+  display: block;
   color: var(--coffee-muted);
+  text-decoration: none;
+  margin: 0 auto;
+  margin-bottom: 0.4rem;
+}
+
+.dashboard-link:hover, .dashboard-link:focus {
+  color: var(--coffee-primary-hover);
+  text-decoration: none;
 }
 
 /* Product List */

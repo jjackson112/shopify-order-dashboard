@@ -113,6 +113,7 @@ function OrderDetail() {
                                 {order.shipping_address ? (
                                     <BlockStack gap="100">
                                         <Text as="p">
+                                            Shipping Address: {""}
                                             {order.shipping_address.address1}, {order.shipping_address.address2}
                                             {order.shipping_address.city}, {order.shipping_address.province}{" "}
                                             {order.shipping_address.zip}

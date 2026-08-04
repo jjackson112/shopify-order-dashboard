@@ -53,11 +53,11 @@ function CustomerList() {
         orders.forEach((order) => {
           const customer = order.customer
 
-          if (customer?.id) return
+          if (!customer?.id) return
 
           uniqueCustomers.set(customer.id, customer)
 
-          orderCount.set(customer.id, orderCount(get(customer.id) || 0) + 1)
+          orderCount.set(customer.id, (orderCount.get(customer.id) || 0) + 1)
         })
 
         const customerList = Array.from(uniqueCustomers.values()).map((customer) => ({...customer, orderCount: orderCount.get(customer.id) || 0,}))

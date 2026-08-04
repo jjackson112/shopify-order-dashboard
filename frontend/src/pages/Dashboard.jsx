@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../App.css";
 import { Page, Card, Text, BlockStack, InlineGrid, Button } from "@shopify/polaris";
 import { customerName } from "../utils/customer_name";
@@ -104,14 +104,14 @@ function Dashboard() {
                     {products.length === 0 ? (
                       <Text as="p">No products yet.</Text>
                     ) : (
-                      products.slice(2, 8).map((product) => (
-                        <Button 
+                      products.slice(5, 8).map((product) => (
+                        <Link
                           key={product.id}
-                          variant="plain"
-                          onClick={() => navigate(`/products/detail?id=${encodeURIComponent(product.id)}`)}
+                          className="dashboard-link"
+                          to={(`/products/detail?id=${encodeURIComponent(product.id)}`)}
                         >
                           {product.title}
-                        </Button>
+                        </Link>
                       ))
                     )}
                     <Button variant="primary" onClick={() => navigate("/products")}>View Products</Button>
@@ -129,13 +129,13 @@ function Dashboard() {
                     ) : (
                         orders.slice(0, 3).map((order) => {
                           return (
-                            <Button
-                                key={order.id}
-                                variant="plain"
-                                onClick={() => navigate(`/orders/detail?id=${encodeURIComponent(order.id)}`)}
+                            <Link
+                              key={order.id}
+                              className="dashboard-link"
+                              to={(`/orders/detail?id=${encodeURIComponent(order.id)}`)}
                             >
                               {order.name} - {customerName(order.customer) || "Guest"}
-                            </Button>
+                            </Link>
                           )
                         })
                       )}
@@ -152,7 +152,7 @@ function Dashboard() {
                       <Text as="p" tone="subdued">No customer information is available.</Text>
                     ) : (
                       Array.from(uniqueCustomers.values())
-                        .slice(0, 5)
+                        .slice(0, 3)
                         .map((customer) => (
                           <Text as="p" key={customer.id}>{customerName(customer)}</Text>
                         ))

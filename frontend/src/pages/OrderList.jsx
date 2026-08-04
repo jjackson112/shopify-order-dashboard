@@ -72,7 +72,6 @@ function OrderList() {
                                                 Status: {order.display_financial_status || "Unknown"}
                                             </Badge>
 
-                                        
                                             <Badge tone={fulfillmentTone(order.display_fulfillment_status)}>
                                                 Status: {order.display_fulfillment_status || "Unknown"}
                                             </Badge>
