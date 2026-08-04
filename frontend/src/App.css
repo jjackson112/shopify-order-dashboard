@@ -53,13 +53,13 @@ body {
   background: var(--coffee-background);
 }
 
-/* Dashboard Styles */
-
 .page-content {
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
 }
+
+/* Dashboard Styles */
 
 .card-accent-caramel,
 .card-accent-sage,
@@ -100,6 +100,7 @@ button:hover {
 
 /* Product List */
 .product-page {
+  min-height: 100vh;
   background-color: var(--coffee-caramel);
 }
 

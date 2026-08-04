@@ -64,30 +64,26 @@ function ProductList() {
           ) : (
             products.map((product) => (
               <Card key={product.id} className="product-card">
-                <BlockStack gap="200">
-                  <InlineGrid 
-                    columns={{ xs: 1, sm: 1, md: "1fr 1.4fr auto" }}
-                    gap="400"
-                    alignItems="center"
-                  >
-                    <Text as="h2" variant="headingMd">
-                      {product.title || "Product name unavailable"}
-                    </Text>
-
-                    <Text as="p">
-                      {product.description || "Description unavailable"}
-                    </Text>
-
-                    <div className="product-actions">
-                      <Button
-                        variant="primary"
-                        onClick={() => navigate(`/products/detail?id=${encodeURIComponent(product.id)}`)}
-                      >
-                        View Product
-                      </Button>
-                    </div>
-                  </InlineGrid>
-                </BlockStack>
+                <InlineGrid 
+                  columns={{ xs: 1, sm: 1, md: "1fr 1.4fr auto" }}
+                  gap="400"
+                  alignItems="center"
+                >
+                  <Text as="h2" variant="headingMd">
+                    {product.title || "Product name unavailable"}
+                  </Text>
+                  <Text as="p">
+                    {product.description || "Description unavailable"}
+                  </Text>
+                  <div className="product-actions">
+                    <Button
+                      variant="primary"
+                      onClick={() => navigate(`/products/detail?id=${encodeURIComponent(product.id)}`)}
+                    >
+                      View Product
+                    </Button>
+                  </div>
+                </InlineGrid>
               </Card>
             ))
           )}
