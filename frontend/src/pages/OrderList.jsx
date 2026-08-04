@@ -145,12 +145,16 @@ function OrderList() {
                     </InlineGrid>
 
                     {orders.length === 0 ? (
-                        <Card  key={order.id}>
+                        <Card>
                             <Text as="p">No orders found.</Text>
                         </Card>
-                    ) : (
+                    ) : showOrders.length === 0 ? (
+                        <Card>
+                            <Text as="p">No orders match your search.</Text>
+                        </Card>
+                    ) :  (
                         showOrders.map((order) => (
-                            <div className="card-accent-sage">
+                            <div className="card-accent-sage" key={order.id}>
                                 <Card>
                                     <BlockStack gap="200">
                                         <Text as="h2" variant="headingMd">
