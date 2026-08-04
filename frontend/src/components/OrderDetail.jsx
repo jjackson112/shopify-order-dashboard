@@ -72,13 +72,7 @@ function OrderDetail() {
 
     return (
         <div className="app-page">
-            <Page 
-                title={`Order ${order.name}`} 
-                backAction={{
-                    content: "Orders", 
-                    url: "/orders",
-                }}
-            >
+            <Page title={`Order ${order.name}`}>
                 <BlockStack gap="400">
                     <div className="card-accent-sage">
                         <Card>

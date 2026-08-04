@@ -90,14 +90,6 @@ body {
   color: var(--coffee-muted);
 }
 
-/*button {
-  color: var(--coffee-primary);
-}
-
-button:hover {
-  color: var(--coffee-primary-hover);
-}*/
-
 /* Product List */
 .product-page {
   min-height: 100vh;

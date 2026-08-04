@@ -13,30 +13,26 @@ function CustomerList() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
 
+    const query = search.toLowerCase().trim()
+
     const displayCustomers = [...customers]
-        .filter((customer) => {
-            const name = customerName(customer).toLowerCase()
-            const email = (customer.email || "").toLowerCase()
-            const query = search.toLowerCase().trim()
+      .filter((customer) => {
+          const name = customerName(customer).toLowerCase()
+          const email = (customer.email || "").toLowerCase()
 
-            return name.includes(query) || email.includes(query)
-        })
-
-        .sort((a, b) => {
-            if (sortBy === "email") {
-                return (a.email || "").localeCompare(b.email || "") // compare 2 strings based on current locale
-            }
-
-            return customerName(a).localeCompare(customerName(b))
-        })
-
+          return name.includes(query) || email.includes(query)
+      })
+      .sort((a, b) => {
         if (sortBy === "email") {
-            if (!a.email && !b.email) return 0 // first condition - treat 2 customers with no email as equal
-            if (!a.email) return 1 // second condition - compare a customer with an email (true because it's null) with one who doesn't - put A after B
-            if (!b.email) return -1 // third condition - if customer b is null or missing, then A with the email stays ahead (A before B)
-
-            return a.email.localeCompare(b.email) // runs only if both customers have emails
+          if (!a.email && !b.email) return 0 // first condition - treat 2 customers with no email as equal
+          if (!a.email) return 1 // second condition - compare a customer with an email (true because it's null) with one who doesn't - put A after B
+          if (!b.email) return -1 // third condition - if customer b is null or missing, then A with the email stays ahead (A before B)
+          
+          return a.email.localeCompare(b.email) // runs only if both customers have emails
         }
+
+        return customerName(a).localeCompare(customerName(b))
+      })
 
     useEffect(() => {
         const fetchCustomers = async () => {
