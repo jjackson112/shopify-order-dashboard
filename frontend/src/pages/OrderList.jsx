@@ -121,13 +121,35 @@ function OrderList() {
             <Page title="Orders">
                 <div className="order-stats">
                     <Card>
-                        <BlockStack gap="100">
-                            <Text as="p">Total Orders: {orders.length}</Text>
-                            <Text as="p">Paid: {paidOrders.length}</Text>
-                            <Text as="p">Pending: {pendingOrders.length}</Text> 
-                            <Text as="p">Refunded: {refundedOrders.length}</Text>
-                            <Text as="p">Fulfilled: {fulfilledOrders.length}</Text>
-                        </BlockStack>
+                        <InlineGrid 
+                            columns={{ xs: 1, sm: 2, md: 3, lg: 5 }}
+                            gap="400"
+                        >
+                            <Card>
+                                <Text as="p" variant="headingMd">{orders.length}</Text>
+                                <Text as="p" tone="subdued">Total Orders</Text>
+                            </Card>
+
+                            <Card>
+                                <Text as="p" variant="headingMd">{paidOrders.length}</Text>
+                                <Text as="p" tone="subdued">Paid</Text>
+                            </Card>
+
+                            <Card>
+                                <Text as="p" variant="headingMd">{pendingOrders.length}</Text> 
+                                <Text as="p" tone="subdued">Pending</Text> 
+                            </Card>
+
+                            <Card>
+                                <Text as="p" variant="headingMd">{refundedOrders.length}</Text>
+                                <Text as="p" tone="subdued">Refunded</Text>
+                            </Card>
+
+                            <Card>
+                                <Text as="p" variant="headingMd">{fulfilledOrders.length}</Text>
+                                <Text as="p" tone="subdued">Fulfilled</Text>
+                            </Card>
+                        </InlineGrid>
                     </Card>
                 </div>
 

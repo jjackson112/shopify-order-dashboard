@@ -120,7 +120,7 @@ body {
 
 /* OrderList */
 .order-stats {
-  display: inline;
+  background-color: var(--coffee-caramel);
 }
 
 .sort-orders {
