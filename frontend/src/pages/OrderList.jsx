@@ -77,7 +77,7 @@ function OrderList() {
                 setLoading(true)
                 setError("")
 
-                const data = await api.get("/orders/shopify")
+                const data = await api.get("/orders/shopify?page=${page}")
                 console.log("SHOPIFY ORDERS", data.orders)
 
                 setOrders(data.orders || [])
@@ -185,7 +185,7 @@ function OrderList() {
                     </div>
                     
                     <div className="pagination">
-                        <Button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</Button>
+                        <Button onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</Button>
 
                         {Array.from({ length: pages }, (_, index) => {
                             const pageNumber = index + 1
@@ -201,7 +201,7 @@ function OrderList() {
                             )
                         })}
 
-                        <Button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</Button>
+                        <Button onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</Button>
                     </div>
 
                     {orders.length === 0 ? (
