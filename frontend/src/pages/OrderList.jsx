@@ -14,6 +14,11 @@ function OrderList() {
     const [search, setSearch] = useState("")
     const [sortBy, setSortBy] = useState("newest")
 
+    const [pages, setPages] = useState(0)
+    const [page, setPage] = useState(1)
+    const [hasNext, setHasNext] = useState(false)
+    const [hasPrev, setHasPrev] = useState(false)
+
     const query = search.toLowerCase().trim()
 
     const showOrders = [...orders]
@@ -129,6 +134,9 @@ function OrderList() {
                             value={search}
                             onChange={setSearch}
                             placeholder="Search by order number or customer name"
+                            autoComplete="off"
+                            clearButton
+                            onClearButtonClick={() => setSearch("")}
                         />
                         <Select
                             label="Sort orders"
@@ -143,6 +151,14 @@ function OrderList() {
                             ]}
                         />  
                     </InlineGrid>
+
+                    <div className="pagination">
+                        <Button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</Button>
+                            {[...Array(pages)].map((_, index) => {
+                                const pageNumber = index +1 
+                            })}
+                        <Button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</Button>
+                    </div>
 
                     {orders.length === 0 ? (
                         <Card>
@@ -163,11 +179,11 @@ function OrderList() {
                                         
                                         <div className="badge-status">
                                             <Badge tone={financialTone(order.display_financial_status)}>
-                                                Status: {order.display_financial_status || "Unknown"}
+                                                Financial Status: {order.display_financial_status || "Unknown"}
                                             </Badge>
 
                                             <Badge tone={fulfillmentTone(order.display_fulfillment_status)}>
-                                                Status: {order.display_fulfillment_status || "Unknown"}
+                                                Fulfillment Status: {order.display_fulfillment_status || "Unknown"}
                                             </Badge>
                                         </div>
 
