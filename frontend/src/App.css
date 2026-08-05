@@ -123,6 +123,30 @@ body {
   display: inline;
 }
 
+.sort-orders {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+.pagination .prev-btn, .next-btn {
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 2px var(--shadow);
+}
+
+.prev-btn, .next-btn {
+  background-color: var(--coffee-primary);
+  border-color: var(--coffee-border);
+}
+
 /* OrderDetail Styles */
 .badge-status {
   display: flex;

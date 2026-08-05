@@ -121,48 +121,50 @@ function OrderList() {
             <Page title="Orders">
                 <div className="order-stats">
                     <Card>
-                        <Text as="p">Total Orders: {orders.length}</Text>
-                        <Text as="p">Paid: {paidOrders.length}</Text>
-                        <Text as="p">Pending: {pendingOrders.length}</Text> 
-                        <Text as="p">Refunded: {refundedOrders.length}</Text>
-                        <Text as="p">Fulfilled: {fulfilledOrders.length}</Text>
+                        <BlockStack gap="100">
+                            <Text as="p">Total Orders: {orders.length}</Text>
+                            <Text as="p">Paid: {paidOrders.length}</Text>
+                            <Text as="p">Pending: {pendingOrders.length}</Text> 
+                            <Text as="p">Refunded: {refundedOrders.length}</Text>
+                            <Text as="p">Fulfilled: {fulfilledOrders.length}</Text>
+                        </BlockStack>
                     </Card>
                 </div>
 
                 <BlockStack gap="400">
-                    <InlineGrid   
-                        columns={{ xs: 1, md: "1fr 1fr auto auto" }}
-                        gap="400"
-                        alignItems="center"
-                    >
-                        <TextField
-                            label="Search orders"
-                            value={search}
-                            onChange={setSearch}
-                            placeholder="Search by order number or customer name"
-                            autoComplete="off"
-                            clearButton
-                            onClearButtonClick={() => setSearch("")}
-                        />
-                        <Select
-                            label="Sort orders"
-                            value={sortBy}
-                            onChange={setSortBy}
-                            options={[
-                                { label: "Newest first", value: "newest" },
-                                { label: "Oldest first", value: "oldest" },
-                                { label: "Order number ascending", value: "order-asc"},
-                                { label: "Order number descending", value: "order-desc"},
-                                { label: "Customer name A-Z", value: "customer"},
-                            ]}
-                        />  
-                    </InlineGrid>
-
+                    <div className="sort-orders">
+                        <InlineGrid   
+                            columns={{ xs: 1, md: "1fr 1fr auto auto" }}
+                            gap="400"
+                            alignItems="center"
+                        >
+                            <TextField
+                                label="Search orders"
+                                value={search}
+                                onChange={setSearch}
+                                placeholder="Search by order number or customer name"
+                                autoComplete="off"
+                                clearButton
+                                onClearButtonClick={() => setSearch("")}
+                            />
+                            <Select
+                                label="Sort orders"
+                                value={sortBy}
+                                onChange={setSortBy}
+                                options={[
+                                    { label: "Newest first", value: "newest" },
+                                    { label: "Oldest first", value: "oldest" },
+                                    { label: "Order number ascending", value: "order-asc"},
+                                    { label: "Order number descending", value: "order-desc"},
+                                    { label: "Customer name A-Z", value: "customer"},
+                                ]}
+                            />  
+                        </InlineGrid>
+                    </div>
+                    
                     <div className="pagination">
                         <Button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</Button>
-                            {[...Array(pages)].map((_, index) => {
-                                const pageNumber = index +1 
-                            })}
+                        <Text as="p">{page} of {pages}</Text>
                         <Button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</Button>
                     </div>
 
