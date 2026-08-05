@@ -15,7 +15,7 @@ function OrderList() {
     const [sortBy, setSortBy] = useState("newest")
 
     const [pages, setPages] = useState(0)
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1) // current page
     const [hasNext, setHasNext] = useState(false)
     const [hasPrev, setHasPrev] = useState(false)
 
@@ -95,7 +95,7 @@ function OrderList() {
         }
 
         fetchOrders()
-    }, [page])
+    }, [page]) // run whenever page changes
 
     // render guards
     if (loading) {
@@ -186,7 +186,21 @@ function OrderList() {
                     
                     <div className="pagination">
                         <Button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</Button>
-                        <Text as="p">{page} of {pages}</Text>
+
+                        {Array.from({ length: pages }, (_, index) => {
+                            const pageNumber = index + 1
+
+                            return (
+                                <Button
+                                    key={pageNumber}
+                                    variant={page === pageNumber ? "primary" : "secondary"}
+                                    onClick={() => setPage(pageNumber)}
+                                >
+                                    {pageNumber}
+                                </Button>
+                            )
+                        })}
+
                         <Button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</Button>
                     </div>
 
