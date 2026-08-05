@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import "../App.css";
-import { Page, Card, Text, BlockStack, Badge, InlineGrid, TextField, Select } from "@shopify/polaris"
+import { Page, Card, Text, BlockStack, Badge, InlineGrid, TextField, Select, Button } from "@shopify/polaris"
 import { customerName } from "../utils/customer_name";
 import { fulfillmentTone } from "../utils/badge_fulfillment";
 import { financialTone } from "../utils/badge_financial";
@@ -79,17 +79,23 @@ function OrderList() {
 
                 const data = await api.get("/orders/shopify")
                 console.log("SHOPIFY ORDERS", data.orders)
+
                 setOrders(data.orders || [])
+                setPages(data.pages || 0)
+                setHasNext(Boolean(data.has_next))
+                setHasPrev(Boolean(data.has_prev))
+
             } catch (err) {
                 console.error("Failed to fetch orders", err)
                 setError("Failed to fetch orders")
+
             } finally {
                 setLoading(false)
             }
         }
 
         fetchOrders()
-    }, [])
+    }, [page])
 
     // render guards
     if (loading) {
