@@ -27,12 +27,15 @@ def fetch_shopify_orders(current_user):
         total = len(normalized_orders)
         total_pages = math.ceil(total/ per_page)
 
-        previous = (page - index)
-        next = previous + 
+        start = (page - 1) * per_page
+        end = start + per_page
+
+        # cannot return every order without slice boundaries
+        page_orders = normalized_orders[start:end]
 
         return jsonify({
             "message": "Orders fetched",
-            "orders": normalized_orders,
+            "orders": page_orders,
             "pages": total_pages,
             "has_prev": page > 1,
             "has_next": page < total_pages
