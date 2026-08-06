@@ -19,9 +19,18 @@ def fetch_shopify_orders(current_user):
             for order in orders
         ]
 
+        total = len(normalized_orders)
+        total_pages = total
+
+        previous = (page - index)
+        next = previous + 
+
         return jsonify({
             "message": "Orders fetched",
             "orders": normalized_orders,
+            "pages": total_pages,
+            "has_prev": page > 1,
+            "has_next": page < total_pages
         }), 200
 
     except Exception as err:
