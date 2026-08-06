@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
 import { Page, Card, Text, BlockStack, Badge, InlineGrid, TextField, Select, Button } from "@shopify/polaris"
 import { customerName } from "../utils/customer_name";
 import { fulfillmentTone } from "../utils/badge_fulfillment";
@@ -18,6 +19,8 @@ function OrderList() {
     const [page, setPage] = useState(1) // current page
     const [hasNext, setHasNext] = useState(false)
     const [hasPrev, setHasPrev] = useState(false)
+
+    const navigate = useNavigate()
 
     const query = search.toLowerCase().trim()
 
@@ -213,7 +216,7 @@ function OrderList() {
                             <Text as="p">No orders match your search.</Text>
                         </Card>
                     ) :  (
-                        showOrders.map((order) => (
+                        showOrders.slice(-5).map((order) => (
                             <div className="card-accent-sage" key={order.id}>
                                 <Card>
                                     <BlockStack gap="200">
@@ -255,6 +258,13 @@ function OrderList() {
                                         <Text as="p">
                                             Items: {order.line_items?.length || 0}
                                         </Text>
+
+                                        <Button 
+                                            variant="plain"
+                                            onClick={() => navigate(`orders/single?id=${encodeURIComponent(order.id)}`)}
+                                        >
+                                            View Order
+                                        </Button>
                                     </BlockStack>
                                 </Card>
                             </div>

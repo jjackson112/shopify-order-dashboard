@@ -104,7 +104,7 @@ function Dashboard() {
                     {products.length === 0 ? (
                       <Text as="p">No products yet.</Text>
                     ) : (
-                      products.slice(5, 8).map((product) => (
+                      products.slice(-3).map((product) => (
                         <Link
                           key={product.id}
                           className="dashboard-link"
