@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+import math
 from services.token import token_required
 from services.shopify import fetch_orders, fetch_single_order
 from models.order import Order
@@ -19,8 +20,12 @@ def fetch_shopify_orders(current_user):
             for order in orders
         ]
 
+        page = request.args.get("page", 1, type=int)
+        per_page = 10
+
+        # ceil is ceiling - round up to nearest whole number
         total = len(normalized_orders)
-        total_pages = total
+        total_pages = math.ceil(total/ per_page)
 
         previous = (page - index)
         next = previous + 
