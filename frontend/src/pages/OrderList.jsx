@@ -223,7 +223,7 @@ function OrderList() {
                             <Text as="p">No orders match your search.</Text>
                         </Card>
                     ) :  (
-                        showOrders.slice(-5).map((order) => (
+                        showOrders.map((order) => (
                             <div className="card-accent-sage" key={order.id}>
                                 <Card>
                                     <BlockStack gap="200">
