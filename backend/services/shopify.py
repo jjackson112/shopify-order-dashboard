@@ -131,7 +131,7 @@ def fetch_single_product(product_id):
 def fetch_orders():
     query = """
     query {
-        orders(first: 20) {
+        orders(first: 10) {
             edges {
                 node {
                     id
