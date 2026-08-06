@@ -128,9 +128,9 @@ def fetch_single_product(product_id):
 # fetch Shopify orders - no need for db model 
 # orders are live from Shopify - proof API works
 # Shopify returns fields (name, displayFinancialStatus, totalPriceSet, createdAt)
-def fetch_orders():
+def fetch_orders(first=10, after=None):
     query = """
-    query {
+    query GetOrders($first: Int!, $after: String) {
         orders(
             first: $first
             after: $after
@@ -152,13 +152,6 @@ def fetch_orders():
                             amount
                             currencyCode
                         }
-                    }
-
-                    pageInfo {
-                        hasNextPage
-                        hasPreviousPage
-                        startCursor
-                        endCursor
                     }
                     
                     lineItems(first: 20) {
