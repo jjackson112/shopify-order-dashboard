@@ -131,8 +131,14 @@ def fetch_single_product(product_id):
 def fetch_orders():
     query = """
     query {
-        orders(first: 10) {
+        orders(
+            first: $first
+            after: $after
+            sortKey: CREATED_AT
+            reverse: true
+        ) {
             edges {
+                cursor
                 node {
                     id
                     name
@@ -146,6 +152,13 @@ def fetch_orders():
                             amount
                             currencyCode
                         }
+                    }
+
+                    pageInfo {
+                        hasNextPage
+                        hasPreviousPage
+                        startCursor
+                        endCursor
                     }
                     
                     lineItems(first: 20) {

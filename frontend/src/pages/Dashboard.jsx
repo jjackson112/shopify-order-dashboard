@@ -127,7 +127,7 @@ function Dashboard() {
                     {orders.length === 0 ? (
                         <Text as="p">No orders yet.</Text>
                     ) : (
-                        orders.slice(0, 3).map((order) => {
+                        orders.slice(-3).map((order) => {
                           return (
                             <Link
                               key={order.id}

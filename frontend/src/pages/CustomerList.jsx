@@ -143,7 +143,7 @@ function CustomerList() {
                         Phone: {customer.phone || "N/A"}
                       </Text>
                       <Text as="p">
-                        Orders {customer.orderCount || 0}
+                        Orders: {customer.orderCount || 0}
                       </Text>
                       <Text as="p">
                         Total Spent: 
