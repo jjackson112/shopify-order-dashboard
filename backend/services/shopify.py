@@ -190,11 +190,23 @@ def fetch_orders(first=10, after=None):
                     }
                 }
             }
+
+            pageInfo {
+                hasNextPage
+                hasPreviousPage
+                startCursor
+                endCursor
+            }
         }
     }
     """
 
-    data = shopify_graphql(query)
+    variables = {
+        "first": first,
+        "after": after,
+    }
+
+    data = shopify_graphql(query, variables)
 
     if data.get("errors"):
         print("ORDER LIST ERRORS", data["errors"])
