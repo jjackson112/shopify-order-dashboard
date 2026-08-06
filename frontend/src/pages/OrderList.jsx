@@ -80,7 +80,7 @@ function OrderList() {
                 setLoading(true)
                 setError("")
 
-                const data = await api.get("/orders/shopify?page=${page}")
+                const data = await api.get(`/orders/shopify?page=${page}`)
                 console.log("SHOPIFY ORDERS", data.orders)
 
                 setOrders(data.orders || [])
@@ -270,7 +270,7 @@ function OrderList() {
 
                                         <Button 
                                             variant="plain"
-                                            onClick={() => navigate(`orders/single?id=${encodeURIComponent(order.id)}`)}
+                                            onClick={() => navigate(`/orders/single?id=${encodeURIComponent(order.id)}`)}
                                         >
                                             View Order
                                         </Button>
