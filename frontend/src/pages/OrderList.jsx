@@ -88,6 +88,13 @@ function OrderList() {
                 setHasNext(Boolean(data.has_next))
                 setHasPrev(Boolean(data.has_prev))
 
+                console.log("CURRENT PAGE", page)
+                console.log("PAGINATION", {
+                    pages: data.pages,
+                    hasNext: data.has_next,
+                    hasPrev: data.has_prev
+                })
+
             } catch (err) {
                 console.error("Failed to fetch orders", err)
                 setError("Failed to fetch orders")
@@ -226,11 +233,13 @@ function OrderList() {
                                         
                                         <div className="badge-status">
                                             <Badge tone={financialTone(order.display_financial_status)}>
-                                                Financial Status: {order.display_financial_status || "Unknown"}
+                                                Financial Status: {" "}
+                                                {order.display_financial_status || "Unknown"}
                                             </Badge>
 
                                             <Badge tone={fulfillmentTone(order.display_fulfillment_status)}>
-                                                Fulfillment Status: {order.display_fulfillment_status || "Unknown"}
+                                                Fulfillment Status: {" "}
+                                                {order.display_fulfillment_status || "Unknown"}
                                             </Badge>
                                         </div>
 
