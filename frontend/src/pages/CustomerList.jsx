@@ -34,6 +34,17 @@ function CustomerList() {
       return customerName(a).localeCompare(customerName(b))
     })
 
+  // find customers' last order date
+  const lastOrder = new Map()
+
+  orders.forEach((order) => {
+    const customer = order.customer
+
+    if (!customer?.id) return
+
+    const orderDate = new Date(order.created_at)
+  })
+
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
