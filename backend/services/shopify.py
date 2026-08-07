@@ -208,13 +208,23 @@ def fetch_orders(first=10, after=None):
 
     data = shopify_graphql(query, variables)
 
-    if data.get("errors"):
-        print("ORDER LIST ERRORS", data["errors"])
-    
-    return [
+    # fetch_orders no longer returns just a list, but pagination too
+    order_connection = data["data"]["orders"]
+
+    orders = [
         edge["node"]
-        for edge in data["data"]["orders"]["edges"]
+        for edge in order_connection["edges"]
     ]
+
+    page_info = order_connection["pageInfo"]
+
+    # if data.get("errors"):
+    #    print("ORDER LIST ERRORS", data["errors"])
+    
+    return {
+        "orders": orders,
+        "page_info": page_info,
+    }
 
 # fetch single order
 def fetch_single_order(order_id):

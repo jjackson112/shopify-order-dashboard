@@ -12,7 +12,9 @@ orders_bp = Blueprint("orders", __name__, url_prefix="/api/orders")
 @token_required
 def fetch_shopify_orders(current_user):
     try:
-        orders = fetch_orders()
+        result = fetch_orders()
+
+        orders = result["orders"]
 
         # simpler loop + dictionary code moved to utils
         normalized_orders = [
@@ -44,9 +46,7 @@ def fetch_shopify_orders(current_user):
     except Exception as err:
         print(f"Failed to fetch Shopify orders: {err}")
 
-        return jsonify({
-            "error": "Failed to fetch Shopify orders"
-        }), 500
+        return jsonify({"error": "Failed to fetch Shopify orders"}), 500
 
 # Get a single Shopify order - single resource endpoint
 @orders_bp.route("/single", methods=["GET"])
