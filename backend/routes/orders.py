@@ -12,7 +12,7 @@ orders_bp = Blueprint("orders", __name__, url_prefix="/api/orders")
 @token_required
 def fetch_shopify_orders(current_user):
     try:
-        result = fetch_orders()
+        result = fetch_orders(first=100) # fetch more orders from Shopify with numbered pages in Flask
 
         orders = result["orders"]
 
