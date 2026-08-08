@@ -41,7 +41,8 @@ function CustomerList() {
     const customer = order.customer
 
     if (!customer?.id) return
-
+    
+    const existingCustomer = lastOrder.get(customer.id)
     const orderDate = new Date(order.created_at)
   })
 
