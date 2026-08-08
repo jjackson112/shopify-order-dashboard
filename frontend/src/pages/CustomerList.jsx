@@ -44,6 +44,15 @@ function CustomerList() {
     
     const existingCustomer = lastOrder.get(customer.id)
     const orderDate = new Date(order.created_at)
+
+    if (
+      !existingCustomer || orderDate > new Date (existingCustomer.lastOrderDate)
+    ) {
+      lastOrder.set(customer.id, {
+        ...customer,
+        lastOrderDate: order.created_at,
+      })
+    }
   })
 
   useEffect(() => {
