@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../api/api";
 import { useNavigate, Link } from "react-router-dom";
 import "../App.css";
-import { Page, Card, Text, BlockStack, InlineGrid, Button } from "@shopify/polaris";
+import { Page, Card, Text, BlockStack, InlineGrid, Button, Badge } from "@shopify/polaris";
 import { customerName } from "../utils/customer_name";
 
 function Dashboard() {
@@ -79,7 +79,7 @@ function Dashboard() {
   const refundedOrders = orders.filter(
     (order) => order.display_financial_status === "REFUNDED"
   ).length
-  
+
   const fulfilledOrders = orders.filter(
     (order) => order.display_fulfillment_status === "FULFILLED"
   ).length
@@ -186,6 +186,19 @@ function Dashboard() {
               <Card>
                 <BlockStack>
                   <Text as="h3" variant="headingMd">Order Status Summary</Text>
+                  <InlineGrid columns="1fr auto" gap="200">
+                    <Text as="p">Paid</Text>
+                    <Badge tone="success">{paidOrders}</Badge>
+
+                    <Text as="p">Pending</Text>
+                    <Badge tone="attention">{pendingOrders}</Badge>
+
+                    <Text as="p">Refunded</Text>
+                    <Badge tone="critical">{refundedOrders}</Badge>
+
+                    <Text as="p">Fulfilled</Text>
+                    <Badge tone="success">{fulfilledOrders}</Badge>
+                  </InlineGrid>
                 </BlockStack>
               </Card>
               <Card>
