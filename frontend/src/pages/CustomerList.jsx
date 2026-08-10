@@ -34,27 +34,6 @@ function CustomerList() {
       return customerName(a).localeCompare(customerName(b))
     })
 
-  // find customers' last order date
-  const lastOrder = new Map()
-
-  orders.forEach((order) => {
-    const customer = order.customer
-
-    if (!customer?.id) return
-    
-    const existingCustomer = lastOrder.get(customer.id)
-    const orderDate = new Date(order.created_at)
-
-    if (
-      !existingCustomer || orderDate > new Date (existingCustomer.lastOrderDate)
-    ) {
-      lastOrder.set(customer.id, {
-        ...customer,
-        lastOrderDate: order.created_at,
-      })
-    }
-  })
-
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
@@ -63,12 +42,18 @@ function CustomerList() {
 
         // customer objects are already included with /orders/shopify URL
         const data = await api.get("/orders/shopify")
+        
         // extract the orders
         const orders = data.orders || []
+        
         // a customer may have multiple orders - have them only appear once on this page
         const uniqueCustomers = new Map()
+        
         // count the orders in the loop
         const orderCount = new Map()
+
+        // find customer's last order date
+        const lastOrder = new Map()
 
         // loop through the orders, extract them + create an array
         orders.forEach((order) => {
@@ -78,7 +63,19 @@ function CustomerList() {
 
           uniqueCustomers.set(customer.id, customer)
 
+          // count orders
           orderCount.set(customer.id, (orderCount.get(customer.id) || 0) + 1)
+
+          // find most recent order
+          const existingCustomer = lastOrder.get(customer.id)
+          const orderDate = new Date(order.created_at)
+
+          if (!existingCustomer || orderDate > new Date(existingDate)) {
+            lastOrder.set(customer.id, {
+              ...customer,
+              lastOrderDate: order.created_at,
+            })
+          }
         })
 
         const customerList = Array.from(uniqueCustomers.values()).map((customer) => ({...customer, orderCount: orderCount.get(customer.id) || 0,}))
@@ -170,7 +167,10 @@ function CustomerList() {
                         Total Spent: 
                       </Text>
                       <Text as="p">
-                        Last Order: 
+                        Last Order:{" "}
+                        {customer.lastOrderDate
+                          ? new Date(customer.lastOrderDate).toLocaleString()
+                          : "No orders yet"}
                       </Text>
                     </BlockStack>
                   </Card>
