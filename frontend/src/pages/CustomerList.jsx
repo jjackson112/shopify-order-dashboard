@@ -71,13 +71,10 @@ function CustomerList() {
           const orderDate = new Date(order.created_at)
 
           if (!existingCustomer || orderDate > new Date(existingCustomer)) {
-            lastOrder.set(customer.id, {
-              ...customer,
-              lastOrderDate: order.created_at,
-            })
+            lastOrder.set(customer.id, order.created_at)
 
-          console.log("ORDER", order)
-          console.log("CREATED AT", order.created_at)
+            console.log("ORDER", order)
+            console.log("CREATED AT", order.created_at)
           }
         })
 
