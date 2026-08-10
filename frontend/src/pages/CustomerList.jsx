@@ -75,6 +75,9 @@ function CustomerList() {
               ...customer,
               lastOrderDate: order.created_at,
             })
+
+          console.log("ORDER", order)
+          console.log("CREATED AT", order.created_at)
           }
         })
 
