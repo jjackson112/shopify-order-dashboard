@@ -67,6 +67,23 @@ function Dashboard() {
     )
   }
 
+  // counts were calculated in OrderList - add the .length
+  const paidOrders = orders.filter(
+    (order) => order.display_financial_status === "PAID"
+  ).length
+
+  const pendingOrders = orders.filter(
+    (order) => order.display_financial_status === "PENDING"
+  ).length
+
+  const refundedOrders = orders.filter(
+    (order) => order.display_financial_status === "REFUNDED"
+  ).length
+  
+  const fulfilledOrders = orders.filter(
+    (order) => order.display_fulfillment_status === "FULFILLED"
+  ).length
+
   return (
     <div className="app-page">
       <Page title="Shopify Order Dashboard">
