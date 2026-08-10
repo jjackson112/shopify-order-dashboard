@@ -86,7 +86,7 @@ body {
   border-top: 4px solid var(--coffee-espresso);
 }
 
-.dashboard-link, .dashboard-link:link, .dashboard-link:visited {
+.dashboard-link, .dashboard-link:link, .dashboard-link:visited, .customer-text {
   display: block;
   color: var(--coffee-muted);
   text-decoration: none;

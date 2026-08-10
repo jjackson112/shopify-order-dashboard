@@ -127,7 +127,7 @@ function Dashboard() {
                     {orders.length === 0 ? (
                         <Text as="p">No orders yet.</Text>
                     ) : (
-                        orders.slice(-3).map((order) => {
+                        orders.slice(0, 3).map((order) => {
                           return (
                             <Link
                               key={order.id}
@@ -152,9 +152,15 @@ function Dashboard() {
                       <Text as="p" tone="subdued">No customer information is available.</Text>
                     ) : (
                       Array.from(uniqueCustomers.values())
-                        .slice(0, 3)
+                        .slice(-3)
                         .map((customer) => (
-                          <Text as="p" key={customer.id}>{customerName(customer)}</Text>
+                          <Text 
+                            className="customer-text"
+                            as="p"
+                            key={customer.id}
+                          >
+                            {customerName(customer)}
+                          </Text>
                         ))
                     )}
                     <Button variant="primary" onClick={() => navigate("/customers")}>View Customers</Button>

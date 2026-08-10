@@ -170,9 +170,6 @@ function CustomerList() {
                         Orders: {customer.orderCount || 0}
                       </Text>
                       <Text as="p">
-                        Total Spent: 
-                      </Text>
-                      <Text as="p">
                         Last Order:{" "}
                         {customer.lastOrderDate
                           ? new Date(customer.lastOrderDate).toLocaleString()
