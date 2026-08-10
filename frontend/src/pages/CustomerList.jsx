@@ -70,7 +70,7 @@ function CustomerList() {
           const existingCustomer = lastOrder.get(customer.id)
           const orderDate = new Date(order.created_at)
 
-          if (!existingCustomer || orderDate > new Date(existingDate)) {
+          if (!existingCustomer || orderDate > new Date(existingCustomer)) {
             lastOrder.set(customer.id, {
               ...customer,
               lastOrderDate: order.created_at,
@@ -78,7 +78,13 @@ function CustomerList() {
           }
         })
 
-        const customerList = Array.from(uniqueCustomers.values()).map((customer) => ({...customer, orderCount: orderCount.get(customer.id) || 0,}))
+        const customerList = Array.from(uniqueCustomers.values()).map(
+          (customer) => ({
+            ...customer, 
+            orderCount: orderCount.get(customer.id) || 0,
+            lastOrderDate: lastOrder.get(customer.id || null),
+          })
+        )
         setCustomers(customerList)
 
       } catch (err) {
