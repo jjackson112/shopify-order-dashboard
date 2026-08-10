@@ -152,15 +152,11 @@ function Dashboard() {
                       <Text as="p" tone="subdued">No customer information is available.</Text>
                     ) : (
                       Array.from(uniqueCustomers.values())
-                        .slice(-3)
+                        .slice(0, 3)
                         .map((customer) => (
-                          <Text 
-                            className="customer-text"
-                            as="p"
-                            key={customer.id}
-                          >
-                            {customerName(customer)}
-                          </Text>
+                          <div className="customer-text">
+                            <Text as="p" key={customer.id}>{customerName(customer)}</Text>
+                          </div>
                         ))
                     )}
                     <Button variant="primary" onClick={() => navigate("/customers")}>View Customers</Button>

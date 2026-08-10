@@ -86,7 +86,7 @@ body {
   border-top: 4px solid var(--coffee-espresso);
 }
 
-.dashboard-link, .dashboard-link:link, .dashboard-link:visited, .customer-text {
+.dashboard-link, .dashboard-link:link, .dashboard-link:visited {
   display: block;
   color: var(--coffee-muted);
   text-decoration: none;
@@ -97,6 +97,13 @@ body {
 .dashboard-link:hover, .dashboard-link:focus {
   color: var(--coffee-primary-hover);
   text-decoration: none;
+}
+
+.customer-text {
+  display: block;
+  color: var(--coffee-muted);
+  margin: 0 auto;
+  margin-bottom: 0.4rem;
 }
 
 /* Product List */
