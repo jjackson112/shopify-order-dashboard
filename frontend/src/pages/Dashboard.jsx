@@ -50,8 +50,8 @@ function Dashboard() {
             // add quantity
             const productQuantity = topProducts.get(item.name) || 0
 
-            // count products
-            topProductsCount.set(item.name, productQuantity + item.quantity)
+            // store products
+            topProducts.set(item.name, productQuantity + item.quantity)
 
           })
         })
@@ -249,7 +249,7 @@ function Dashboard() {
                     <Text as="h3" variant="headingMd">Top-Selling Products</Text>
 
                     <Text as="h3" variant="headingMd">Total Items Sold</Text>
-                    <Text as="p">{topProductsCount}</Text>
+                    <Text as="p"></Text>
                   </BlockStack>
                 </Card>
               </div>
