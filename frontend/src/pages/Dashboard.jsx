@@ -3,13 +3,13 @@ import { api } from "../api/api";
 import { useNavigate, Link } from "react-router-dom";
 import "../App.css";
 import { Page, Card, Text, BlockStack, InlineGrid, Button, Badge } from "@shopify/polaris";
+import { Header } from "../components/Header";
 import { customerName } from "../utils/customer_name";
 
 function Dashboard() {
+
   const [products, setProducts] = useState([])
   const [orders, setOrders] = useState([])
-
-  const username = localStorage.getItem("username") || "merchant"
   
   const navigate = useNavigate()
 
@@ -147,7 +147,6 @@ function Dashboard() {
   return (
     <div className="app-page">
       <Page title="Shopify Order Dashboard">
-          <Text as="p">{`Welcome, ${username}`}</Text>
 
         <div className="page-content">
           <BlockStack gap="400">
