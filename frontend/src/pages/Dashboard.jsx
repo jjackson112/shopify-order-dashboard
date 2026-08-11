@@ -123,6 +123,11 @@ function Dashboard() {
     0
   )
 
+  // sort() the top sellers before slice()
+  const topThreeProducts = productList.sort((a, b) => {
+    b[1] - a[1]
+  })
+
   return (
     <div className="app-page">
       <Page title="Shopify Order Dashboard">
@@ -252,7 +257,7 @@ function Dashboard() {
                     <Text as="h3" variant="headingMd">Top-Selling Products</Text>
 
                     <Text as="h3" variant="headingMd">Total Items Sold</Text>
-                    <Text as="p"></Text>
+                    <Text as="p">{topProductList}</Text>
                   </BlockStack>
                 </Card>
               </div>
