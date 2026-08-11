@@ -42,23 +42,6 @@ function Dashboard() {
         setProducts(productData.products || [])
         setOrders(orderData.orders || [])
 
-        // create new Map to loop over orders for top selling products
-        const topProducts = new Map()
-
-        orders.forEach((order) => {
-          order.line_items?.forEach((item) => {
-            // add quantity
-            const productQuantity = topProducts.get(item.name) || 0
-
-            // store products
-            topProducts.set(item.name, productQuantity + item.quantity)
-
-            // convert the Map into an array to be converted
-            const topProductList = Array.from(topProducts.entries())
-
-          })
-        })
-
       } catch (err) {
         console.log(err)
         setError("Failed to load data to dashboard")
@@ -122,6 +105,22 @@ function Dashboard() {
     },
     0
   )
+
+  // create new Map to loop over orders for top selling products
+  const topProducts = new Map
+  
+  orders.forEach((order) => {
+    order.line_items?.forEach((item) => {
+      // add quantity
+      const productQuantity = topProducts.get(item.name) || 0
+
+      // store products
+      topProducts.set(item.name, productQuantity + item.quantity)
+
+      // convert the Map into an array to be converted
+      const topProductList = Array.from(topProducts.entries())
+    })
+  })
 
   // sort() the top sellers before slice()
   const topThreeProducts = productList
@@ -257,7 +256,11 @@ function Dashboard() {
                     <Text as="h3" variant="headingMd">Top-Selling Products</Text>
 
                     <Text as="h3" variant="headingMd">Total Items Sold</Text>
-                    <Text as="p">{topProductList}</Text>
+                    {topThreeProducts.map((product) => (
+                      <Text as="p" key={product[0]}>
+                        {product[0]}: {product[1]} sold
+                      </Text>
+                    ))}
                   </BlockStack>
                 </Card>
               </div>
