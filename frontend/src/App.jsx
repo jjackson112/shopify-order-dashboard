@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AppProvider } from '@shopify/polaris'
 import { Route, Routes } from "react-router-dom";
 
@@ -19,6 +19,7 @@ import CustomerList from './pages/CustomerList';
 // console.log("ORDERLIST IMPORT TEST", OrderList)
 
 function App() {
+  const [authMessage, setAuthMessage] = useState("")
 
   // listen for auth:expired + contains state/message for auth updates
   useEffect(() => {
@@ -38,7 +39,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route element={<AuthLayout />}>
-          <Route path="/login" element={<LoginForm />} />
+          <Route path="/login" element={<LoginForm authMessage={authMessage} />} />
           <Route path="/register" element={<RegisterForm />} />
         </Route>
 

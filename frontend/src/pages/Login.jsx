@@ -32,7 +32,7 @@ function LoginForm() {
             console.log(data)
 
             localStorage.setItem("token", data.token)
-            console.log("TOKEN AFTER SET:", localStorage.getItem("token"))
+            // console.log("TOKEN AFTER SET:", localStorage.getItem("token"))
 
             login(data.token, data.username)
             navigate("/dashboard")
