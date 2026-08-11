@@ -127,6 +127,12 @@ function Dashboard() {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
 
+  // total items sold - extract from line items + use reduce()
+  const totalProductsSold = orders.reduce(
+    (total, order) => {total + line_items?.quantity || 0},
+    0
+  )
+
   return (
     <div className="app-page">
       <Page title="Shopify Order Dashboard">
@@ -271,6 +277,9 @@ function Dashboard() {
 
                     <Text as="h2" variant="headingMd">Pending Payments</Text>
                     <Text as="p">${pendingPayments}</Text>
+
+                    <Text as="h2" variant="headingMd">Total Items Sold</Text>
+                    <Text as="p"></Text>
                   </BlockStack>
                 </Card>
               </div>
