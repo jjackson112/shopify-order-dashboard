@@ -19,7 +19,7 @@ function Header() {
             <div className="header-container">
                 <div className="header-brand">
                     <Icon source={StoreIcon} />
-                    <Text as="p">{`Welcome, ${username}`}</Text>
+                    <Text as="p">{`Welcome, ${username} 👋`}</Text>
                 </div>
                 <Button
                     variant="secondary"
