@@ -11,16 +11,15 @@
   --coffee-border: #e5ddd5;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #root {
   min-height: 100%;
 }
-
-/*h2, h3 {
-  text-align: center;
-  padding-bottom: 0.75rem;
-}*/
 
 body {
   margin: 0;
@@ -43,6 +42,8 @@ body {
   width: 100%;
   max-width: 1100px;
   padding: 1rem 2rem;
+  margin: 0 auto;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
