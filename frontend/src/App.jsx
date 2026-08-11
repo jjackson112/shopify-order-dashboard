@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { AppProvider } from '@shopify/polaris'
 import { Route, Routes } from "react-router-dom";
 
@@ -31,12 +32,6 @@ function App() {
       window.removeEventListener("auth:expired", handleExpiredToken)
     }
   }, [])
-
-  useEffect(() => {
-    if (userLoggedIn) {
-      setAuthMessage("")
-    } 
-  }, [userLoggedIn])
 
   return (
     <AppProvider>
