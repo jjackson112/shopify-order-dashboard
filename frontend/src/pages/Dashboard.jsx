@@ -3,7 +3,6 @@ import { api } from "../api/api";
 import { useNavigate, Link } from "react-router-dom";
 import "../App.css";
 import { Page, Card, Text, BlockStack, InlineGrid, Button, Badge } from "@shopify/polaris";
-import { Header } from "../components/Header";
 import { customerName } from "../utils/customer_name";
 
 function Dashboard() {
