@@ -59,6 +59,15 @@ body {
   gap: 1rem;
 }
 
+/* Footer */
+.app-footer {
+  background-color: var(--coffee-background);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
 /* Login + Register */
 
 .container {
