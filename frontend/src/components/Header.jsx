@@ -17,7 +17,10 @@ function Header() {
     return (
         <header className="app-header">
             <div className="header-container">
-                <Text as="p">{`Welcome, ${username}`}</Text>
+                <div className="header-brand">
+                    <Icon source={StoreIcon} />
+                    <Text as="p">{`Welcome, ${username}`}</Text>
+                </div>
                 <Button
                     variant="secondary"
                     onClick={handleLogout}

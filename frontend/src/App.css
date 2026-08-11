@@ -53,6 +53,12 @@ body {
   gap: 1rem;
 }
 
+.header-brand {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
 /* Login + Register */
 
 .container {
