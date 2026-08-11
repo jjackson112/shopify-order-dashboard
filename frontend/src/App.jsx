@@ -18,6 +18,8 @@ import CustomerList from './pages/CustomerList';
 // console.log("ORDERLIST IMPORT TEST", OrderList)
 
 function App() {
+
+  // listen for auth:expired + contains state/message for auth updates
   useEffect(() => {
     const handleExpiredToken = () => {
       setAuthMessage("Session has expired. Please log in again.")
