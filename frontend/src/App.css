@@ -17,6 +17,11 @@ body,
   min-height: 100%;
 }
 
+h2, h3 {
+  text-align: center;
+  padding-bottom: 0.75rem;
+}
+
 body {
   margin: 0;
   background: var(--coffee-background);
@@ -104,10 +109,6 @@ body {
   color: var(--coffee-muted);
   margin: 0 auto;
   margin-bottom: 0.4rem;
-}
-
-.dashboard-stat {
-  
 }
 
 /* Product List */

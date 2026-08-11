@@ -88,6 +88,11 @@ function Dashboard() {
     (order) => order.display_fulfillment_status === "UNFULFILLED"
   ).length
 
+  // use reduce() for revenue summary
+  const totalRevenue = orders.reduce(
+    
+  )
+
   return (
     <div className="app-page">
       <Page title="Shopify Order Dashboard">
@@ -214,7 +219,7 @@ function Dashboard() {
               <div className="dashboard-stat">
                 <Card>
                   <BlockStack>
-                    <Text as="h3" variant="headingMd">Low Inventory Products</Text>
+                    <Text as="h3" variant="headingMd">Top-Selling Products</Text>
                   </BlockStack>
                 </Card>
               </div>
@@ -222,7 +227,7 @@ function Dashboard() {
               <div className="dashboard-stat">
                 <Card>
                   <BlockStack>
-                    <Text as="h2" variant="headingMd">Recent Activity</Text>
+                    <Text as="h2" variant="headingMd">Revenue Summary</Text>
                   </BlockStack>
                 </Card>
               </div>
