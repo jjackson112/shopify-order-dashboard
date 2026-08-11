@@ -94,8 +94,8 @@ function OrderDetail() {
                                 </Text>
 
                                 <Text as="p">
-                                    Total: {""}
-                                    ${order.total_price || "0.00"}{""}
+                                    Total: {" "}
+                                    ${order.total_price || "0.00"}{" "}
                                     {order.currency || ""}
                                 </Text>
 

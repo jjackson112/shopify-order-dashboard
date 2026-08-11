@@ -280,7 +280,7 @@ function OrderList() {
 
                                         <Button 
                                             variant="plain"
-                                            onClick={() => navigate(`/orders/single?id=${encodeURIComponent(order.id)}`)}
+                                            onClick={() => navigate(`/orders/detail?id=${encodeURIComponent(order.id)}`)}
                                         >
                                             View Order
                                         </Button>
