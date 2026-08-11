@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import AuthLayout from "./components/AuthLayout";
 import AppLayout from "./components/AppLayout";
 import ProtectedRoute from './components/ProtectedRoute';
+import { useAuth } from "./hooks/useAuth";
 
 import LoginForm from './pages/Login';
 import RegisterForm from './pages/Register';
@@ -17,6 +18,26 @@ import CustomerList from './pages/CustomerList';
 // console.log("ORDERLIST IMPORT TEST", OrderList)
 
 function App() {
+  const { userLoggedIn } = useAuth()
+
+  useEffect(() => {
+    const handleExpiredToken = () => {
+      setAuthMessage("Session has expired. Please log in again.")
+    }
+
+    window.addEventListener("auth:expired", handleExpiredToken)
+
+    return () => {
+      window.removeEventListener("auth:expired", handleExpiredToken)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (userLoggedIn) {
+      setAuthMessage("")
+    } 
+  }, [userLoggedIn])
+
   return (
     <AppProvider>
       <Routes>
