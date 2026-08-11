@@ -124,9 +124,9 @@ function Dashboard() {
   )
 
   // sort() the top sellers before slice()
-  const topThreeProducts = productList.sort((a, b) => {
-    b[1] - a[1]
-  })
+  const topThreeProducts = productList
+    .sort((a, b) => {b[1] - a[1]})
+    .slice(0, 3)
 
   return (
     <div className="app-page">
