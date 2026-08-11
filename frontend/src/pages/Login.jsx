@@ -7,7 +7,7 @@ import { Form, FormLayout, TextField, Button, Text } from "@shopify/polaris";
 
 // autocomplete (boolean) gives the browser the ability to autocomplete input elements
 
-function LoginForm() {
+function LoginForm({ authMessage, setAuthMessage }) {
     const [identifier, setIdentifier] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
@@ -34,6 +34,7 @@ function LoginForm() {
             localStorage.setItem("token", data.token)
             // console.log("TOKEN AFTER SET:", localStorage.getItem("token"))
 
+            setAuthMessage("")
             login(data.token, data.username)
             navigate("/dashboard")
 
@@ -65,6 +66,10 @@ function LoginForm() {
                        onChange={setPassword}
                        autoComplete="password"
                     />
+
+                    {authMessage && (
+                        <Text as="p" tone="critical">{authMessage}</Text>
+                    )}
 
                     {error && (
                       <Text as="p" tone="critical">{error}</Text>

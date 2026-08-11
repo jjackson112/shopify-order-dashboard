@@ -39,7 +39,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route element={<AuthLayout />}>
-          <Route path="/login" element={<LoginForm authMessage={authMessage} />} />
+          <Route path="/login" element={<LoginForm authMessage={authMessage} setAuthMessage={setAuthMessage} />} />
           <Route path="/register" element={<RegisterForm />} />
         </Route>
 
