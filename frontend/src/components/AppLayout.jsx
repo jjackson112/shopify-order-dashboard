@@ -1,9 +1,15 @@
 import "../App.css";
+import { Header } from "../components/Header";
 
 function AppLayout() {
   return (
     <div className="app-shell">
-      <Outlet />
+      <Header />
+
+      <main>
+        <Outlet />
+      </main>    
+      
     </div>
   )
 }
