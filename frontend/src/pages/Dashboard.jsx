@@ -108,7 +108,7 @@ function Dashboard() {
 
   // create new Map to loop over orders for top selling products
   const topProducts = new Map
-  
+
   orders.forEach((order) => {
     order.line_items?.forEach((item) => {
       // add quantity
@@ -116,15 +116,15 @@ function Dashboard() {
 
       // store products
       topProducts.set(item.name, productQuantity + item.quantity)
-
-      // convert the Map into an array to be converted
-      const topProductList = Array.from(topProducts.entries())
     })
   })
 
+  // convert the Map into an array to be converted
+  const topProductList = Array.from(topProducts.entries())
+
   // sort() the top sellers before slice()
-  const topThreeProducts = productList
-    .sort((a, b) => {b[1] - a[1]})
+  const topThreeProducts = topProductList
+    .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
 
   return (
@@ -254,8 +254,6 @@ function Dashboard() {
                 <Card>
                   <BlockStack gap="300">
                     <Text as="h3" variant="headingMd">Top-Selling Products</Text>
-
-                    <Text as="h3" variant="headingMd">Total Items Sold</Text>
                     {topThreeProducts.map((product) => (
                       <Text as="p" key={product[0]}>
                         {product[0]}: {product[1]} sold
