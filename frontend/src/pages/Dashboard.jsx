@@ -195,7 +195,7 @@ function Dashboard() {
             <InlineGrid columns={{ xs: 1, md: 3 }} gap="400">
               <div className="dashboard-stat">
                 <Card>
-                  <BlockStack>
+                  <BlockStack gap="300">
                     <Text as="h3" variant="headingMd">Order Status Summary</Text>
                     <InlineGrid columns="1fr auto" gap="200">
                       <Text as="p">Paid</Text>
@@ -219,7 +219,7 @@ function Dashboard() {
               
               <div className="dashboard-stat">
                 <Card>
-                  <BlockStack>
+                  <BlockStack gap="300">
                     <Text as="h3" variant="headingMd">Top-Selling Products</Text>
                   </BlockStack>
                 </Card>
@@ -227,8 +227,9 @@ function Dashboard() {
 
               <div className="dashboard-stat">
                 <Card>
-                  <BlockStack>
+                  <BlockStack gap="300">
                     <Text as="h2" variant="headingMd">Revenue Summary</Text>
+                    <Text as="p">Total Revenue: ${totalRevenue.toFixed(2)}</Text>
                   </BlockStack>
                 </Card>
               </div>
