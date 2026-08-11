@@ -75,7 +75,7 @@ body {
 
 .card-accent-caramel > div,
 .card-accent-sage > div,
-.card-accent-espresso > div {
+.card-accent-espresso > div, .dashboard-stat > div {
   height: 100%;
 }
 
