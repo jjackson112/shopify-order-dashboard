@@ -18,8 +18,6 @@ import CustomerList from './pages/CustomerList';
 // console.log("ORDERLIST IMPORT TEST", OrderList)
 
 function App() {
-  {/*const { userLoggedIn } = useAuth()
-
   useEffect(() => {
     const handleExpiredToken = () => {
       setAuthMessage("Session has expired. Please log in again.")
@@ -36,7 +34,7 @@ function App() {
     if (userLoggedIn) {
       setAuthMessage("")
     } 
-  }, [userLoggedIn]) */}
+  }, [userLoggedIn])
 
   return (
     <AppProvider>

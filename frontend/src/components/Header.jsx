@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Text, Button, Icon } from "@shopify/polaris";
@@ -7,7 +8,13 @@ function Header() {
     const { logout } = useAuth()
     const navigate = useNavigate()
 
+    const [userLoggedIn, setUserLoggedIn] = useState(false)
     const username = localStorage.getItem("username") || "merchant"
+
+    const logout = () => {
+        localStorage.removeItem("token")
+        localStorage.removeItem("username")
+    }
 
     const handleLogout = () => {
         logout()
