@@ -6,6 +6,7 @@
 const BASE_URL = "http://localhost:5000/api";
 
 // global 401 handling + unified error handling
+// dispatches the auth:expired
 const handleResponse = async (res) => {
   if (res.status === 401) {
     localStorage.removeItem("token")

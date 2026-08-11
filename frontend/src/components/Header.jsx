@@ -11,11 +11,6 @@ function Header() {
     const [userLoggedIn, setUserLoggedIn] = useState(false)
     const username = localStorage.getItem("username") || "merchant"
 
-    const logout = () => {
-        localStorage.removeItem("token")
-        localStorage.removeItem("username")
-    }
-
     const handleLogout = () => {
         logout()
         navigate("/login")
