@@ -129,7 +129,7 @@ function Dashboard() {
 
   // total items sold - extract from line items + use reduce()
   const totalProductsSold = orders.reduce(
-    (total, order) => {total + line_items?.quantity || 0},
+    (total, order) => {total + order.line_items || 0},
     0
   )
 
