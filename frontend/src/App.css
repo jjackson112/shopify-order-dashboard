@@ -68,7 +68,7 @@ body {
 
 .card-accent-caramel,
 .card-accent-sage,
-.card-accent-espresso {
+.card-accent-espresso, .dashboard-stat {
   height: 100%;
   border-radius: 12px;
 }
@@ -109,6 +109,10 @@ body {
   color: var(--coffee-muted);
   margin: 0 auto;
   margin-bottom: 0.4rem;
+}
+
+.dashboard-stat {
+  border-top: 4px solid var(--coffee-muted);
 }
 
 /* Product List */

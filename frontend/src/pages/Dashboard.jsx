@@ -94,6 +94,12 @@ function Dashboard() {
     0
   )
 
+  // pending payments with reduce()
+  const pendingPayments = orders.reduce(
+    (pendingOrders) => pendingOrders + Number(order),
+    0
+  )
+
   return (
     <div className="app-page">
       <Page title="Shopify Order Dashboard">
@@ -230,6 +236,9 @@ function Dashboard() {
                   <BlockStack gap="300">
                     <Text as="h2" variant="headingMd">Revenue Summary</Text>
                     <Text as="p">Total Revenue: ${totalRevenue.toFixed(2)}</Text>
+
+                    <Text as="h2" variant="headingMd">Pending Payments</Text>
+                    <Text as="p"></Text>
                   </BlockStack>
                 </Card>
               </div>
