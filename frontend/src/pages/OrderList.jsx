@@ -74,6 +74,10 @@ function OrderList() {
         (order) => order.display_fulfillment_status === "FULFILLED"
     )
 
+    const unfulfilledOrders = orders.filter(
+        (order) => order.display_fulfillment_status === "UNFULFILLED"
+    )
+
     useEffect(() => {
         const fetchOrders = async () => {
             try {
@@ -132,7 +136,7 @@ function OrderList() {
                 <div className="order-stats">
                     <Card>
                         <InlineGrid 
-                            columns={{ xs: 1, sm: 2, md: 3, lg: 5 }}
+                            columns={{ xs: 1, sm: 2, md: 3, lg: 6 }}
                             gap="400"
                         >
                             <Card>
@@ -159,6 +163,12 @@ function OrderList() {
                                 <Text as="p" variant="headingMd">{fulfilledOrders.length}</Text>
                                 <Text as="p" tone="subdued">Fulfilled</Text>
                             </Card>
+
+                            <Card>
+                                <Text as="p" variant="headingMd">{unfulfilledOrders.length}</Text>
+                                <Text as="p" tone="subdued">Unfulfilled</Text>
+                            </Card>
+
                         </InlineGrid>
                     </Card>
                 </div>

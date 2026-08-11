@@ -84,6 +84,10 @@ function Dashboard() {
     (order) => order.display_fulfillment_status === "FULFILLED"
   ).length
 
+  const unfulfilledOrders = orders.filter(
+    (order) => order.display_fulfillment_status === "UNFULFILLED"
+  ).length
+
   return (
     <div className="app-page">
       <Page title="Shopify Order Dashboard">
@@ -183,34 +187,45 @@ function Dashboard() {
             </InlineGrid> 
 
             <InlineGrid columns={{ xs: 1, md: 3 }} gap="400">
-              <Card>
-                <BlockStack>
-                  <Text as="h3" variant="headingMd">Order Status Summary</Text>
-                  <InlineGrid columns="1fr auto" gap="200">
-                    <Text as="p">Paid</Text>
-                    <Badge tone="success">{paidOrders}</Badge>
+              <div className="dashboard-stat">
+                <Card>
+                  <BlockStack>
+                    <Text as="h3" variant="headingMd">Order Status Summary</Text>
+                    <InlineGrid columns="1fr auto" gap="200">
+                      <Text as="p">Paid</Text>
+                      <Badge tone="success">{paidOrders}</Badge>
 
-                    <Text as="p">Pending</Text>
-                    <Badge tone="attention">{pendingOrders}</Badge>
+                      <Text as="p">Pending</Text>
+                      <Badge tone="attention">{pendingOrders}</Badge>
 
-                    <Text as="p">Refunded</Text>
-                    <Badge tone="critical">{refundedOrders}</Badge>
+                      <Text as="p">Refunded</Text>
+                      <Badge tone="critical">{refundedOrders}</Badge>
 
-                    <Text as="p">Fulfilled</Text>
-                    <Badge tone="success">{fulfilledOrders}</Badge>
-                  </InlineGrid>
-                </BlockStack>
-              </Card>
-              <Card>
-                <BlockStack>
-                  <Text as="h3" variant="headingMd">Low Inventory Products</Text>
-                </BlockStack>
-              </Card>
-              <Card>
-                <BlockStack>
-                  <Text as="h2" variant="headingMd">Recent Activity</Text>
-                </BlockStack>
-              </Card>
+                      <Text as="p">Fulfilled</Text>
+                      <Badge tone="success">{fulfilledOrders}</Badge>
+
+                      <Text as="p">Unfulfilled</Text>
+                      <Badge tone="attention">{unfulfilledOrders}</Badge>
+                    </InlineGrid>
+                  </BlockStack>
+                </Card>
+              </div>
+              
+              <div className="dashboard-stat">
+                <Card>
+                  <BlockStack>
+                    <Text as="h3" variant="headingMd">Low Inventory Products</Text>
+                  </BlockStack>
+                </Card>
+              </div>
+
+              <div className="dashboard-stat">
+                <Card>
+                  <BlockStack>
+                    <Text as="h2" variant="headingMd">Recent Activity</Text>
+                  </BlockStack>
+                </Card>
+              </div>
             </InlineGrid>
 
           </BlockStack>
