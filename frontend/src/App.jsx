@@ -1,7 +1,10 @@
 import { AppProvider } from '@shopify/polaris'
 import { Route, Routes } from "react-router-dom";
+
 import AuthLayout from "./components/AuthLayout";
+import AppLayout from "./components/AppLayout";
 import ProtectedRoute from './components/ProtectedRoute';
+
 import LoginForm from './pages/Login';
 import RegisterForm from './pages/Register';
 import Dashboard from './pages/Dashboard';
@@ -24,6 +27,7 @@ function App() {
         </Route>
 
         {/* Protected Routes */}
+        <Route element={<AppLayout />}>
           <Route 
             path="/dashboard" 
             element={
@@ -31,6 +35,7 @@ function App() {
                 <Dashboard />
               </ProtectedRoute>}
           />
+
           <Route 
             path="/products" 
             element={
@@ -38,6 +43,7 @@ function App() {
               <ProductList />
             </ProtectedRoute>}
             />
+
           <Route 
             path="/products/detail" 
             element={
@@ -45,6 +51,7 @@ function App() {
               <ProductDetail />
             </ProtectedRoute>}
           />
+
           <Route
             path="/orders"
             element={
@@ -52,6 +59,7 @@ function App() {
               <OrderList />
             </ProtectedRoute>}
           />
+
           <Route
             path="/orders/detail"
             element={
@@ -59,6 +67,7 @@ function App() {
               <OrderDetail />
             </ProtectedRoute>}
           />
+
           <Route
             path="/customers"
             element={
@@ -67,8 +76,9 @@ function App() {
               </ProtectedRoute>
             }
           />
+        </Route>
       </Routes>
-      </AppProvider>
+    </AppProvider>
   )
 }
 
