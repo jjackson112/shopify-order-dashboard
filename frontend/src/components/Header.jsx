@@ -1,6 +1,7 @@
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { Text, Button } from "@shopify/polaris";
+import { Text, Button, Icon } from "@shopify/polaris";
+import { StoreIcon } from "@shopify/polaris-icons";
 
 function Header() {
     const { logout } = useAuth()
@@ -14,16 +15,17 @@ function Header() {
     }
 
     return (
-        <div className="header-container">
-            <Text as="p">{`Welcome, ${username}`}</Text>
-            <Button
-                variant="secondary"
-                onClick={handleLogout}
-            >
-                Logout
-            </Button>
-        </div>
-
+        <header className="app-header">
+            <div className="header-container">
+                <Text as="p">{`Welcome, ${username}`}</Text>
+                <Button
+                    variant="secondary"
+                    onClick={handleLogout}
+                >
+                    Logout
+                </Button>
+            </div>
+        </header>
     )
 }
 
