@@ -128,8 +128,19 @@ function Dashboard() {
     .slice(0, 3)
 
   // total items sold - extract from line items + use reduce()
+  // nested array inside the other - outer and inner
   const totalProductsSold = orders.reduce(
-    (total, order) => {total + order.line_items || 0},
+    (total, order) => {
+      const orderTotal = order.line_items.reduce(
+        (sum, item) => {
+          // add item.quantity to sum
+          sum + item.quantity || 0
+        },
+        0
+      )
+
+      return total + orderTotal
+    },
     0
   )
 
