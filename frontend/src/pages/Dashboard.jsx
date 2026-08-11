@@ -134,7 +134,7 @@ function Dashboard() {
       const orderTotal = order.line_items.reduce(
         (sum, item) => {
           // add item.quantity to sum
-          sum + item.quantity || 0
+          return sum + (item.quantity || 0)
         },
         0
       )
@@ -290,7 +290,7 @@ function Dashboard() {
                     <Text as="p">${pendingPayments}</Text>
 
                     <Text as="h2" variant="headingMd">Total Items Sold</Text>
-                    <Text as="p"></Text>
+                    <Text as="p">{totalProductsSold}</Text>
                   </BlockStack>
                 </Card>
               </div>
