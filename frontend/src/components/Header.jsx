@@ -17,7 +17,7 @@ function Header() {
         <div className="header-container">
             <Text as="p">{`Welcome, ${username}`}</Text>
             <Button
-                variant="plain"
+                variant="secondary"
                 onClick={handleLogout}
             >
                 Logout
