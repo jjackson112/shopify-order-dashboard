@@ -42,6 +42,15 @@ function Dashboard() {
         setProducts(productData.products || [])
         setOrders(orderData.orders || [])
 
+        // create new Map to loop over orders for top selling products
+        const topProducts = new Map()
+
+        orders.forEach((order) => {
+          order.line_items?.forEach((item) => {
+            
+          })
+        })
+
       } catch (err) {
         console.log(err)
         setError("Failed to load data to dashboard")
@@ -233,6 +242,8 @@ function Dashboard() {
                 <Card>
                   <BlockStack gap="300">
                     <Text as="h3" variant="headingMd">Top-Selling Products</Text>
+
+                    <Text as="h3" variant="headingMd">Total Items Sold</Text>
                   </BlockStack>
                 </Card>
               </div>
@@ -244,7 +255,7 @@ function Dashboard() {
                     <Text as="p">Total Revenue: ${totalRevenue.toFixed(2)}</Text>
 
                     <Text as="h2" variant="headingMd">Pending Payments</Text>
-                    <Text as="p"></Text>
+                    <Text as="p">${pendingPayments}</Text>
                   </BlockStack>
                 </Card>
               </div>
