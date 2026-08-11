@@ -118,7 +118,7 @@ body {
 /* Product List */
 .product-page {
   min-height: 100vh;
-  background-color: var(--coffee-caramel);
+  background-color: var(--coffee-background);
 }
 
 .product-card {
@@ -167,4 +167,15 @@ body {
 .badge-status {
   display: flex;
   gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .page-content {
+    padding: 1rem;
+  }
+
+  .badge-status {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
