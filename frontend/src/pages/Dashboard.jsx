@@ -53,6 +53,9 @@ function Dashboard() {
             // store products
             topProducts.set(item.name, productQuantity + item.quantity)
 
+            // convert the Map into an array to be converted
+            const topProductList = Array.from(topProducts.entries())
+
           })
         })
 
