@@ -97,9 +97,11 @@ function Dashboard() {
   // pending payments with reduce()
   const pendingPayments = orders.reduce(
     (total, order) => {
-      if (pendingOrders) {
+      if (order.display_financial_status === "PENDING") {
         return total + Number(order.total_price || 0)
       }
+
+      return total
     },
     0
   )
