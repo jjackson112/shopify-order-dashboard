@@ -90,7 +90,8 @@ function Dashboard() {
 
   // use reduce() for revenue summary
   const totalRevenue = orders.reduce(
-    
+    (total, order) => total + Number(order.total_price || 0), 
+    0
   )
 
   return (
