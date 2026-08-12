@@ -94,6 +94,7 @@ def shopify_graphql(query, variables=None):
 
     print("SHOP DOMAIN:", shop_domain)
     print("API VERSION:", api_version)
+    print("TOKEN EXISTS:", bool(access_token))
     print("SHOPIFY STATUS:", response.status_code, flush=True)
     print("SHOPIFY RESPONSE:", response.text, flush=True)
 
