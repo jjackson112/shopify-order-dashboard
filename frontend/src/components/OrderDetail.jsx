@@ -120,8 +120,7 @@ function OrderDetail() {
                                     <BlockStack gap="200">
                                         {order.line_items?.map((item) => (
                                             <div key={item.id}>
-                                                <Text as="p">{item.name}</Text>
-                                                <Text as="p">Item Quantity: {item.quantity}</Text>
+                                                <Text as="p">{item.name} x {item.quantity}</Text>
                                             </div>
                                         ))}
                                     </BlockStack>
