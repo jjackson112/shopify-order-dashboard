@@ -41,7 +41,9 @@ function Dashboard() {
         // data into state
         setProducts(productData.products || [])
         setOrders(orderData.orders || [])
-        setOrdersCount(data.orders_count || 0)
+        setOrdersCount(orderData.orders_count || 0)
+
+        console.log("ORDER COUNT", orderData.orders_count)
 
       } catch (err) {
         console.log(err)
