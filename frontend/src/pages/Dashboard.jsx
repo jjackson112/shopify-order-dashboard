@@ -9,6 +9,7 @@ function Dashboard() {
 
   const [products, setProducts] = useState([])
   const [orders, setOrders] = useState([])
+  const [ordersCount, setOrdersCount] = useState(0)
   
   const navigate = useNavigate()
 
@@ -40,6 +41,7 @@ function Dashboard() {
         // data into state
         setProducts(productData.products || [])
         setOrders(orderData.orders || [])
+        setOrdersCount(data.ordersCount || 0)
 
       } catch (err) {
         console.log(err)
@@ -164,7 +166,7 @@ function Dashboard() {
               <Card>
                   <BlockStack gap="200">
                     <Text as="h2" variant="headingMd">Orders</Text>
-                    <Text as="p" variant="bodyLg">{orders.length}</Text>
+                    <Text as="p" variant="bodyLg">{ordersCount}</Text>
                   </BlockStack>
               </Card>
               <Card>
