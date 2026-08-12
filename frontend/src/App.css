@@ -96,6 +96,10 @@ body {
 }
 
 /* Dashboard Styles */
+.dashboard-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
 
 .card-accent-caramel,
 .card-accent-sage,

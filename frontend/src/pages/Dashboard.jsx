@@ -145,7 +145,12 @@ function Dashboard() {
 
   return (
     <div className="app-page">
-      <Page title="Shopify Order Dashboard">
+      <Page>
+        <div className="dashboard-title">
+          <Text as="h1" variant="headingXl">
+            Kona & Code Coffee Co. ☕
+          </Text>
+        </div>
 
         <div className="page-content">
           <BlockStack gap="400">
