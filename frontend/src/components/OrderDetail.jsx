@@ -115,20 +115,21 @@ function OrderDetail() {
                                 
                                 <Text as="p">
                                     Order Items:
-                                    {order.line_items?.length > 0 ? (
-                                        <BlockStack gap="200">
+                                </Text>
+                                {order.line_items?.length > 0 ? (
+                                    <BlockStack gap="200">
+                                        {order.line_items?.map((item) => (
                                             <div key={item.id}>
                                                 <Text as="p">{item.name}</Text>
+                                                <Text as="p">Item Quantity: {item.quantity}</Text>
                                             </div>
-                                        </BlockStack>
-                                    ) : (
-                                        <Text as="p">No items available.</Text>
-                                    )}
-                                </Text>
+                                        ))}
+                                    </BlockStack>
+                                ) : (
+                                    <Text as="p">No items available.</Text>
+                                )}
 
-                                <Text as="p">
-                                    Item Quantity: {totalItemQuantity}
-                                </Text>
+                                <Text as="p" tone="subdued">Total Items: {totalItemQuantity}</Text>
 
                                 {order.shipping_address ? (
                                     <BlockStack gap="100">
