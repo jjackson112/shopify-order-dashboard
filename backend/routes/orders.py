@@ -15,6 +15,7 @@ def fetch_shopify_orders(current_user):
         result = fetch_orders(first=100) # fetch more orders from Shopify with numbered pages in Flask
 
         orders = result["orders"]
+        orders_count = result["orders_count"]
 
         # simpler loop + dictionary code moved to utils
         normalized_orders = [
@@ -40,7 +41,8 @@ def fetch_shopify_orders(current_user):
             "orders": page_orders,
             "pages": total_pages,
             "has_prev": page > 1,
-            "has_next": page < total_pages
+            "has_next": page < total_pages,
+            "orders_count": orders_count
         }), 200
 
     except Exception as err:
