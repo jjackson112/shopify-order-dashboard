@@ -11,8 +11,48 @@ def shopify_config():
     }
 
 # authenticate app + return temporary token
-# def get_shopify_access_token():
+def get_shopify_access_token():
+    config = shopify_config()
 
+    shop_domain = config["shop_domain"]
+    client_id = config["client_id"]
+    client_secret = config["client_secret"]
+
+    if not shop_domain:
+        raise RuntimeError("SHOPIFY_STORE_DOMAIN is missing")
+
+    if not client_id:
+        raise RuntimeError("CLIENT_ID is missing")
+
+    if not client_secret:
+        raise RuntimeError("CLIENT_SECRET is missing")
+
+    url = f"https://{shop_domain}/admin/oauth/access_token"
+
+    payload = {
+        "grant_type": "client_credentials",
+        "client_id": client_id,
+        "client_secret": client_secret
+    }
+
+    response = response.post (
+        url,
+        data=payload,
+        timeput=20
+    )
+
+    print("TOKEN STATUS", response.status_code, flush=True)
+
+    response.raise_for_status()
+
+    data = response.json()
+
+    access_token = data.get("access_token")
+
+    if not access_token:
+        raise RuntimeError("Shopify did not return an access token")
+
+    raise access_token
 
 # generic Shopify GraphQL Client - any query, send to Shopify + return JSON response
 def shopify_graphql(query, variables=None):
@@ -20,7 +60,7 @@ def shopify_graphql(query, variables=None):
 
     shop_domain = config["shop_domain"]
     client_id = config["client_id"]
-    client_secret = ["client_secret"]
+    client_secret = config["client_secret"]
     api_version = config["api_version"]
 
     if not shop_domain:
@@ -40,9 +80,8 @@ def shopify_graphql(query, variables=None):
     
     # headers
     headers = {
-        "grant_type": "client_credentials",
-        "client_id": client_id,
-        "client_secret": client_secret
+        "Content-Type": "application/json",
+        "X-Shopify-Access-Token": get_shopify_access_token,
     }
 
     # query - only one endpoint
