@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Text, Button, Icon } from "@shopify/polaris";
 import { StoreIcon } from "@shopify/polaris-icons";
 
@@ -20,7 +20,7 @@ function Header() {
         <header className="app-header">
             <div className="header-container">
                 <div className="header-brand">
-                    <Icon source={StoreIcon} />
+                    <Link to="/dashboard" aria-label="Go to dashboard"><Icon source={StoreIcon} /></Link>
                     <Text as="p">{`Welcome, ${username} 👋`}</Text>
                 </div>
                 <Button
