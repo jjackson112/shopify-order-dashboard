@@ -68,6 +68,13 @@ function OrderDetail() {
         )
     }
 
+    // find total item quantity, not just the number of entries in each order
+    // no more {order.line_items?.length} use reduce() to get single output
+    const totalItemQuantity = order.line_items?.reduce(
+        (total, item) => total + (item.quantity || 0),
+        0
+    ) || 0
+
     // backAction provides a back btn labeled orders that links to orders
 
     return (
@@ -105,9 +112,22 @@ function OrderDetail() {
                                         ? new Date(order.created_at).toLocaleDateString()
                                         : "Unknown"}
                                 </Text>
+                                
+                                <Text as="p">
+                                    Order Items:
+                                    {order.line_items?.length > 0 ? (
+                                        <BlockStack gap="200">
+                                            <div key={item.id}>
+                                                <Text as="p">{item.name}</Text>
+                                            </div>
+                                        </BlockStack>
+                                    ) : (
+                                        <Text as="p">No items available.</Text>
+                                    )}
+                                </Text>
 
                                 <Text as="p">
-                                    Items: {order.line_items?.length || 0}
+                                    Item Quantity: {totalItemQuantity}
                                 </Text>
 
                                 {order.shipping_address ? (
