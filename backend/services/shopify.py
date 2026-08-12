@@ -5,23 +5,26 @@ import requests
 def shopify_config():
     return {
         "shop_domain": os.getenv("SHOPIFY_STORE_DOMAIN"),
-        "access_token": os.getenv("SHOPIFY_ADMIN_ACCESS_TOKEN"),
+        "client_id": os.getenv("SHOPIFY_CLIENT_ID"),
+        "client_secret": os.getenv("SHOPIFY_CLIENT_SECRET"),
         "api_version" : os.getenv("SHOPIFY_API_VERSION")
     }
+
+# authenticate app + return temporary token
+def get_shopify_access_token():
+
 
 # generic Shopify GraphQL Client - any query, send to Shopify + return JSON response
 def shopify_graphql(query, variables=None):
     config = shopify_config()
 
     shop_domain = config["shop_domain"]
-    access_token = config["access_token"]
     api_version = config["api_version"]
+
+    access_token = get_shopify_access_token()
 
     if not shop_domain:
         raise RuntimeError("SHOPIFY_STORE_DOMAIN is missing")
-
-    if not access_token:
-        raise RuntimeError("SHOPIFY_ADMIN_ACCESS_TOKEN is missing")
 
     if not api_version:
         raise RuntimeError("SHOPIFY_API_VERSION is missing")
