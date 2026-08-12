@@ -257,6 +257,9 @@ def fetch_orders(first=10, after=None):
     # fetch_orders no longer returns just a list, but pagination too
     order_connection = data["data"]["orders"]
 
+    # pull the ordersCount out of the response and return it
+    orders_count = data["data"]["ordersCount"]["count"]
+
     orders = [
         edge["node"]
         for edge in order_connection["edges"]
@@ -270,6 +273,7 @@ def fetch_orders(first=10, after=None):
     return {
         "orders": orders,
         "page_info": page_info,
+        "orders_count": orders_count
     }
 
 # fetch single order
