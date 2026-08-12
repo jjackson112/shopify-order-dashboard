@@ -174,6 +174,9 @@ def fetch_single_product(product_id):
 def fetch_orders(first=10, after=None):
     query = """
     query GetOrders($first: Int!, $after: String) {
+        ordersCount {
+            count
+        }
         orders(
             first: $first
             after: $after
