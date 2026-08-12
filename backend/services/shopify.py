@@ -59,29 +59,23 @@ def shopify_graphql(query, variables=None):
     config = shopify_config()
 
     shop_domain = config["shop_domain"]
-    client_id = config["client_id"]
-    client_secret = config["client_secret"]
     api_version = config["api_version"]
 
     if not shop_domain:
         raise RuntimeError("SHOPIFY_STORE_DOMAIN is missing")
-
-    if not client_id:
-        raise RuntimeError("CLIENT_ID is missing")
-
-    if not client_secret:
-        raise RuntimeError("CLIENT_SECRET is missing")
     
     if not api_version:
         raise RuntimeError("SHOPIFY_API_VERSION is missing")
 
+    access_token = get_shopify_access_token
+
     # Admin GraphQL URL
-    url = f"https://{shop_domain}/admin/oauth/access_token"
+    url = f"https://{shop_domain}/admin/api/{api_version}/graphql.json"
     
     # headers
     headers = {
         "Content-Type": "application/json",
-        "X-Shopify-Access-Token": get_shopify_access_token,
+        "X-Shopify-Access-Token": access_token,
     }
 
     # query - only one endpoint
