@@ -36,6 +36,8 @@ def fetch_shopify_orders(current_user):
         # cannot return every order without slice boundaries
         page_orders = normalized_orders[start:end]
 
+        print("ORDER COUNT", orders_count)
+        
         return jsonify({
             "message": "Orders fetched",
             "orders": page_orders,
