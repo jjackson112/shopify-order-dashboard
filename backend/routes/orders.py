@@ -4,6 +4,7 @@ from services.token import token_required
 from services.shopify import fetch_orders, fetch_single_order
 from models.order import Order
 from backend_utils.orders_normalization import normalize_order
+import traceback
 
 orders_bp = Blueprint("orders", __name__, url_prefix="/api/orders")
 
@@ -36,8 +37,8 @@ def fetch_shopify_orders(current_user):
         # cannot return every order without slice boundaries
         page_orders = normalized_orders[start:end]
 
-        print("ORDER COUNT", orders_count)
-        
+        print("ORDER COUNT", orders_count, flush=True)
+
         return jsonify({
             "message": "Orders fetched",
             "orders": page_orders,
@@ -48,7 +49,9 @@ def fetch_shopify_orders(current_user):
         }), 200
 
     except Exception as err:
-        print(f"Failed to fetch Shopify orders: {err}")
+        print(f"Failed to fetch Shopify orders:", flush=True)
+        print(repr(err), flush=True)
+        traceback.print_exc()
 
         return jsonify({"error": "Failed to fetch Shopify orders"}), 500
 
