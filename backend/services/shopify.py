@@ -52,7 +52,7 @@ def get_shopify_access_token():
     if not access_token:
         raise RuntimeError("Shopify did not return an access token")
 
-    raise access_token
+    return access_token
 
 # generic Shopify GraphQL Client - any query, send to Shopify + return JSON response
 def shopify_graphql(query, variables=None):
