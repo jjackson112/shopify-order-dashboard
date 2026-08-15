@@ -111,7 +111,7 @@ function Dashboard() {
                     {products.length === 0 ? (
                       <Text as="p">No products yet.</Text>
                     ) : (
-                      products.slice(-3).map((product) => (
+                      products.slice(-5).map((product) => (
                         <Link
                           key={product.id}
                           className="dashboard-link"
@@ -134,7 +134,7 @@ function Dashboard() {
                     {orders.length === 0 ? (
                         <Text as="p">No orders yet.</Text>
                     ) : (
-                        orders.slice(0, 3).map((order) => {
+                        orders.slice(0, 5).map((order) => {
                           return (
                             <Link
                               key={order.id}
@@ -159,7 +159,7 @@ function Dashboard() {
                       <Text as="p" tone="subdued">No customer information is available.</Text>
                     ) : (
                       Array.from(uniqueCustomers.values())
-                        .slice(0, 3)
+                        .slice(0, 5)
                         .map((customer) => (
                           <div className="customer-text">
                             <Text as="p" key={customer.id}>{customerName(customer)}</Text>
