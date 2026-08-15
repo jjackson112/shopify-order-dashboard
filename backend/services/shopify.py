@@ -35,10 +35,10 @@ def get_shopify_access_token():
         "client_secret": client_secret
     }
 
-    response = response.post (
+    response = requests.post (
         url,
         data=payload,
-        timeput=20
+        timeout=20
     )
 
     print("TOKEN STATUS", response.status_code, flush=True)
@@ -67,7 +67,7 @@ def shopify_graphql(query, variables=None):
     if not api_version:
         raise RuntimeError("SHOPIFY_API_VERSION is missing")
 
-    access_token = get_shopify_access_token
+    access_token = get_shopify_access_token()
 
     # Admin GraphQL URL
     url = f"https://{shop_domain}/admin/api/{api_version}/graphql.json"
