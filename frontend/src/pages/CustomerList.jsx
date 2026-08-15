@@ -114,7 +114,11 @@ function CustomerList() {
 
   return (
     <div className="app-page">
-      <Page title="Customers">
+      <Page>
+        <div className="customer-title">
+          <Text as="h1" variant="headingXl">Customers</Text>
+        </div>
+        
         <div className="page-content">
           <BlockStack gap="400">
             <InlineGrid columns={{ xs: 1, sm: 2 }} gap="400">

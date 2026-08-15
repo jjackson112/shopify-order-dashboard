@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../api/api";
 import { useNavigate, Link } from "react-router-dom";
 import "../App.css";
-import { Page, Card, Text, BlockStack, InlineGrid, Button, Badge } from "@shopify/polaris";
+import { Page, Card, Text, BlockStack, InlineGrid, Button } from "@shopify/polaris";
 import { customerName } from "../utils/customer_name";
 
 function Dashboard() {
@@ -69,27 +69,6 @@ function Dashboard() {
       <Text as="p" tone="critical">{error}</Text>
     )
   }
-
-  // counts were calculated in OrderList - add the .length
-  const paidOrders = orders.filter(
-    (order) => order.display_financial_status === "PAID"
-  ).length
-
-  const pendingOrders = orders.filter(
-    (order) => order.display_financial_status === "PENDING"
-  ).length
-
-  const refundedOrders = orders.filter(
-    (order) => order.display_financial_status === "REFUNDED"
-  ).length
-
-  const fulfilledOrders = orders.filter(
-    (order) => order.display_fulfillment_status === "FULFILLED"
-  ).length
-
-  const unfulfilledOrders = orders.filter(
-    (order) => order.display_fulfillment_status === "UNFULFILLED"
-  ).length
 
   // use reduce() for revenue summary
   const totalRevenue = orders.reduce(
@@ -253,23 +232,8 @@ function Dashboard() {
               <div className="dashboard-stat">
                 <Card>
                   <BlockStack gap="300">
-                    <Text as="h3" variant="headingMd">Order Status Summary</Text>
-                    <InlineGrid columns="1fr auto" gap="200">
-                      <Text as="p">Paid</Text>
-                      <Badge tone="success">{paidOrders}</Badge>
-
-                      <Text as="p">Pending</Text>
-                      <Badge tone="attention">{pendingOrders}</Badge>
-
-                      <Text as="p">Refunded</Text>
-                      <Badge tone="critical">{refundedOrders}</Badge>
-
-                      <Text as="p">Fulfilled</Text>
-                      <Badge tone="success">{fulfilledOrders}</Badge>
-
-                      <Text as="p">Unfulfilled</Text>
-                      <Badge tone="attention">{unfulfilledOrders}</Badge>
-                    </InlineGrid>
+                    <Text as="h2" variant="headingMd">Total Items Sold</Text>
+                    <Text as="p">{totalProductsSold}</Text>
                   </BlockStack>
                 </Card>
               </div>
@@ -295,9 +259,6 @@ function Dashboard() {
 
                     <Text as="h2" variant="headingMd">Pending Payments</Text>
                     <Text as="p">${pendingPayments}</Text>
-
-                    <Text as="h2" variant="headingMd">Total Items Sold</Text>
-                    <Text as="p">{totalProductsSold}</Text>
                   </BlockStack>
                 </Card>
               </div>
