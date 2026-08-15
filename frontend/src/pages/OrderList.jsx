@@ -111,6 +111,62 @@ function OrderList() {
         fetchOrders()
     }, [page]) // run whenever page changes
 
+    // use reduce() for revenue summary
+  const totalRevenue = orders.reduce(
+    (total, order) => total + Number(order.total_price || 0), 
+    0
+  )
+
+  // pending payments with reduce()
+  const pendingPayments = orders.reduce(
+    (total, order) => {
+      if (order.display_financial_status === "PENDING") {
+        return total + Number(order.total_price || 0)
+      }
+
+      return total
+    },
+    0
+  )
+
+  // create new Map to loop over orders for top selling products
+  const topProducts = new Map
+
+  orders.forEach((order) => {
+    order.line_items?.forEach((item) => {
+      // add quantity
+      const productQuantity = topProducts.get(item.name) || 0
+
+      // store products
+      topProducts.set(item.name, productQuantity + item.quantity)
+    })
+  })
+
+  // convert the Map into an array to be converted
+  const topProductList = Array.from(topProducts.entries())
+
+  // sort() the top sellers before slice()
+  const topThreeProducts = topProductList
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+
+  // total items sold - extract from line items + use reduce()
+  // nested array inside the other - outer and inner
+  const totalProductsSold = orders.reduce(
+    (total, order) => {
+      const orderTotal = order.line_items.reduce(
+        (sum, item) => {
+          // add item.quantity to sum
+          return sum + (item.quantity || 0)
+        },
+        0
+      )
+
+      return total + orderTotal
+    },
+    0
+  )
+
     // render guards
     if (loading) {
         return (
@@ -175,6 +231,38 @@ function OrderList() {
 
                         </InlineGrid>
                     </Card>
+                </div>
+
+                <div className="other-stats">
+                    <InlineGrid columns={{ xs: 1, md: 2 }} gap="400">
+
+                        <div className="dashboard-stat">
+                          <Card>
+                            <BlockStack gap="300">
+                              <Text as="h3" variant="headingMd">Top-Selling Products</Text>
+                              {topThreeProducts.map((product) => (
+                                <Text as="p" key={product[0]}>
+                                  {product[0]}: {product[1]} sold
+                                </Text>
+                              ))}
+                                <Text as="h2" variant="headingMd">Total Items Sold</Text>
+                                <Text as="p">{totalProductsSold}</Text>
+                            </BlockStack>
+                          </Card>
+                        </div>
+
+                        <div className="dashboard-stat">
+                          <Card>
+                            <BlockStack gap="300">
+                                <Text as="h2" variant="headingMd">Revenue Summary</Text>
+                                <Text as="p">Total Revenue: ${totalRevenue.toFixed(2)}</Text>
+
+                                <Text as="h2" variant="headingMd">Pending Payments</Text>
+                                <Text as="p">${pendingPayments}</Text>
+                            </BlockStack>
+                          </Card>
+                        </div>
+                    </InlineGrid>
                 </div>
 
                 <BlockStack gap="400">

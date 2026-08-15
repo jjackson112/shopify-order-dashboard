@@ -177,6 +177,10 @@ body {
   width: 100%;
 }
 
+.other-stats {
+  padding-top: 1rem;
+}
+
 .pagination {
   display: flex;
   justify-content: space-evenly;
