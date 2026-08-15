@@ -132,7 +132,11 @@ function OrderList() {
 
     return (
         <div className="app-page">
-            <Page title="Orders">
+            <Page>
+                <div className="order-title">
+                    <Text as="h1" variant="headingXl">Orders</Text>
+                </div>
+
                 <div className="order-stats">
                     <Card>
                         <InlineGrid 
@@ -141,32 +145,32 @@ function OrderList() {
                         >
                             <Card>
                                 <Text as="p" variant="headingMd">{orders.length}</Text>
-                                <Text as="p" tone="subdued">Total Orders</Text>
+                                <Badge as="p" tone="subdued">Total Orders</Badge>
                             </Card>
 
                             <Card>
                                 <Text as="p" variant="headingMd">{paidOrders.length}</Text>
-                                <Text as="p" tone="subdued">Paid</Text>
+                                <Badge as="p" tone="success">Paid</Badge>
                             </Card>
 
                             <Card>
                                 <Text as="p" variant="headingMd">{pendingOrders.length}</Text> 
-                                <Text as="p" tone="subdued">Pending</Text> 
+                                <Badge as="p" tone="attention">Pending</Badge> 
                             </Card>
 
                             <Card>
                                 <Text as="p" variant="headingMd">{refundedOrders.length}</Text>
-                                <Text as="p" tone="subdued">Refunded</Text>
+                                <Badge as="p" tone="critical">Refunded</Badge>
                             </Card>
 
                             <Card>
                                 <Text as="p" variant="headingMd">{fulfilledOrders.length}</Text>
-                                <Text as="p" tone="subdued">Fulfilled</Text>
+                                <Badge as="p" tone="success">Fulfilled</Badge>
                             </Card>
 
                             <Card>
                                 <Text as="p" variant="headingMd">{unfulfilledOrders.length}</Text>
-                                <Text as="p" tone="subdued">Unfulfilled</Text>
+                                <Badge as="p" tone="attention">Unfulfilled</Badge>
                             </Card>
 
                         </InlineGrid>
