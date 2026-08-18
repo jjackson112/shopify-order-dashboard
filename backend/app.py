@@ -32,6 +32,8 @@ def create_app():
    from models.user import User
    from models.product import Product
    from models.variant import Variant
+   from models.order import Order
+   from models.webhook_event import WebhookEvent
 
    # Blueprints
    app.register_blueprint(auth_bp)
