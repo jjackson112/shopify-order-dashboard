@@ -76,7 +76,7 @@ function LoginForm({ authMessage, setAuthMessage }) {
                     )}
 
                     <div className="login-register-row">
-                        <Button submit variant="primary" loading={loading}>Login</Button>
+                        <Button submit variant="primary" loading={loading}>Shopify Store Login</Button>
                         <Button onClick={(() => navigate("/register"))} disabled={loading}>Register</Button>
                     </div>
                 </FormLayout>
