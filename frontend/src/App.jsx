@@ -39,10 +39,9 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route element={<AuthLayout />}>
-          <Route path="/" element={<Navigate to="/login" replace />}>
-            <Route path="/login" element={<LoginForm authMessage={authMessage} setAuthMessage={setAuthMessage} />} />
-          </Route>
-            <Route path="/register" element={<RegisterForm />} />
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/login" element={<LoginForm authMessage={authMessage} setAuthMessage={setAuthMessage} />} />
+          <Route path="/register" element={<RegisterForm />} />
         </Route>
 
         {/* Protected Routes */}
