@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AppProvider } from '@shopify/polaris'
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import AuthLayout from "./components/AuthLayout";
 import AppLayout from "./components/AppLayout";
@@ -39,8 +39,10 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route element={<AuthLayout />}>
-          <Route path="/login" element={<LoginForm authMessage={authMessage} setAuthMessage={setAuthMessage} />} />
-          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/" element={<Navigate to="/login" replace />}>
+            <Route path="/login" element={<LoginForm authMessage={authMessage} setAuthMessage={setAuthMessage} />} />
+          </Route>
+            <Route path="/register" element={<RegisterForm />} />
         </Route>
 
         {/* Protected Routes */}
