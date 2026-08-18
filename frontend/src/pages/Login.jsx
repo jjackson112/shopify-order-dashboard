@@ -50,7 +50,7 @@ function LoginForm({ authMessage, setAuthMessage }) {
         <div className="container">
             <Form onSubmit={handleSubmit}>
                 <FormLayout>
-                    <Text as="h1" variant="headingLg" alignment="center">Login</Text>
+                    <Text as="h1" variant="headingLg" alignment="center">Shopify Store Login</Text>
 
                     <TextField 
                        label="Username/Email" 
@@ -76,7 +76,7 @@ function LoginForm({ authMessage, setAuthMessage }) {
                     )}
 
                     <div className="login-register-row">
-                        <Button submit variant="primary" loading={loading}>Shopify Store Login</Button>
+                        <Button submit variant="primary" loading={loading}>Login</Button>
                         <Button onClick={(() => navigate("/register"))} disabled={loading}>Register</Button>
                     </div>
                 </FormLayout>
