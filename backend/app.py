@@ -15,7 +15,7 @@ load_dotenv()
 
 def create_app():
    app = Flask(__name__)
-   CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "*"}})
+   CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": ["http://localhost:5173", "https://shopify-order-dashboard-1-xg9r.onrender.com"]}})
 
    # DB Configuration
    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "sqlite:///shopify_dashboard.db")
