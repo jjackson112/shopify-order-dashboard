@@ -1,16 +1,63 @@
-# React + Vite
+# Shopify Order Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack order management dashboard that integrates with the Shopify Admin API to display product, order, and customer data.
 
-Currently, two official plugins are available:
+The application features a React frontend, Flask REST API, Shopify GraphQL integration, authentication, webhook processing, and a responsive interface built with Shopify Polaris.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+### Frontend
+- React
+- Vite
+- React Router
+- Shopify Polaris
+- CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Backend
+- Python
+- Flask
+- Flask-SQLAlchemy
+- REST APIs
+- JWT authentication
+- Gunicorn
 
-## Expanding the ESLint configuration
+### Data & Integrations
+- PostgreSQL
+- Shopify Admin GraphQL API
+- Shopify Webhooks
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Infrastructure
+- Docker / Docker Compose
+- Render
+- Cloudflare
+
+## Features
+
+- Merchant authentication with JWT
+- Protected frontend and backend routes
+- Shopify product and variant data
+- Shopify order data and order details
+- Customer information derived from orders
+- Order search, sorting, and pagination
+- Dashboard order and product metrics
+- Shopify GraphQL API integration
+- Shopify webhook processing
+- Responsive interface
+- Production deployment with Render
+- Cloudflare Access protection for the live application
+
+## Architecture
+
+```text
+Cloudflare Access
+        |
+        v
+React Frontend
+        |
+        | REST API / JWT
+        v
+Flask Backend
+      /       \
+     v         v
+PostgreSQL   Shopify Admin
+             GraphQL API
