@@ -82,10 +82,6 @@ body {
   align-items: center;
 }
 
-.register-btn {
-  display: flex;
-}
-
 /* General Styles */
 
 .app-page {
@@ -221,6 +217,16 @@ body {
 
   .register-btn, .register-message {
     text-align: center;
+  }
+
+  /* OrderList + OrderDetail */
+  .app-page {
+    margin: 0;
+    width: 100%;
+  }
+
+  .order-title {
+    margin-bottom: 0.5rem;
   }
 
   .page-content {

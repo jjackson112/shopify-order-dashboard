@@ -54,7 +54,7 @@ function ProductList() {
   }
 
   return (
-    <div className="product-page">
+    <div className="app-page">
       <Page title="Products">
         <BlockStack gap="200">
           {products.length === 0 ? (

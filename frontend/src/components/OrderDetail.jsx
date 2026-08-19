@@ -82,7 +82,7 @@ function OrderDetail() {
             <Page title={`Order ${order.name}`}>
                 <BlockStack gap="400">
                     <div className="card-accent-sage">
-                        <Card>
+                        <Card className="order-card">
                             <BlockStack gap="200">
                                 <Text as="h2" variant="headingMd">
                                     Order Summary
