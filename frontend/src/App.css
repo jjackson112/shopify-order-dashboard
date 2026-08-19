@@ -82,6 +82,10 @@ body {
   align-items: center;
 }
 
+.register-btn {
+  display: flex;
+}
+
 /* General Styles */
 
 .app-page {
@@ -208,6 +212,17 @@ body {
 }
 
 @media (max-width: 600px) {
+
+  /* Login + Register */
+  .container {
+    margin: 2rem 1rem;
+    padding-inline: 0.75rem;
+  }
+
+  .register-btn, .register-message {
+    text-align: center;
+  }
+
   .page-content {
     padding: 1rem;
   }
